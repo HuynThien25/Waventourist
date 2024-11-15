@@ -1,0 +1,240 @@
+.cardTTDatCho {
+  border-radius: 6px;
+  display: flex;
+  margin-top: 20px;
+  border: 1px solid #e0e0e0;
+  margin-bottom: 20px;
+}
+.imgDatCho {
+  width: 330px;
+  height: 200px;
+  object-fit: fill;
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+}
+.datTourContain {
+}
+.d4 {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1024px;
+}
+.tb4 {
+  padding-top: 15px;
+}
+.tb4 > h1 {
+  font-size: 14px;
+  padding-left: 10px;
+}
+.tb4 div {
+  font-size: 14px;
+  color: #616161;
+  font-weight: 500;
+  padding: 10px 0px 0px 10px;
+}
+.tb4 span {
+  font-weight: 700;
+  padding-left: 4px;
+}
+.row2 {
+  display: flex;
+  justify-content: space-between;
+  gap: 70px;
+}
+.mainContain {
+  width: 100%;
+  max-width: 1424px;
+}
+.datTourContainer {
+  display: flex;
+  gap: 20px;
+  max-width: 1424px;
+  align-items: center;
+  justify-content: center;
+}
+.sliderText3 {
+  position: absolute;
+  display: flex;
+  color: #ffffff;
+  border-radius: 4px;
+  font-size: 30px;
+  font-weight: 700;
+  margin: 90px 137px 0px;
+  padding: 14px 25px;
+  width: 100%;
+  max-width: 1024px;
+  justify-content: center;
+}
+.c1 {
+}
+.c2 {
+  display: flex;
+}
+.nhapThongTin4 {
+  border-bottom: none;
+  padding: 10px;
+  border-radius: 10px;
+  color: #222;
+  font-weight: 600;
+  flex: 1;
+  text-align: center;
+  background-color: #ffcc00;
+}
+.chonTour4 {
+  border-bottom: none;
+  padding: 10px;
+  border-radius: 10px;
+  color: #222;
+  font-weight: 600;
+  flex: 1;
+  text-align: center;
+  background-color: #ffcc00;
+}
+.thanhToan4 {
+  border-bottom: none;
+  padding: 10px;
+  border-radius: 10px;
+  color: #222;
+  font-weight: 600;
+  flex: 1;
+  text-align: center;
+  background-color: #ffcc00;
+}
+.xacNhan4 {
+  border-bottom: none;
+  padding: 10px;
+  border-radius: 10px;
+  color: #222;
+  font-weight: 600;
+  flex: 1;
+  text-align: center;
+  background-color: #ffcc00;
+}
+.soLuongHK4 {
+  width: 600px;
+  padding-left: 60px;
+}
+.soLuongHK4 > h1 {
+  font-size: 22px;
+  text-align: center;
+  font-weight: bold;
+  color: #18a0fb;
+}
+.soLuongHK4 > h4 {
+  font-size: 15px;
+  text-align: center;
+  padding-top: 10px;
+}
+.soLuongHK2 > h1 {
+  font-size: 20px;
+  padding-bottom: 10px;
+}
+.soLuongHK2 input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding-right: 50px;
+}
+.soLuongHK2 ul li {
+  font-size: 12px;
+  margin: 7px 0px 0px 18px;
+}
+.bang2 {
+  flex: 1;
+}
+.btnTong {
+  display: flex;
+  justify-content: space-between;
+}
+.bang2 {
+  border-radius: 10px;
+  border: none;
+}
+.textC {
+  white-space: normal;
+  word-wrap: break-word;
+  max-width: 100%;
+  text-align: justify;
+  width: 500px;
+}
+.nguoiLon,
+.treEm,
+.emBe {
+  line-height: 30px;
+  font-size: 15px;
+  font-weight: bold;
+}
+/* ------ */
+.planeIMG {
+  width: 370px;
+  height: 370px;
+  object-fit: contain;
+}
+.xacNhanBtn {
+  width: 600px;
+  background-color: #fff;
+  padding: 10px;
+  border: 1px solid #18a0fb;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  color: #18a0fb;
+}
+.xacNhanBtn:hover {
+  background-color: #18a0fb;
+  color: #fff;
+  transition: 0.3s ease-in-out;
+}
+/* -------------Responsive-------------- */
+@media (max-width: 768px) {
+}
+
+@media (max-width: 480px) {
+  .d4 {
+  }
+  .datTourContainer {
+  }
+  .soLuongHK4 {
+    width: 100%;
+    padding-bottom: 40px;
+    margin: auto;
+    padding-left: 0;
+  }
+  .soLuongHK4 h1 {
+    font-size: 15px;
+  }
+  .soLuongHK4 h4 {
+    font-size: 13px;
+    width: 90%;
+    margin: auto;
+    padding-bottom: 15px;
+  }
+  .cardTTDatCho {
+    display: flex;
+    justify-content: center;
+    width: 90%;
+    margin: auto;
+    flex-direction: column;
+  }
+  .imgDatCho {
+    width: 100%;
+    margin: auto;
+  }
+  .btnTong {
+    padding-top: 15px;
+  }
+  .xacNhanBtn {
+    width: 90%;
+    margin: auto;
+  }
+  .plane {
+    display: none;
+  }
+  .row2 {
+    gap: 10px;
+  }
+  .sliderText3 {
+    font-size: 22px;
+  }
+}

@@ -1,0 +1,251 @@
+body {
+  overflow-x: hidden;
+}
+.cart {
+  border: 1px solid #e0e0e0;
+  width: 100%;
+  max-width: 1024px;
+  display: flex;
+  gap: 10px;
+  margin: auto;
+  border-radius: 10px;
+}
+.imgTitle {
+  width: 100%;
+  max-width: 300px;
+  height: 100%;
+  object-fit: contain;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+.title {
+  font-size: 19px;
+  font-weight: 700;
+  text-align: justify;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 0 10px 0;
+  padding-top: 40px;
+}
+.subP {
+  padding-top: 20px;
+  font-size: 14px;
+  font-weight: medium;
+  text-align: justify;
+  display: flex;
+  color: #191e3b;
+}
+.grIconQrcode {
+  display: none;
+}
+.imgDownload {
+  padding-top: 60px;
+  width: 100%;
+  max-width: 150px;
+  height: 90px;
+  object-fit: contain;
+  cursor: pointer;
+}
+.imgQR {
+  width: 100%;
+  object-fit: contain;
+  height: 170px;
+  width: 170px;
+  text-align: right;
+  padding-top: 10px;
+  cursor: pointer;
+}
+.signOffer {
+  width: 100vw;
+  background-image: url(../../assets/img/hinhAnh/vintage.jpg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-attachment: fixed;
+  padding: 20px;
+  box-sizing: border-box;
+  text-align: center;
+  margin-top: 50px;
+  padding: 60px;
+}
+.cartSign {
+  display: flex;
+  justify-content: space-around;
+  max-width: 1024px;
+  margin: auto;
+  width: 100%;
+  padding-top: 20px;
+}
+.offerTitle {
+  font-size: 23px;
+  padding-top: 5px;
+  padding-left: 80px;
+  color: #fff;
+}
+.formInput {
+  border: 1px solid #18a0fb;
+  margin: 0px 80px 10px 0px;
+  padding: 10px 109px 10px 10px;
+  border-radius: 5px;
+}
+.formInput::placeholder {
+  font-size: 14px;
+  font-family: "Roboto", sans-serif;
+}
+.formInput:focus {
+  border: 2px solid #ffffff;
+  outline: 2px solid #febe10;
+  transition: ease-in-out 0.2s;
+  scale: 1;
+}
+.formBtn {
+  position: absolute;
+  margin: 2px 90px 3px 192px;
+  padding: 10px 25px 8px 25px;
+  text-align: center;
+  align-items: center;
+  display: flex;
+  background-color: #ffcc00;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 1;
+  font-weight: 600;
+}
+.formBtn:hover {
+  background-color: #febe10;
+}
+/* ---------responsive------------------- */
+@media (max-width: 768px) {
+  .cart {
+    flex-direction: column;
+    padding: 10px;
+    border: none;
+  }
+  .imgTitle {
+    display: flex;
+    justify-content: center;
+    height: auto;
+    border-radius: 10px;
+    max-width: 95%;
+  }
+  .title {
+    font-size: 14px;
+    padding-top: 20px;
+    text-align: center;
+  }
+  .subP {
+    font-size: 13px;
+    padding-top: 10px;
+  }
+  .imgDownload,
+  .imgQR {
+    max-width: 100px;
+    height: auto;
+    padding-top: 20px;
+  }
+  .signOffer {
+    padding: 40px 20px;
+  }
+  .offerTitle {
+    font-size: 20px;
+    padding-left: 0;
+    text-align: center;
+    margin-bottom: 15px;
+  }
+  .formInput {
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto 10px;
+    padding: 10px;
+  }
+  .formBtn {
+    position: static;
+    margin: 10px auto;
+    padding: 10px 20px;
+    width: 100%;
+    max-width: 150px;
+  }
+}
+/* Small screen adjustments (max-width: 480px) */
+@media (max-width: 480px) {
+  .cart {
+    margin: auto;
+    border: 1px solid #e0e0e0;
+    width: 80%;
+  }
+  .title {
+    font-size: 17px;
+  }
+  .subP {
+    font-size: 14px;
+    text-align: center;
+  }
+  .imgTitle {
+    width: 100%;
+    margin: auto;
+  }
+  .grIconQrcode {
+    display: flex;
+    margin: auto;
+  }
+  .imgDownload,
+  .imgQR {
+    display: none;
+  }
+  .imgDownload2 {
+    padding-top: 60px;
+    width: 90%;
+    max-width: 150px;
+    height: 90px;
+    object-fit: contain;
+    cursor: pointer;
+  }
+  .imgQR2 {
+    width: 90%;
+    object-fit: contain;
+    height: 170px;
+    width: 170px;
+    text-align: right;
+    padding-top: 10px;
+    cursor: pointer;
+  }
+  .signOffer {
+    padding: 30px 10px;
+  }
+  .offerTitle {
+    font-size: 18px;
+    padding: 0;
+  }
+  .formInput {
+    max-width: 100%;
+    padding: 8px;
+  }
+  .formBtn {
+    padding: 8px 16px;
+  }
+  .cartSign {
+    display: flex;
+    flex-direction: column;
+  }
+  .signOffer {
+    background-attachment: scroll;
+    padding: 60px;
+  }
+  .grForm {
+    display: flex;
+  }
+  .formBtn {
+    position: absolute;
+    margin: 2px 20px 3px 229px;
+    padding: 10px 5px 8px 15px;
+    width: 100%;
+    max-width: 80px;
+  }
+  .formInput {
+    border: 1px solid #18a0fb;
+    margin: 0px 80px 10px 0px;
+    padding: 10px 130px 10px 10px;
+    border-radius: 5px;
+  }
+}

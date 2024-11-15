@@ -1,0 +1,425 @@
+.datTourContain {
+  width: 100%;
+}
+.c2 {
+  padding-bottom: 350px;
+}
+.datTourContainer {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  max-width: 1424px;
+  justify-content: center;
+  padding-top: 20px;
+}
+.soLuongHKContainer {
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  padding: 26px;
+  border-radius: 6px;
+}
+.sliderText3 {
+  position: absolute;
+  display: flex;
+  color: #ffffff;
+  border-radius: 4px;
+  font-size: 30px;
+  font-weight: 700;
+  margin: 90px 137px 0px;
+  padding: 14px 25px;
+  width: 100%;
+  max-width: 1024px;
+  justify-content: center;
+}
+.cacBuocDatTour {
+  display: flex;
+  justify-content: space-between;
+  gap: 80px;
+  width: 100%;
+  max-width: 1024px;
+  padding: 20px 240px 20px 240px;
+  font-size: 18px;
+}
+.cvb {
+  display: flex;
+  justify-content: center;
+}
+.a1 {
+}
+.a2 {
+  padding-bottom: 90px;
+}
+.nhapThongTin,
+.thanhToan,
+.xacNhan {
+  border: 2px solid #ffcc00;
+  padding: 10px;
+  border-radius: 10px;
+  color: #222;
+  font-weight: 600;
+  flex: 1;
+  text-align: center;
+  background-color: #fff;
+}
+.chonTour {
+  padding: 10px;
+  border-radius: 10px;
+  color: #222;
+  font-weight: 600;
+  flex: 1;
+  text-align: center;
+  background-color: #ffcc00;
+}
+.soLuongHK > h1 {
+  font-size: 20px;
+}
+.soLuongHK input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding-right: 50px;
+}
+.soLuongHK ul li {
+  font-size: 12px;
+  margin: 7px 0px 0px 18px;
+}
+.bangTheThongTin {
+  border-radius: 3px;
+  border: none;
+}
+.textC {
+  border: 1px solid #ccc;
+  margin-top: 5px;
+  font-size: 14px;
+  color: #555;
+  height: 150px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  padding: 10px;
+  line-height: 22px;
+  white-space: normal;
+  word-wrap: break-word;
+  text-align: justify;
+}
+.textC span {
+  color: #18a0fb;
+  font-weight: bold;
+  cursor: pointer;
+}
+.textC span:hover {
+  color: #febe10;
+}
+.textC > h1 {
+  font-weight: bold;
+  font-size: 14px;
+}
+.cardTT {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  border-radius: 10px;
+  background-color: #fff;
+  width: 300px;
+}
+.borderCard > h1 {
+  font-size: 15px;
+  font-weight: 700;
+  border-bottom: 1px solid #e0e0e0;
+  padding: 10px 10px 4px;
+}
+.theDanhGiaThongTin {
+  display: flex;
+  justify-content: left;
+  gap: 10px;
+  padding: 7px 0px 10px 10px;
+}
+.xemDanhGia {
+  background-color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 12px;
+  padding-top: 6px;
+  color: #18a0fb;
+  font-weight: 700;
+}
+.xemDanhGia:hover {
+  color: #febe10;
+  transition: 0.2s linear;
+}
+.borderCard {
+  border: 1px solid #e0e0e0;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+  padding: 6px;
+}
+.cardTT > h1 {
+  font-size: 12px;
+  word-wrap: break-word;
+  max-width: 100%;
+  text-align: justify;
+  line-height: 18px;
+}
+.imgCard {
+  height: 200px;
+  object-fit: fill;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+}
+.btnTong {
+  display: flex;
+  justify-content: space-between;
+}
+.troVeBtn,
+.tiepTucBtn {
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: 2px solid #ffcc00;
+  cursor: pointer;
+  margin-top: 10px;
+  background-color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+}
+.troVeBtn:hover {
+  background-color: #febe10;
+  transition: 0.4s ease-in-out;
+}
+.tiepTucBtn:hover {
+  background-color: #febe10;
+  transition: 0.4s linear;
+}
+.dongYDK fieldset {
+  border: none;
+  margin-top: 15px;
+}
+.dongYDK label {
+  font-size: 14px;
+}
+.dongYDK label span {
+  color: #007ce8;
+  cursor: pointer;
+}
+.dongYDK label span:hover {
+  color: #febe10;
+}
+.thongTinDK2 {
+  font-size: 12px;
+  color: #555;
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+}
+.hotline {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.tbd p {
+  padding-top: 11px;
+}
+.tb {
+}
+.tb div {
+  font-size: 14px;
+  color: #616161;
+  font-weight: 500;
+  padding: 7px 0px 0px 12px;
+}
+.tb span {
+  color: #191e3b;
+  font-weight: 700;
+  padding-left: 4px;
+}
+.maTour,
+.ngayDi,
+.ngayVe,
+.thoiGian,
+.giaNguoiLon,
+.giaTreEm,
+.giaEmBe {
+  gap: 15px;
+  font-size: 14px;
+  color: #ccc;
+}
+.iconMaTour,
+.iconNgayDi,
+.iconNgayVe,
+.iconThoiGian,
+.iconNguoiLon,
+.iconTreEm,
+.iconEmBe {
+  padding-right: 8px;
+  color: #18a0fb;
+}
+.tong {
+  font-weight: bold;
+  color: #616161;
+  font-size: 18px;
+  text-align: center;
+  padding: 20px 0px 10px 10px;
+  font-weight: 700;
+}
+.tong span {
+  color: #18a0fb;
+}
+.nguoiLon,
+.treEm,
+.emBe {
+  line-height: 30px;
+  font-size: 15px;
+  font-weight: bold;
+}
+/* ------------ */
+.passengerGroup {
+  font-family: "Arial", sans-serif;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+.counter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: fit-content;
+  margin-bottom: 10px;
+  border: 1px solid #18a0fb;
+  border-radius: 3px;
+  padding: 2px;
+}
+.btnPlus,
+.btnMinus {
+  padding: 5px 10px;
+  border: none;
+  background-color: #fff;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 18px;
+  color: #18a0fb;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+.btnPlus:hover,
+.btnMinus:hover {
+  color: #333;
+  transition: all 0.3s ease;
+}
+.inp {
+  width: 100px;
+  text-align: center;
+  padding: 2px;
+  border: 1px solid #ffcc00;
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+  transition: all 0.3s ease;
+}
+.counter input {
+  padding: 6px;
+  border: none;
+}
+.inp:focus {
+  border-color: #18a0fb;
+  outline: none;
+}
+.passengerGroup label {
+  font-weight: bold;
+  color: #333;
+  font-size: 16px;
+  margin-bottom: 5px;
+  display: inline-block;
+}
+.info {
+}
+/* ------------responsive----------------- */
+@media (max-width: 768px) {
+  .datTourContainer,
+  .passengerGroup {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .cardTT {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  .troVeBtn,
+  .tiepTucBtn {
+    width: 100%;
+    margin-top: 5px;
+  }
+  .sliderText3 {
+    font-size: 20px;
+    margin: 40px 10px 0;
+    padding: 8px 10px;
+  }
+}
+/* Additional adjustments for extra small screens (very small mobiles) */
+@media (max-width: 480px) {
+  .mainContain {
+    padding: 0 10px;
+  }
+  .cacBuocDatTour {
+    display: flex;
+    flex-direction: column;
+    padding: 15px 30px;
+    font-size: 14px;
+    width: 50%;
+    gap: 20px;
+  }
+  .datTourContainer {
+    padding-top: 5px;
+  }
+  .a1 {
+    margin: auto;
+    width: 90%;
+  }
+  .soLuongHK > h1 {
+    font-size: 16px;
+  }
+  .btnTong {
+    gap: 45px;
+  }
+  .counter {
+  }
+  .soLuongHK ul li {
+    margin: 0px;
+  }
+  .troVeBtn,
+  .tiepTucBtn {
+    font-size: 14px;
+    padding: 10px 12px;
+  }
+  .borderCard > h1 {
+    font-size: 14px;
+    padding: 8px;
+  }
+  .passengerGroup label,
+  .passengerGroup .inp {
+    font-size: 14px;
+  }
+  .dongYDK label,
+  .dongYDK label span {
+    font-size: 13px;
+  }
+  .thongTinDK2 {
+    padding: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  .textC {
+    width: 300px;
+    margin: auto;
+  }
+  .bangTheThongTin {
+    width: 90%;
+    margin: auto;
+  }
+  .hotline {
+    font-size: 14px;
+  }
+  .textDanhGia {
+    margin-top: 20px;
+  }
+  .xemDanhGia {
+    margin-top: 14px;
+  }
+}

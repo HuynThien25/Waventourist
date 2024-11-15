@@ -1,0 +1,608 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+.timKiemContainer {
+}
+.listContainer1 {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  margin-bottom: 70px;
+}
+.listWrapper1 {
+  display: flex;
+  gap: 20px;
+}
+.listSearch1 {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.thethu1 {
+  box-shadow: #03121a26 0px 1px 2px 0px;
+  padding: 14px;
+  border-radius: 10px;
+  border: 1px solid #e0e0e0;
+}
+.thethu2 {
+  box-shadow: #03121a26 0px 1px 2px 0px;
+  padding: 14px;
+  border-radius: 10px;
+  border: 1px solid #e0e0e0;
+}
+.thethu3 {
+  box-shadow: #03121a26 0px 1px 2px 0px;
+  padding: 14px;
+  border-radius: 10px;
+  border: 1px solid #e0e0e0;
+}
+.thethu4 {
+  box-shadow: #03121a26 0px 1px 3px 0px;
+  padding: 14px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  border: 1px solid #e0e0e0;
+}
+.btnDatLai {
+  color: #18a0fb;
+  background-color: #f7f9fa;
+  padding: 12px 35px 12px 35px;
+  border-radius: 6px;
+  border: none;
+  align-items: center;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 14px;
+}
+.btnChon {
+  background-color: #18a0fb;
+  color: #fff;
+  border-radius: 6px;
+  padding: 12px 35px 12px 35px;
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 14px;
+}
+.btnChon:hover {
+  background-color: #007ce8;
+  transition: 0.2s linear;
+}
+.titleTourTrongNuoc {
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f7f7f7;
+  padding: 7px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 13px;
+  font-weight: 500;
+}
+.iconAngleDown {
+  transition: transform 0.3s ease;
+}
+.iconAngleDown.rotate {
+  transform: rotate(180deg); 
+}
+.dropdownContent {
+  max-height: 0; /* Ban đầu ẩn */
+  overflow: hidden;
+  transition: max-height 0.4s ease-in-out;
+  border: none;
+  border-radius: 5px;
+  padding: 0 10px;
+}
+.dropdownContent.open {
+  max-height: 100%; /* Khi mở, thiết lập chiều cao */
+}
+.dropdownContent div {
+  margin: 10px 0;
+}
+.customCheckBox {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+}
+.customCheckBox input[type="checkbox"] {
+  display: none;
+}
+.customCheckBox label {
+  position: relative;
+  padding-left: 30px;
+  cursor: pointer;
+  font-size: 16px;
+  color: #333;
+}
+.customCheckBox label::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 15px;
+  height: 15px;
+  border: 2px solid #333;
+  border-radius: 4px;
+  background-color: #fff;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+.customCheckBox input[type="checkbox"]:checked + label::before {
+  background-color: #18a0fb;
+  border-color: #18a0fb;
+}
+.customCheckBox label::after {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 50%;
+  transform: translateY(-50%) scale(0);
+  width: 9px;
+  height: 9px;
+  border-radius: 2px;
+  background-color: #fff;
+  transition: transform 0.3s ease;
+}
+.customCheckBox input[type="checkbox"]:checked + label::after {
+  transform: translateY(-50%) scale(1);
+}
+.lsItem1 {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 7px;
+}
+.lsItem1 > span {
+  font-size: 14px;
+  text-align: center;
+}
+.lsItem1 input {
+  padding: 0px 0px 0px 0px;
+  margin: 0px 0px 0px 0px;
+  font-size: 14px;
+}
+.inputDiemDen input {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 6px 14px;
+  padding-left: 25px;
+}
+.formInput:focus {
+  border: 1px solid #ffffff;
+  outline: 2px solid #007ce8;
+  transition: ease-in-out 0.2s;
+  scale: 1.01;
+}
+.formInput {
+  width: 175px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.inputIcon {
+  position: absolute;
+  padding: 7px 1px 10px 5px;
+  color: #888; 
+  z-index: 1;
+}
+.lsItem1 label {
+  font-size: 15px;
+  color: #03121a;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.lsOptions1 {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+.lsOptionsItem2 {
+  display: flex;
+  justify-content: space-between;
+  gap: 5px;
+}
+.lsOptionItem1 {
+  margin-top: 12px;
+}
+.lsOptionText1 {
+  font-size: 12px;
+  color: #333;
+  font-weight: bold;
+  padding-bottom: 10px;
+}
+.lsOptionInput1,
+.lsSelect1 {
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+.lsOptionInput1:focus,
+.lsSelect1:focus {
+  outline: none;
+  border-color: #006ce4;
+  box-shadow: 0 0 5px rgba(0, 108, 228, 0.5);
+}
+.lsSelect1 {
+  cursor: pointer;
+  background-color: #f9f9f9;
+}
+.lsSelect1:hover {
+  border-color: #bbb;
+}
+.quantityControl {
+  display: flex;
+  border: 1px solid #006ce4;
+  border-radius: 5px;
+  padding-left: 35px;
+}
+.lsOptionInput1 {
+  width: 100px;
+  text-align: center;
+  padding: 6px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  margin-left: 12px;
+}
+.quantityBtn {
+  padding: 0px 10px 0px 0px;
+  margin: 0px 0px 0px 0px;
+  background-color: #ffffff;
+  color: #006ce4;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 25px;
+  transition: background-color 0.3s ease;
+}
+.quantityBtn:hover {
+  color: #ccc;
+}
+.lsSelect1 {
+  padding: 6px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 12px;
+  max-height: 150px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+.customDropdown label {
+  font-size: 14px;
+  text-align: center;
+  font-weight: 700;
+}
+.vnv {
+  display: flex;
+  justify-content: space-between;
+}
+.dropdown {
+  position: relative;
+  background-color: #f1f1f1;
+  padding: 7px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 12px;
+}
+.dropdownList {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  max-height: 150px;
+  overflow-y: auto;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  z-index: 1;
+  font-size: 13px;
+}
+.dropdownList.show {
+  display: block;
+}
+.dropdownList div {
+  padding: 8px 12px;
+  cursor: pointer;
+}
+.dropdownList div:hover {
+  background-color: #e0e0e0;
+}
+.dropdownList::-webkit-scrollbar {
+  width: 8px;
+}
+.dropdownList::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+.dropdownList::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+.dropdownList::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+.apdung {
+  background-color: #007ce8;
+  color: white;
+  border: none;
+  padding: 7px;
+  width: 100%;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+.apdung:hover {
+  background-color: #febe10;
+}
+.listResult1 {
+  flex: 3;
+}
+.sapxepContainer {
+  display: flex;
+  width: 100%;
+  align-items: center;
+}
+.sapxep {
+  width: 100%;
+  max-width: 1424px;
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 10px;
+  text-align: left;
+  color: #687176;
+  font-size: 14px;
+  line-height: 16px;
+  margin: 0px 12px 0px 0px;
+}
+.lsSelect2 {
+  margin-right: 210px;
+  padding: 7px;
+  border-radius: 8px;
+  border: 1px solid #cdd0d1;
+  cursor: pointer;
+}
+.lsOptionInput1:focus,
+.lsSelect2:focus {
+  outline: none;
+  border-color: #006ce4;
+}
+.lsOptionInput1,
+.lsSelect2 {
+  padding: 8px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  transition: all 0.3s ease;
+}
+.sliderIMG {
+  display: flex;
+  justify-content: center;
+  align-item: center;
+  width: 100%;
+  height: 270px;
+  object-fit: cover;
+  top: -100%;
+  transition: top 0.8s ease-in-out;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+}
+.sliderText {
+  position: absolute;
+  display: flex;
+  color: #ffffff;
+  background-color: #00000080;
+  border-radius: 4px;
+  font-size: 18px;
+  font-weight: 700;
+  margin: 220px 0px 0px;
+  padding: 14px 25px;
+  width: 100%;
+  max-width: 1024px;
+  align-items: center;
+  justify-content: center;
+}
+.center1024 {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.range-slider {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.slider-container {
+  width: 200px;
+}
+.range-slider-thumb {
+  width: 100%;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 5px;
+  background: #18a0fb;
+  outline: none;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+.range-slider-thumb::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: #ffffff;
+  cursor: pointer;
+  border-radius: 50%;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+}
+.khoangGia {
+  font-size: 12.5px;
+  color: #333;
+  text-align: center;
+  padding-left: 12px;
+}
+.khoangGia span {
+  font-weight: 700;
+  color: #18a0fb;
+}
+.LazyLoad {
+  opacity: 0.3;
+  transition: opacity 1.5s ease-in-out;
+}
+.LazyLoad.is-visible {
+  opacity: 1;
+}
+/* --------------responsive-------------- */
+.listSearchMobile1 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  max-width: 100vw;
+  background-color: #fff;
+  transform: translateX(-100%);
+  transition: all linear 0.2s;
+  opacity: 0;
+  z-index: 999;
+}
+.nav__input2 {
+  display: none;
+}
+.nav__input2:checked ~ .navOverlay {
+  display: block;
+}
+.nav__input2:checked ~ .listSearchMobile1 {
+  transform: translate(0);
+  opacity: 1;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+/* ------------Responsive------------- */
+@media (max-width: 768px) {
+}
+
+@media (max-width: 480px) {
+  .sliderIMG {
+    width: 100%;
+    height: 200px;
+    object-fit: fill;
+  }
+  .sliderText {
+    font-size: 16px;
+    font-weight: 700;
+    margin: 194px 0px 0px;
+    padding: 14px 0;
+  }
+  .sapxepContainer {
+    display: flex;
+    width: 100%;
+    align-items: right;
+  }
+  .sapxep {
+    display: none;
+  }
+  .lsOptionItem1 {
+  }
+  .listSearch1 {
+    background-color: #ccc;
+  }
+  .thethu1,
+  .thethu2,
+  .thethu3,
+  .thethu4 {
+    margin: auto;
+    box-shadow: none;
+    padding: 14px;
+    border: none;
+  }
+  .thethu4 {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+  }
+  .btnDatLai {
+    border-radius: 25px;
+    font-size: 16px;
+  }
+  .btnChon {
+    border-radius: 25px;
+    font-size: 16px;
+  }
+  .inputDiemDen {
+    display: flex;
+  }
+  .inputDiemDen input {
+    width: 100%;
+    border-radius: 5px;
+    padding: 12px 13px;
+    padding-left: 25px;
+    font-size: 16px;
+  }
+  .formInput {
+  }
+  .inputIcon {
+    padding: 14px 1px 10px 5px;
+  }
+  .slider-container {
+    width: 100%;
+  }
+  .sapxepContainer {
+    padding-left: 250px;
+  }
+  .boLocTimKiem {
+    margin: auto;
+    display: flex;
+    padding: 7px;
+    cursor: pointer;
+    width: 50%;
+    justify-content: center;
+    color: #18a0fb;
+    border: 1px solid #e0e0e0;
+    border-radius: 25px;
+    font-weight: 700;
+    font-size: 15px;
+  }
+  .btnOpenListSearch {
+    padding-top: 20px;
+  }
+  .iconFilter {
+    width: 16px;
+    height: 16px;
+    padding-right: 10px;
+    color: #18f;
+  }
+  .sapxepContainer {
+    display: none;
+  }
+  .lsItem1 label {
+    font-size: 16px;
+  }
+  .khoangGia {
+    font-size: 16px;
+  }
+  .lsSelect1 {
+    font-size: 16px;
+  }
+  .titleTourTrongNuoc {
+    font-size: 14px;
+  }
+  .navMobileClose2 {
+    font-size: 27px;
+    color: #666;
+    position: absolute;
+    top: 0.5rem;
+    right: 1rem;
+  }
+}

@@ -1,0 +1,266 @@
+.seList {
+  width: 100%;
+  max-width: 1024px;
+  display: flex;
+  padding-bottom: 15px;
+}
+.seListCard {
+  border-radius: 10px;
+  box-shadow: #03121a26 0px 2px 5px 0px;
+  min-width: 670px; 
+  max-width: 100px; 
+  display: flex;
+}
+.seListItem {
+  display: flex;
+  cursor: pointer;
+}
+.seListImg {
+  width: 265px;
+  height: 200px; 
+  object-fit: cover; 
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+.seListTitles {
+  padding-left: 10px;
+  padding-top: 10px;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+}
+.seGia {
+  display: flex;
+  gap: 10px;
+  justify-content: left;
+  display: flex;
+  padding-top: 10px;
+}
+.seGia > p {
+  font-size: 13px;
+  font-weight: 700;
+  font-family: "Roboto", sans-serif;
+  color: gray;
+  text-decoration: line-through;
+  margin-top: 17px;
+}
+.seGia > h1 > span {
+  font-size: 17px;
+  font-weight: 700;
+  color: #18a0fb;
+  height: 10px;
+}
+.seH1 {
+  font-size: 16px;
+  font-weight: 700;
+  width: 100%; 
+  white-space: normal;
+  word-wrap: break-word; 
+  line-height: 1.4; 
+  color: #333; 
+}
+.seNgayDi {
+  font-size: 14px;
+  font-weight: 500;
+  color: #687176;
+}
+.seNgayDi span{
+  color: #333;
+  font-weight: 700;
+}
+.seThoiGian {
+  font-size: 14px;
+  font-weight: 500;
+  color: #687176;
+}
+.seThoiGian span{
+  color: #333;
+  font-weight: 700;
+}
+.sePhuongTien {
+  font-size: 14px;
+  font-weight: 500;
+  color: #687176;
+}
+.sePhuongTien span{
+  color: #333;
+  font-weight: 700;
+}
+.seCardBtn2 {
+  background-color: #fff;
+  border: 1px solid #ffcc00;
+  padding: 5px 10px 5px 10px;
+  cursor: pointer;
+  color: black;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: "Roboto", sans-serif;
+  border-radius: 5px;
+}
+.seCardBtn2:hover {
+  background-color: #febe10;
+  transition: ease-in-out 0.4s;
+}
+.seFavorite {
+  position: absolute;
+  cursor: pointer;
+  padding: 1px;
+  padding-top: 3px;
+  margin-left: 7px;
+  margin-top: 7px;
+  margin-bottom: 150px;
+  width: 25px;
+  height: 25px;
+  transition: linear 0.3s ease;
+  border-radius: 50%;
+  background-color: #fff;
+}
+.t {
+  padding-top: 10px;
+  line-height: 22px;
+}
+.seIcon {
+  display: flex;
+  gap: 10px;
+  padding-right: 140px;
+  width: 135px;
+}
+.seTietkiem {
+  position: absolute;
+  background-color: #ffdc00;
+  border-radius: 5px;
+  padding: 5px;
+  font-size: 11px;
+  font-weight: 500;
+  text-align: left;
+  margin: 5px 15px 195px 180px;
+}
+.seListTitle {
+  display: flex;
+  justify-content: left;
+  gap: 10px;
+  height: 35px;
+  width: 500px;
+}
+.seIconDanhGia {
+  margin-top: 6px;
+  position: flex;
+  justify-content: space-between;
+  width: 17px;
+  height: 17px;
+}
+.seDiemDanhGia {
+  color: #ffdc00;
+  font-size: 14px;
+  font-weight: 700;
+  margin-top: 6px;
+}
+.seTextDanhGia {
+  margin-top: 9px;
+  color: #687176;
+  font-weight: 500;
+  font-size: 11px;
+  text-align: left;
+}
+.khongTimThayKetQua{
+  width: 670px;
+  text-align: center;
+  font-size: 17px;
+  font-weight: bold;
+  color: #18a0fb;
+}
+.btnOpenListSearch{
+  display: none;
+}
+.pagination {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 10px;
+  width: 670px;
+}
+.prevPageBtn,.nextPageBtn {
+  padding: 10px 1px;
+  margin: 0 7px;
+  background-color: #fff;
+  color: #18A0FB;
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+}
+  .iconPrev,.iconNext{
+    font-size: 12px;
+    padding-left: 4px;
+    padding-right: 4px;
+  }
+.pagination button:disabled {
+  color: #dcdcdc;
+}
+.pagination span {
+  font-size: 18px;
+}
+/*------------- responsive ---------------*/
+@media (max-width: 768px) {
+
+}
+@media (max-width: 480px) {
+  .seList{
+  }
+  .seListCard {
+    box-shadow: none;
+    min-width: 380px; 
+    max-width: 100px; 
+    display: flex;
+  }
+  .seListImg {
+    width: 155px;
+    height: 225px;   
+  }
+  .seListTitles {
+    width: 230px;
+  }
+  .seH1{
+    font-size: 15px;
+  }
+  .seTietkiem {
+    margin: 5px 15px 195px 70px;
+  }
+  .seIcon {
+    padding-right: 0px;
+    width: 135px;
+  }
+  .seGia {
+    padding-top: 0px;
+  }
+  .seGia > h1 > span {
+    font-size: 14px;
+  }
+  .seCardBtn2{
+    display: none;
+  }
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    width: 400px;
+  }
+  .prevPageBtn,.nextPageBtn {
+    border: none;
+    border-radius: 25px;
+    padding: 10px;
+    margin: 0 10px;
+    background-color: #18A0FB;
+    color: #fff;
+  }
+  .pagination button:disabled {
+    background-color: #dcdcdc;
+    color: #fff;
+  }
+  .listSearch1{
+    display: none;
+  }
+  .btnOpenListSearch{
+    display: block;
+  }
+}

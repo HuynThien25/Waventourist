@@ -1,0 +1,244 @@
+.headerIcon {
+  color: #333;
+  font-size: 20px;
+}
+.header {
+  width: 100%;
+  height: 60vh;
+  color: white;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  transition: background-image 0.5s ease-in-out;
+}
+button.prev,
+button.next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.1);
+  border: none;
+  color: white;
+  padding: 15px;
+  cursor: pointer;
+  font-size: 18px;
+  border-radius: 10%;
+  z-index: 1;
+}
+button.prev {
+  left: 30px;
+}
+button.next {
+  right: 30px;
+}
+button.prev:hover,
+button.next:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+.slider-image {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: -100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-size: cover;
+  background-position: center;
+  transition: top 0.8s ease-in-out;
+  overflow: hidden;
+}
+.slider-image.active {
+  top: 0;
+}
+.headerContainer {
+  width: 100%;
+  max-width: 1024px;
+  margin: 20px 0px 70px;
+}
+.headerContainer.listMode {
+  margin: 20px 0px 100px;
+}
+.headerDesc,
+.headerTitle {
+  display: flex;
+  justify-content: center;
+  opacity: 0;
+  animation: fadeIn 1.5s forwards;
+}
+.headerDesc {
+  padding-top: 90px;
+  font-size: 20px;
+  font-weight: 700;
+}
+.headerTitle {
+  margin: 20px;
+  font-size: 40px;
+}
+.btnCenter {
+  display: flex;
+  justify-content: center;
+}
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+.headerBtn,
+.headerBtn1 {
+  background-color: #ffcc00;
+  font-weight: 500;
+  border: none;
+  padding: 8px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 15px;
+  color: #fff;
+  transition: background-color 0.3s ease;
+}
+.headerBtn1 {
+  position: absolute;
+  z-index: 1;
+}
+.headerBtn:hover,
+.headerBtn1:hover {
+  background-color: #febe10;
+}
+.headerSearch {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  position: absolute;
+  bottom: -30px;
+  background-color: white;
+  border: 3px solid #ffcc00;
+  padding: 5px 0px;
+  border-radius: 5px;
+  width: 100%;
+  max-width: 1024px;
+}
+.headerSearchItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+}
+.headerSearchInput {
+  border: none;
+  outline: none;
+  font-size: 14px;
+}
+.headerSearchText {
+  color: #687176;
+  font-weight: 500;
+  font-size: 13px;
+  cursor: pointer;
+}
+.headerSearchTextMobile{
+  color: #687176;
+  font-weight: 500;
+  font-size: 13px;
+  cursor: pointer;
+  display: none;
+}
+.date {
+  position: absolute;
+  top: 50px;
+  z-index: 1;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px -5px rgba(0, 0, 0, 0.4);
+}
+/* ------------responsive------------- */
+@media (max-width: 768px) {
+  .header {
+    height: 40vh;
+  }
+  .headerContainer {
+    max-width: 90%;
+    margin: 20px 0;
+  }
+  .headerTitle {
+    font-size: 20px;
+  }
+  .headerDesc {
+    font-size: 16px;
+    /* padding-top: 50px; */
+    text-align: center;
+  }
+  .headerBtn,
+  .headerBtn1 {
+    font-size: 14px;
+    padding: 6px 15px;
+    margin: 10px auto;
+  }
+  .headerSearch {
+    /* position: relative; */
+    width: 90%;
+    margin-top: 10px;
+    padding: 0px 0px;
+  }
+  button.prev,
+  button.next {
+    font-size: 14px;
+    padding: 12px;
+  }
+}
+/* -------------------------------------- */
+@media (max-width: 480px) {
+  .header {
+    height: 25vh;
+  }
+  .headerTitle {
+    font-size: 16px;
+    margin: 10px 0;
+  }
+  .headerDesc {
+    padding-top: 52px;
+    font-size: 14px;
+    text-align: center;
+  }
+  .headerBtn,
+  .headerBtn1 {
+    font-size: 10px;
+    padding: 5px 10px;
+    margin: 5px auto;
+  }
+  .headerSearch {
+    position: absolute;
+    bottom: -30px;
+    padding: 0px 0px;
+  }
+  .headerSearchInput {
+    font-size: 10px;
+    width: 70%;
+  }
+  .headerSearchText {
+    display: none;
+  }
+  .headerSearchTextMobile{
+    font-size: 10px;
+    display: block;
+    padding-right: 5px;
+  }
+  .headerIcon {
+    font-size: 12px;
+    cursor: pointer;
+  }
+  .date {
+    width: 100%;
+    max-width: 350px;
+    right: 2px;
+  }
+  .headerSearchItem {
+    gap: 4px;
+  }
+  button.prev,
+  button.next {
+    font-size: 14px;
+  }
+  button.prev {
+    left: 10px;
+  }
+  button.next {
+    right: 10px;
+  }
+}

@@ -1,0 +1,525 @@
+.navbar {
+  height: 65px;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 100%;
+}
+.icon {
+  padding-right: 4px;
+  cursor: pointer;
+}
+.navContainer {
+  width: 100%;
+  max-width: 1024px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+.logo {
+  font-weight: 900;
+  font-size: 21px;
+  cursor: pointer;
+  color: #000000;
+}
+.iconUserLogged {
+  color: #18a0fb;
+}
+
+.iconUserNoLogin {
+  color: #18a0fb;
+}
+.userSection {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+.iconUserLogged {
+  font-size: 24px;
+  border-radius: 24px;
+}
+.userName {
+  font-weight: 500;
+  color: #18a0fb;
+  font-size: 14px;
+  cursor: pointer;
+}
+.userName:hover{
+  color: #007ce8;
+  transition: 0.2s linear;
+}
+.logOutBtn {
+  margin-left: 3px;
+  background-color: #fff;
+  border: 1px solid #18a0fb;
+  padding: 7px 12px;
+  cursor: pointer;
+  color: black;
+  border-radius: 5px;
+}
+.logOutBtn:hover {
+  background-color: #f0f0f0;
+  transition: linear 0.3s;
+}
+.navButton1 {
+  margin-left: 10px;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  color: #fff;
+  border-radius: 5px;
+  background-color: #ffcc00;
+}
+.navButton2 {
+  background-color: #fff;
+  border: 1px solid #18a0fb;
+  padding: 7px 10px;
+  cursor: pointer;
+  color: black;
+  border-radius: 5px;
+}
+.navButton1:hover {
+  background-color: #febe10;
+  transition: ease-in-out 0.3s;
+}
+.navButton2:hover {
+  background-color: #f0f0f0;
+  transition: linear 0.3s;
+}
+.headerList1 {
+  display: flex;
+  gap: 10px;
+  margin-left: 20px;
+}
+.headerListItem1 {
+  cursor: pointer;
+  position: relative;
+  padding: 5px 7px;
+  background: white;
+  font-size: 14px;
+  transition: all 1s;
+  color: #18a0fb;
+}
+.headerListItem1:after,
+.headerListItem1:before {
+  content: " ";
+  width: 15px;
+  height: 15px;
+  position: absolute;
+  transition: all 1s;
+}
+.headerListItem1:after {
+  top: -2px;
+  left: -2px;
+  border-top: 3px solid white;
+  border-left: 3px solid white;
+}
+.headerListItem1:before {
+  bottom: -1px;
+  right: -1px;
+  border-bottom: 3px solid white;
+  border-right: 3px solid white;
+}
+.headerListItem1:hover {
+  border-top-right-radius: 1px;
+  border-bottom-left-radius: 1px;
+}
+.headerListItem1:hover:before {
+  bottom: -1px;
+  right: -1px;
+  border-bottom: 3px solid #ffcc00;
+  border-right: 3px solid #ffcc00;
+}
+.headerListItem1:hover:after {
+  top: -2px;
+  left: -2px;
+  border-top: 3px solid #ffcc00;
+  border-left: 3px solid #ffcc00;
+}
+.headerListItem1:hover:before,
+.headerListItem1:hover:after {
+  width: 100%;
+  height: 100%;
+}
+.search {
+  cursor: pointer;
+  border: 2px solid #ffcc00;
+  width: 26px;
+  height: 26px;
+  margin-bottom: 1px;
+}
+.translateImg {
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+}
+.boNgonNgu {
+  cursor: pointer;
+  padding: 3px;
+  border-radius: 5px;
+}
+.boNgonNgu:hover {
+  background-color: #f2f3f3;
+}
+.dropdownTranslate {
+  gap: 2px;
+  display: flex;
+  justify-content: space-between;
+}
+.dropdownTranslate span {
+  color: #03121a;
+  font-weight: 500;
+  font-size: 12px;
+  padding-top: 5px;
+}
+.iconTranslate {
+  color: #18a0fb;
+  padding-top: 3px;
+}
+.iconQuocGia {
+  width: 17px;
+  height: 17px;
+  object-fit: contain;
+  border-radius: 24px;
+  border: 1px solid #18a0fb;
+}
+.dropDownList {
+  position: absolute;
+  background-color: white;
+  list-style: none;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 5px;
+  width: 140px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 3;
+}
+.dropDownList2 {
+  position: absolute;
+  background-color: #fff;
+  list-style: none;
+  color: black;
+  font-size: 14px;
+  padding: 4px;
+  margin-top: 10px;
+  border-radius: 5px;
+  width: 180px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 2;
+  height: 150px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.groupTranslate {
+  display: flex;
+  padding: 5px 4px;
+}
+.groupTranslate:hover {
+  background-color: #f1f1f1;
+  transition: 0.2s ease-in-out;
+}
+.dropdownItem {
+  padding: 8px;
+  cursor: pointer;
+}
+.dropdownItem2 {
+  padding: 8px;
+  cursor: pointer;
+  padding-top: 2px;
+}
+.dropdownItem:hover {
+  background-color: #f1f1f1;
+}
+/* Navbar modal styles */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  z-index: 999; 
+}
+.modalOverlay.show {
+  opacity: 1;
+  visibility: visible;
+}
+.modalContent {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: left;
+  max-width: 500px;
+  width: 90%;
+  transition: transform 0.3s ease;
+  transform: scale(0.9);
+}
+.modalOverlay.show .modalContent {
+  transform: scale(1);
+}
+.modalContent h2 {
+  margin: 0 0 10px;
+  font-size: 1em;
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 10px;
+}
+.modalContent p {
+  font-size: 0.9em;
+  margin-bottom: 20px;
+  color: #555;
+}
+.modalButtons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5em;
+}
+.confirmButton,
+.cancelButton {
+  padding: 10px 25px;
+  border: none;
+  border-radius: 5px;
+  font-size: 0.9em;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.confirmButton {
+  background-color: #f2f3f3;
+  padding: 10px 40px;
+  color: #18A0FB;
+  font-weight: 700;
+}
+.cancelButton {
+  background-color: #18A0FB;
+  color: #FFF;
+  font-weight: 700;
+}
+.confirmButton:hover {
+  background-color: #ddd;
+}
+.cancelButton:hover {
+  background-color: #007ce8;
+}
+.grIconMobile{
+  display: none;
+}
+/* -------------responsive -----------------*/
+.navContainerBtn{
+  font-size: 24px;
+  color: #333;
+  background-color: #ccc;
+  padding: 10px;
+  border-radius: 7px;
+  display: none;
+  position: absolute; 
+  right: 10px; 
+  top: 10px; 
+  z-index: 1000; 
+}
+.navOverlay{
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.3);
+  display: none;
+  animation: fadeIn linear 0.3s
+}
+.navMobileContainer{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 250px;
+  max-width: 100%;
+  background-color: #fff;
+  transform: translateX(-100%);
+  transition: all linear 0.2s;
+  opacity: 0;
+}
+.navMobileClose{
+  font-size: 27px;
+  color: #666;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+.headerListMobile1{
+  display: flex;
+  flex-direction: column;
+  padding-left: 10px;
+  padding-top: 10px;
+  gap: 15px;
+  color: #18A0FB;
+}
+.boNgonNguMobile{
+  display: flex;
+  padding-left: 7px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.navItemsMobile{
+  padding-top: 12px;
+  padding-left: 10px;
+}
+.logoMobile{
+  font-size: 16px;
+  font-weight: bold;
+}
+.iconMobile{
+  padding: 0px 4px 0px 0px;
+  cursor: pointer;
+}
+.headerListItemMobile1 {
+  cursor: pointer;
+  position: relative;
+  padding: 5px 10px;
+  background: white;
+  font-size: 14px;
+  transition: all 1s;
+  color: #18a0fb;
+}
+.headerListItemMobile1:after,
+.headerListItemMobile1:before {
+  content: " ";
+  width: 15px;
+  height: 15px;
+  position: absolute;
+  transition: all 1s;
+}
+.headerListItem1Mobile:after {
+  top: -2px;
+  left: -2px;
+  border-top: 3px solid white;
+  border-left: 3px solid white;
+}
+.headerListItem1Mobile:before {
+  bottom: -1px;
+  right: -11px;
+  border-bottom: 3px solid white;
+  border-right: 3px solid white;
+}
+.headerListItem1Mobile:hover {
+  border-top-right-radius: 1px;
+  border-bottom-left-radius: 1px;
+}
+.headerListItemMobile1:hover:before {
+  bottom: -1px;
+  right: 109px;
+  border-bottom: 3px solid #ffcc00;
+  border-right: 3px solid #ffcc00;
+}
+.headerListItemMobile1:hover:after {
+  top: -2px;
+  left: -2px;
+  border-top: 3px solid #ffcc00;
+  border-left: 3px solid #ffcc00;
+}
+.headerListItemMobile1:hover:before,
+.headerListItemMobile1:hover:after {
+  width: 54%;
+  height: 100%;
+}
+.nav__input{
+  display: none;
+}
+.nav__input:checked ~ .navOverlay{
+  display: block;
+}
+.nav__input:checked ~ .navMobileContainer{
+  transform: translate(0);
+  opacity: 1;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  } 
+  to {
+    opacity: 1;
+  }
+}
+/* General responsive adjustments */
+@media (max-width: 768px) {
+  .navContainerBtn{
+    display: none;
+  }
+  .navbar {
+    height: 30px;
+    padding: 18px 0px;
+  }
+  .navContainer {
+    width: 100%;
+    margin: 0 auto;
+    align-items: center;
+    gap: 10px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .headerList1{
+    width: 90%;
+    margin: auto;
+    font-size: 14px;
+  }
+  .icon{
+    width: 15px;
+    height: 15px;
+  }
+  .logo{
+    font-size: 16px;
+  }
+}
+/* Mobile and extra small screens */
+@media (max-width: 480px) {
+  .navContainer {
+    padding: 0 10px;
+    display: none;
+  }
+  .navContainerBtn{
+    right: 10px;
+    cursor: pointer;
+  }
+  .headerList1 {
+    gap: 2px;
+    font-size: 12px;
+  }
+  .grIconMobile{
+    display: block;
+    cursor: pointer;
+  }
+  .dropDownList,
+  .dropDownList2 {
+    width: 120px;
+    font-size: 12px;
+    padding: 8px;
+  }
+  .navButton1,
+  .navButton2,
+  .logOutBtn {
+    padding: 10px 12px;
+    font-size: 10px;
+  }
+  .userName {
+    font-size: 12px;
+  }
+  .modalOverlay .modalContent {
+    max-width: 280px;
+  }
+}

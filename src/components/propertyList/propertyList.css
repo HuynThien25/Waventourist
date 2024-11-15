@@ -1,0 +1,175 @@
+.pList {
+  width: 100%;
+  max-width: 1024px;
+  display: flex;
+  gap: 10px;
+}
+.plistCenter {
+  display: flex;
+  justify-content: space-between;
+  gap: 7px;
+}
+.pListCard {
+  border: 1px solid #e0e0e0;
+  padding: 8px;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  flex: 1;
+  min-width: 180px;
+  max-width: 170px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+}
+.pListItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
+  cursor: pointer;
+  height: 100%;
+}
+.pListImg {
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+.pListTitles {
+  padding: 10px 0;
+}
+.pListTitles > h1 {
+  line-height: 20px;
+  font-size: 16px;
+  font-weight: 700;
+  text-align: center;
+}
+.pListTitles > h2 {
+  line-height: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: "Roboto", sans-serif;
+  text-align: center;
+  overflow: hidden;
+}
+.pListTitles > h2 > span {
+  font-size: 15px;
+  font-weight: 700;
+  font-family: "Roboto", sans-serif;
+  color: #18a0fb;
+}
+.pListTitles > p {
+  padding-top: 3px;
+  font-size: 11px;
+  font-weight: 700;
+  font-family: "Roboto", sans-serif;
+  color: gray;
+  text-align: center;
+  text-decoration: line-through;
+}
+.cardBtn {
+  background-color: #ffcc00;
+  border: none;
+  padding: 8px 60px;
+  cursor: pointer;
+  color: black;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: "Roboto", sans-serif;
+}
+.cardBtn:hover {
+  background-color: #febe10;
+  transition: ease-in-out 0.4s;
+}
+.favorite {
+  position: absolute;
+  cursor: pointer;
+  padding: 1px;
+  padding-top: 3px;
+  margin-left: 148px;
+  margin-top: 4px;
+  width: 25px;
+  height: 25px;
+  transition: linear 0.3s ease;
+  background-color: #fff;
+  border-radius: 50%;
+}
+.tietkiem {
+  position: absolute;
+  background-color: #ffdc00;
+  border-radius: 5px;
+  padding: 5px;
+  font-size: 11px;
+  font-weight: 500;
+  text-align: left;
+  margin: 5px 85px 0px 0px;
+}
+/* ---------------responsive--------------- */
+@media (max-width: 768px) {
+}
+@media (max-width: 480px) {
+  .pList {
+    grid-template-columns: 1fr 1fr;
+    display: grid;
+    overflow-x: auto; 
+    scroll-snap-type: x mandatory; 
+  }
+  .plistCenter {
+    display: flex;
+    justify-content: center;
+    gap: 0;
+  }
+  .pListCard {
+    height: auto; 
+    min-width: 160px;
+    max-width: 140px;
+    display: flex;
+    justify-content: center;
+    border: none;
+    box-shadow: none;
+    scroll-snap-align: start; /* Snap each card to the start of the container */
+  }
+  .pList::-webkit-scrollbar {
+    display: none;
+  }
+  .pListImg {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 4px;
+  }
+  .pListTitles > h1 {
+    font-size: 14px;
+    text-align: left;
+  }
+  .pListTitles > h2 {
+    font-size: 12px;
+    text-align: left;
+  }
+  .pListTitles > h2 > span {
+    font-size: 12px;
+    text-align: left;
+  }
+  .pListTitles > p {
+    font-size: 11px;
+    text-align: left;
+  }
+  .cardBtn {
+    padding: 8px 10px;
+    width: 50%;
+    font-size: 12px;
+    margin-right: 80px;
+  }
+  .favorite {
+    margin-left: 120px;
+    width: 22px;
+    height: 22px;
+  }
+  .tietkiem {
+    margin: 5px 70px 0px 0px;
+    font-size: 10px;
+  }
+}

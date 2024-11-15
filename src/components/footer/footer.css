@@ -1,0 +1,266 @@
+.mail {
+  width: 100%;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding-top: 30px;
+}
+.logo2 {
+  font-weight: 900;
+  font-size: 24px;
+  cursor: pointer;
+}
+.icon2 {
+  padding-right: 4px;
+  cursor: pointer;
+  width: 28px;
+  height: 28px;
+}
+.mailInputContainer {
+  width: 300px;
+  height: 30px;
+  padding: 30px;
+  border: none;
+  margin-left: 50px;
+}
+.mailInputContainer > button {
+  height: 48px;
+  background-color: #0071c2;
+  color: white;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+}
+.mailInputContainer:hover > button {
+  background-color: #0071c2cf;
+  transition: ease-in-out 0.3s;
+}
+.input {
+  padding: 15px;
+}
+.input:focus {
+  outline: none; 
+  border: 2px solid #0071c2cf; 
+}
+.listp {
+  display: flex;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 12px;
+}
+.listp ul {
+  display: flex;
+  padding: 0;
+  margin: 0;
+}
+.lists {
+  list-style: none;
+  margin: 10px 50px; 
+  cursor: pointer;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 10px;
+  font-weight: 700;
+  font-size: 17px;
+  transition: padding 0.3s ease, background-color 0.3s ease, color 0.3s ease; /* Add padding to transition properties */
+}
+.grFlists{
+  display: flex;
+}
+.fList {
+  list-style: none;
+  flex-direction: column;
+}
+.fListItem {
+  padding-left: 50px;
+  color: #000000;
+  cursor: pointer;
+  font-size: 14px;
+  text-align: left;
+  margin-bottom: 10px;
+}
+.fListItem:hover{
+  color: #FEBE10;
+  transition: ease-in-out 0.3s;
+}
+.footer_priceline_list {
+  padding: 10px 0 0;
+  text-align: center;
+}
+.footer_priceline_list li {
+  list-style: none;
+  padding: 0 10px;
+  display: inline-block;
+  padding-bottom: 20px;
+}
+.fText {
+  font-size: 12px;
+  padding-top: 50px;
+}
+.listLogo {
+  display: grid;
+  grid-template-columns: repeat(4, 2fr); 
+  gap: 10px;
+  padding: 4px 0 10px;
+  justify-items: center; 
+  cursor: pointer;
+}
+.listLogo img {
+  margin-top: 5px;
+  width: 40px; 
+  height: auto; 
+  object-fit: contain; 
+}
+.listLogo2{
+  gap: 10px;
+  display: grid;
+  grid-template-columns: repeat(4, 2fr); 
+  cursor: pointer;
+}
+.listLogo2{
+  margin-top: 5px;
+  width: 30px; 
+  height: auto; 
+  object-fit: contain; 
+}
+.list {
+  width: 100%;
+  height: 1px;
+  object-fit: contain;
+}
+.list2{
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+.subLogo {
+  color: #171717;
+  margin-top: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+}
+/* ----------- responsive-----------  */
+@media (max-width: 768px) {
+  .mail {
+    padding-top: 20px;
+    gap: 8px;
+  }
+  .logo2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  .mailInputContainer {
+    width: 100%;
+    max-width: 280px;
+    margin-left: 0;
+    padding: 20px;
+  }
+  .mailInputContainer > button {
+    height: 40px;
+    font-size: 14px;
+  }
+  .input {
+    padding: 12px;
+  }
+  .listp {
+    flex-direction: column;
+    border-bottom: none;
+  }
+  .lists {
+    font-size: 12px;
+    padding-bottom: 20px;
+    text-align: left;
+    display: flex;
+    justify-content: left;
+  }
+  .footer_priceline_list {
+    padding-top: 20px;
+  }
+  .footer_priceline_list li {
+    padding-bottom: 15px;
+  }
+  .fText {
+    font-size: 10px;
+    padding-top: 30px;
+  }
+  .listLogo {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+  }
+  .listLogo img {
+    width: 40px;
+  }
+  .subLogo {
+    font-size: 13px;
+    margin-top: 15px;
+    line-height: 18px;
+  }  
+}
+/* ---------Extra small screens--------*/
+@media (max-width: 480px) {
+  .mail{
+    background-color: #eff3f7;
+  }
+  .mailInputContainer {
+    padding: 15px;
+  }
+  .input {
+    padding: 10px;
+  }
+  .icon2 {
+    width: 24px;
+    height: 24px;
+  }
+  .logo2 {
+    font-size: 20px;
+    padding-top: 4px;
+  }
+  .lists {
+    font-size: 17px;
+    margin: 0;
+  }
+  .listp {
+    border-bottom: none;
+  }
+  .fListItem {
+    font-size: 16px;
+    padding-left: 0;
+  }
+  .footer_priceline_list li {
+    padding: 0 5px;
+    padding-bottom: 10px;
+  }
+  .fText {
+    font-size: 10px;
+    padding-top: 20px;
+  }
+  .listLogo{
+    display: flex;
+  }
+  .listLogo img {
+    width: 35px;
+  }
+  .subLogo {
+    font-size: 17px;
+  }
+  .grFlists{
+    padding-top: 10px;
+    flex-direction: column; 
+    display: flex;
+  }
+  .flists {
+    align-items: left;
+    text-align: left;
+  }
+  .fList {
+    display: flex;
+    align-items: left;
+    justify-content: left;
+  }
+  .grListLogo{
+    display: flex;
+    justify-content: left;
+  }
+}

@@ -1,0 +1,67 @@
+.tourDaDatContain {
+  display: flex;
+  justify-content: center;
+  padding: 40px;
+}
+.tourDaDat {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  max-width: 1024px;
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #18a0fb;
+  border-radius: 8px;
+  gap: 10px;
+}
+.bangTourDaDat {
+  padding: 15px;
+  border: 1px solid #e0e0e0;
+  text-align: center;
+  border-radius: 7px;
+  height: 140px;
+}
+.thongTinCaNhan {
+  font-size: 15px;
+  border-top: 1px solid #e0e0e0;
+  padding-top: 15px;
+  cursor: pointer;
+}
+.tourDaDatTitle {
+  font-size: 15px;
+  font-weight: 500;
+  margin-top: 10px;
+  color: #18a0fb;
+  cursor: pointer;
+}
+.bangCacThongTinTour {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.tourHeader,
+.tourRow {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr 1.5fr 1.5fr 1.5fr 1.5fr 1.5fr;
+  gap: 10px;
+  padding: 10px;
+}
+.tourHeader {
+  background-color: #18a0fb;
+  color: #fff;
+  font-weight: bold;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+.tourRow {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #e0e0e0;
+}
+.tourRow:nth-child(even) {
+  background-color: #ffffff;
+}
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}

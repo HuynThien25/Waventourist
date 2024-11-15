@@ -1,0 +1,434 @@
+.chonTour3,
+.nhapThongTin3,
+.thanhToan3 {
+  border-bottom: none;
+  padding: 10px;
+  border-radius: 10px;
+  color: #222;
+  font-weight: 600;
+  flex: 1;
+  text-align: center;
+  background-color: #ffcc00;
+}
+.xacNhan3 {
+  border: 2px solid #ffcc00;
+  padding: 10px;
+  border-radius: 10px;
+  color: #222;
+  font-weight: 600;
+  flex: 1;
+  text-align: center;
+}
+.thanhToanContainer {
+  width: 600px;
+  padding-bottom: 40px;
+}
+.methodDetails {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease-out, opacity 0.5s ease-out;
+  opacity: 0;
+}
+.methodDetails.show {
+  max-height: 500px;
+  opacity: 1;
+}
+.imgs {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+}
+.imgs2 {
+  width: 50px;
+  height: 40px;
+  object-fit: contain;
+}
+.method {
+  border-bottom: 1px solid #ccc;
+  padding: 24px;
+}
+.th {
+  display: flex;
+  justify-content: space-between;
+}
+.th label {
+  padding-top: 11px;
+  font-size: 14px;
+  font-weight: 500;
+}
+.bang1 {
+  background-color: #ecf8ff;
+  border: 1px solid #0194f3;
+  border-radius: 6px;
+  padding: 12px;
+  margin-left: 14px;
+  font-size: 14px;
+}
+.bang1 li {
+  margin-left: 12px;
+}
+.bang2 {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-bottom: 90px;
+}
+.chonNganHang {
+  display: flex;
+  flex-direction: column;
+  padding-left: 10px;
+}
+.chonNganHang > p {
+  padding-top: 10px;
+  font-size: 14px;
+  color: #687176;
+}
+.customRadio input[type="radio"] {
+  opacity: 0;
+  position: absolute;
+}
+.customRadio2 input[type="radio"] {
+  opacity: 0;
+  position: absolute;
+}
+.customRadio {
+  position: relative;
+  padding-left: 30px;
+  display: inline-block;
+  cursor: pointer;
+  font-size: 16px;
+}
+.customRadio2 {
+  position: relative;
+  padding-left: 25px;
+  display: flex;
+  cursor: pointer;
+  font-size: 14px;
+  justify-content: left;
+}
+.customRadio .radioMark {
+  position: absolute;
+  top: 10px;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background-color: #eee;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+}
+.customRadio2 .radioMark2 {
+  position: absolute;
+  top: 10px;
+  left: 0;
+  height: 18px;
+  width: 18px;
+  background-color: #eee;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+}
+.customRadio .radioMark:after {
+  content: "";
+  position: absolute;
+  display: none;
+  top: 6px;
+  left: 6px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: white;
+}
+.customRadio2 .radioMark2:after {
+  content: "";
+  position: absolute;
+  display: none;
+  top: 6px;
+  left: 6px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: white;
+}
+.customRadio input:checked + .radioMark {
+  background-color: #2196f3;
+}
+.customRadio input:checked + .radioMark:after {
+  display: block;
+  background-color: white;
+}
+.customRadio:hover input:not(:checked) + .radioMark {
+  background-color: #ccc;
+}
+.customRadio2 input:checked + .radioMark2 {
+  background-color: #2196f3;
+}
+.customRadio2 input:checked + .radioMark2:after {
+  display: block;
+  background-color: white;
+}
+.customRadio2:hover input:not(:checked) + .radioMark2 {
+  background-color: #ccc;
+}
+.methodDetails .bang2 {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 20px;
+}
+.soThe,
+.hopLe,
+.cvvcvn,
+.tenThe p {
+  font-size: 14px;
+}
+.theChung2 {
+  display: flex;
+  justify-content: space-between;
+}
+.methodDetails .bang2 div label {
+  display: block;
+  font-size: 12px;
+  color: #333;
+  font-weight: bold;
+}
+.methodDetails .bang2 input {
+  width: 100%;
+  padding: 8px;
+  font-size: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
+.methodDetails .bang2 input:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+.methodDetails .bang2 input::placeholder {
+  color: #aaa;
+  font-style: italic;
+}
+/* For responsive and mobile view, spacing adjustments */
+@media screen and (max-width: 768px) {
+  .methodDetails .bang2 {
+    padding: 15px;
+  }
+  .methodDetails .bang2 input {
+    font-size: 13px;
+    padding: 10px;
+  }
+}
+
+.timeLeft {
+  background-color: #18a0fb;
+  padding: 18px;
+  display: flex;
+  z-index: 1;
+  color: fff;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+}
+.timeLeft p {
+  color: #fff;
+  font-size: 15px;
+  font-weight: 500;
+}
+.timeLeft span {
+  color: #7fff00;
+}
+.timer {
+  color: #7fff00;
+}
+.soLuongHK3 {
+  background-color: #fff;
+  box-shadow: #03121a33 0px 1px 2px 0px;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+  padding: 16px;
+  padding-bottom: 28px;
+}
+/* mã khuyến mãi */
+.maKhuyenMai {
+  padding-top: 40px;
+}
+.maKM {
+  background-color: #fff;
+  padding: 26px;
+  box-shadow: #03121a33 0px 1px 2px 0px;
+  border-radius: 6px;
+  display: flex;
+  justify-content: space-between;
+}
+.btnApDung {
+  background-color: #18a0fb;
+  border: none;
+  padding: 10px;
+  color: #fff;
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+  cursor: pointer;
+}
+.ma1 {
+  display: flex;
+  font-size: 14px;
+  font-weight: 500;
+  padding-top: 9px;
+}
+.iconMa1 {
+  color: #18a0fb;
+}
+.inputMaKM {
+  padding: 8px;
+  border: 2px solid #18a0fb;
+}
+.inputMaKM:focus {
+  border: 1px solid #ffffff;
+  outline: 1px solid #febe10;
+  transition: ease-in-out 0.2s;
+}
+.thanhToanBtn {
+  padding: 15px 215px 15px 215px;
+  background-color: #febe10;
+  border: none;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.thanhToanBtn:hover {
+  background-color: #ffcc00;
+  transition: 0.3s linear;
+}
+.btnTong3 {
+  padding-top: 32px;
+}
+.btnTong3 p {
+  font-size: 12px;
+  padding-top: 7px;
+  text-align: center;
+  color: #687176;
+}
+.btnTong3 span {
+  color: #18a0fb;
+  cursor: pointer;
+}
+.btnTong3 span:hover {
+  color: #ffcc00;
+  transition: 0.2s linear;
+}
+.tongGiaTien {
+  display: flex;
+  justify-content: space-between;
+  font-size: 17px;
+  padding-bottom: 10px;
+  font-weight: 400;
+}
+.tongGiaTienSo {
+  font-weight: 500;
+  color: #18a0fb;
+}
+/* thông báo */
+/* Nền mờ cho pop-up */
+.popupOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5); /* Nền mờ */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+/* Nội dung pop-up */
+.popupContent {
+  background-color: white;
+  padding: 15px;
+  border-radius: 8px;
+  max-width: 400px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  animation: popUp 0.3s ease-out; /* Hiệu ứng bật */
+}
+@keyframes popUp {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.popupContent p {
+  font-size: 1.1rem;
+  margin: 10px 0;
+}
+.popupSpinner {
+  font-size: 1.5rem;
+  color: #007bff;
+  margin-bottom: 10px;
+}
+/* --------------Responsive----------------- */
+@media (max-width: 768px) {
+}
+
+@media (max-width: 480px) {
+  .c2 {
+    padding-bottom: 40px;
+  }
+  .thanhToanContainer {
+    width: 90%;
+    margin: auto;
+  }
+  .timeLeft p {
+    font-size: 14px;
+    text-align: center;
+  }
+  .soLuongHK3 h4 {
+    font-size: 14px;
+  }
+  .th label {
+    font-size: 13px;
+  }
+  .imgs {
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+  }
+  .imgs2 {
+    width: 40px;
+    height: 30px;
+    object-fit: contain;
+  }
+  .bang1 li {
+    font-size: 12px;
+    text-align: justify;
+  }
+  .thanhToanBtn {
+    width: 100%;
+    padding: 10px;
+  }
+  .ma1 p {
+    font-size: 12px;
+  }
+  .inputMaKM {
+    width: 130px;
+  }
+  .grInputKM {
+    display: flex;
+    justify-content: space-between;
+  }
+  .btnApDung {
+    width: 70px;
+    padding: 3px;
+    font-size: 12px;
+  }
+  .popupContent {
+    width: 70%;
+    margin: auto;
+    font-size: 14px;
+  }
+}

@@ -1,0 +1,243 @@
+.khuyenMai {
+  max-width: 1024px;
+  margin: auto;
+  overflow: hidden;
+}
+.imgKM{
+  display: flex;
+  justify-content: space-between;
+  width: 100px;
+  height: 300px;
+  padding-bottom: 25px;
+  cursor: pointer;
+}
+.imgKMcolumn{
+  display:grid;
+  grid-template-columns: reapet(2,1);
+  width: 320px;
+  height: 151px;
+}
+.sliderKMContainer {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.sliderKMWrapper {
+  overflow: hidden;
+  width: 100%;
+}
+.sliderKM {
+  display: flex;
+  transition: transform 0.5s ease-in-out; 
+  gap: 5px;
+  cursor: pointer;
+}
+.imgSlider {
+  width: 25%; 
+  height: auto;
+  object-fit: contain;
+}
+.imgSlider:hover {
+  transform: scale(1.05);
+  transition: linear 0.3s;
+}
+.prevBtn {
+  background-color: rgba(0, 0, 0, 0.3);
+  color: white;
+  border: none;
+  padding: 15px;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  font-size: 20px;
+}
+.prevBtn:hover{
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.nextBtn {
+  background-color: rgba(0, 0, 0, 0.3);
+  color: white;
+  border: none;
+  padding: 15px;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  font-size: 20px;
+}
+.nextBtn:hover{
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.prevBtn {
+  left: 10px;
+}
+.nextBtn {
+  right: 10px;
+}
+.xemChiTiet{
+  display: flex;
+  justify-content: flex-end; 
+}
+.xemChiTietBtn{
+  color: #18a0fb;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+  background-color: #FFF;
+  font-weight: 700;
+}
+.xemChiTietBtn:hover{
+  color: #FEBE10;
+  transition: ease-in-out 0.3s;
+}
+/* -------responsive----------- */
+.khuyenMai {
+  max-width: 1024px;
+  margin: auto;
+  overflow: hidden;
+}
+.imgKM {
+  display: flex;
+  justify-content: space-between;
+  width: 100px;
+  height: 300px;
+  padding-bottom: 25px;
+  cursor: pointer;
+}
+.imgKMcolumn {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); 
+  width: 320px;
+  height: 151px;
+}
+
+.sliderKMContainer {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.sliderKMWrapper {
+  overflow: hidden;
+  width: 100%;
+}
+.sliderKM {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  gap: 5px;
+  cursor: pointer;
+}
+.imgSlider {
+  width: 25%; 
+  height: auto;
+  object-fit: contain;
+}
+.imgSlider:hover {
+  transform: scale(1.05);
+  transition: linear 0.3s;
+}
+.prevBtn, .nextBtn {
+  background-color: rgba(0, 0, 0, 0.3);
+  color: white;
+  border: none;
+  padding: 15px;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  font-size: 20px;
+}
+.prevBtn:hover,
+.nextBtn:hover {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.prevBtn {
+  left: 10px;
+}
+.nextBtn {
+  right: 10px;
+}
+.xemChiTiet {
+  display: flex;
+  justify-content: flex-end; 
+}
+.xemChiTietBtn {
+  color: #18a0fb;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+  background-color: #FFF;
+  font-weight: 700;
+}
+.xemChiTietBtn:hover {
+  color: #FEBE10;
+  transition: ease-in-out 0.3s;
+}
+/* Responsive adjustments for tablet screens */
+@media (max-width: 768px) {
+  .imgKM {
+    width: 70px; 
+    height: 250px; 
+    display: flex;
+    flex-direction: column;
+  }
+  .imgKMcolumn {
+    width: 170px; 
+    height: auto; 
+  }
+  .imgSlider {
+    width: 50%; 
+  }
+  .prevBtn, .nextBtn {
+    padding: 10px; 
+    font-size: 18px; 
+  }
+}
+/* Responsive adjustments for mobile screens */
+@media (max-width: 480px) {
+  .imgKM {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    margin: auto;
+  }
+  .grKMColumn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .imgKMcolumn {
+    max-width: 185px; 
+    height: auto;
+  }
+  .imgSlider {
+    max-width: 200px; 
+    height: auto;
+    display: block;
+    margin: 0 auto;
+  }
+  .img {
+    max-width: 370px;
+    height: auto;
+    display: block;
+    padding: 7px;
+    border-radius: 7px;
+  }
+  .sliderKMContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+  .prevBtn, .nextBtn {
+    display: none;
+  }
+  .xemChiTietBtn {
+    font-size: 12px;
+    padding-top: 10px;
+    padding-right: 10px;
+  }
+}
