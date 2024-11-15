@@ -78,6 +78,7 @@ const TrangTimKiem = () => {
         <img className="sliderIMG" alt="" src={vietNam} />
       </LazyLoad>
       <div className="sapxepContainer">
+        <div className="grSapXep">
         <div className="sapxep">Xếp theo: </div>
         <div className="lsOptionItem1">
           {/* <span className="lsOptionText1">Giá thấp nhất</span> */}
@@ -92,6 +93,7 @@ const TrangTimKiem = () => {
             <option value="gia3">Đánh giá cao nhất</option>
             <option value="gia4">Liên quan nhất</option>
           </select>
+        </div>
         </div>
       </div>
 

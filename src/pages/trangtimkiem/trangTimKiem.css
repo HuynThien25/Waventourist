@@ -203,9 +203,6 @@
   justify-content: space-between;
   gap: 5px;
 }
-.lsOptionItem1 {
-  margin-top: 12px;
-}
 .lsOptionText1 {
   font-size: 12px;
   color: #333;
@@ -344,20 +341,26 @@
 }
 .sapxepContainer {
   display: flex;
+  justify-content: center;
   width: 100%;
-  align-items: center;
 }
-.sapxep {
+.grSapXep{
   width: 100%;
-  max-width: 1424px;
+  max-width: 1024px;
   display: flex;
   justify-content: flex-end;
-  padding-top: 10px;
+  padding-left: 330px;
+}
+.sapxep {
+  padding-top: 30px;
   text-align: left;
   color: #687176;
   font-size: 14px;
   line-height: 16px;
   margin: 0px 12px 0px 0px;
+}
+.lsOptionItem1 {
+  margin-top: 20px;
 }
 .lsSelect2 {
   margin-right: 210px;
