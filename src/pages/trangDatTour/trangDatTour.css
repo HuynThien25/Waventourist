@@ -81,7 +81,7 @@
 }
 .soLuongHK ul li {
   font-size: 12px;
-  margin: 7px 0px 0px 18px;
+  margin: 4px 0px 0px 12px;
 }
 .bangTheThongTin {
   border-radius: 3px;
@@ -273,7 +273,6 @@
 .passengerGroup {
   font-family: "Arial", sans-serif;
   display: flex;
-  justify-content: space-between;
   gap: 10px;
 }
 .counter {
