@@ -493,14 +493,17 @@ const TourTrongNuoc = () => {
 
   const renderItems = (items) => {
     return items.map((item, index) => (
-      <LazyLoad>
-        <div className="pList2" key={index}>
-          <div className="pListCard2" onClick={handleWatch}>
+      <div className="pList2" key={index}>
+          <div className="pListCard2">
             <div className="pListItem2">
+       <LazyLoad>
+              <div>
               <div className="tietkiem2">{item.tietKiem}</div>
               <img src={item.image1} alt={item.image1} className="favorite2" />
               <img src={item.image2} alt={item.image2} className="pListImg2" />
-              <div className="pListTitles2">
+              </div>
+       </LazyLoad>
+              <div className="pListTitles2" onClick={handleWatch}>
                 <h1>{item.h1}</h1>
                 <p>{item.giaGoc}</p>
                 <h1>
@@ -520,7 +523,6 @@ const TourTrongNuoc = () => {
             </div>
           </div>
         </div>
-      </LazyLoad>
     ));
   };
 

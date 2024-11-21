@@ -45,6 +45,7 @@
   font-size: 16px;
   font-weight: 700;
   text-align: center;
+  color: tomato;
 }
 .pListTitles > h2 {
   line-height: 20px;
@@ -105,7 +106,7 @@
   font-size: 11px;
   font-weight: 500;
   text-align: left;
-  margin: 5px 85px 0px 0px;
+  margin: 5px 85px 0px 5px;
 }
 /* ---------------responsive--------------- */
 @media (max-width: 768px) {
@@ -130,7 +131,7 @@
     justify-content: center;
     border: none;
     box-shadow: none;
-    scroll-snap-align: start; /* Snap each card to the start of the container */
+    scroll-snap-align: start; 
   }
   .pList::-webkit-scrollbar {
     display: none;
@@ -164,12 +165,12 @@
     margin-right: 80px;
   }
   .favorite {
-    margin-left: 120px;
+    margin-left: 132px;
     width: 22px;
     height: 22px;
   }
   .tietkiem {
-    margin: 5px 70px 0px 0px;
+    margin: 5px 70px 0px 5px;
     font-size: 10px;
   }
 }

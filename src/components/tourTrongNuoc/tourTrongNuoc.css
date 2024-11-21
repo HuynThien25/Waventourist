@@ -119,13 +119,17 @@
     cursor: pointer;
     padding: 1px;
     padding-top: 3px;
-    margin-left: 198px;
+    margin-left: 203px;
     margin-top: 4px;
     width: 25px;
     height: 25px;
-    transition: linear 0.3s ease;
+    /* transition: linear 0.3s ease; */
     background-color: #fff;
     border-radius: 50%;
+    transition: transform 0.2s;
+}
+.favorite2:hover {
+  transform: scale(1.1);
 }
 .tietkiem2{
   position: absolute;
@@ -135,7 +139,7 @@
   font-size: 11px;
   font-weight: 500;
   text-align: left;
-  margin: 5px 145px 0px 0px;
+  margin: 5px 145px 0px 5px;
 }
 .pListTitle3{
   display: flex;
@@ -185,7 +189,7 @@
     height: auto; 
   }
   .pListImg2 {
-    height: 160px; 
+    /* height: 160px;  */
   }
 }
 /* Responsive adjustments for mobile screens */
@@ -241,7 +245,8 @@
     display: flex;
   }
   .pListImg2 {
-    height: 140px;
+    height: 150px;
+    width: 235px;
   }
   .pList2 {
     display: flex;
@@ -253,10 +258,17 @@
     box-shadow: none;
     border: none;
     scroll-snap-align: start;
+    padding-left: 20px;
   }
   .cardBtn2, .pListTitle3 {
     display: none;
   }
+  .tietkiem2{
+    margin: 5px 105px 0px 5px;
+  }
+  /* .favorite2{
+    margin-left: 170px;
+  } */
 }
 
 

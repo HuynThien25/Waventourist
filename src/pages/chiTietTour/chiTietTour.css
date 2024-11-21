@@ -237,6 +237,7 @@
 .share {
   display: flex;
   border-radius: 25px;
+  border: none;
   padding: 10px;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
   background-color: #fff;
@@ -507,7 +508,7 @@
 .tableContain {
   display: flex;
   justify-content: left;
-  overflow-x: auto; 
+  overflow-x: auto;
 }
 .row1 {
   display: flex;
@@ -557,6 +558,110 @@
 .Btncolumn:hover {
   background-color: #febe10;
   transition: 0.3s ease-in-out;
+}
+.popup-container {
+  position: fixed;
+  bottom: -100%; 
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); 
+  z-index: 1000;
+  transition: bottom 0.3s ease-in-out; 
+}
+.popup-container.show {
+  bottom: 0; 
+}
+.popup-content {
+  width: 250px;
+  background: white;
+  padding: 18px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-weight: bold;
+  position: relative;
+  opacity: 0; 
+  transform: translateY(20px); 
+  animation: popupSlideIn 0.5s forwards; 
+}
+@keyframes popupSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(200px); 
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0); 
+  }
+}
+.titlePopup {
+  line-height: 24px;
+  text-align: left;
+  font-weight: 700;
+  font-size: 19px;
+  padding: 10px 0px;
+}
+.messagePopup {
+  color: #687176;
+  text-align: left;
+  font-weight: 500;
+  line-height: 24px;
+  font-size: 13px;
+  padding-bottom: ;
+}
+.popup-content button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.popup-content button:first-child {
+  width: 100%;
+  background: #f2f3f3;
+  color: #18a0fb;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+.popup-content button:last-child {
+  width: 100%;
+  background: #18a0fb;
+  color: white;
+  font-weight: 700;
+}
+.notification-popup {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #4caf50;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 20px 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInSlideUp 0.3s forwards, fadeOut 0.5s 1.5s forwards;
+}
+@keyframes fadeInSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+  }
 }
 /* -------------------đánh giá---------------------- */
 .reviewPopupOverlay {
@@ -684,12 +789,13 @@
 .iconThumsUp {
   padding-right: 5px;
 }
-.tableContainMobile{
+.tableContainMobile {
   display: none;
 }
 /* ---------responsive--------------- */
 @media (max-width: 768px) {
-  .hotelContainer, .tourLienquan {
+  .hotelContainer,
+  .tourLienquan {
     padding: 0 20px;
     margin-bottom: 0px;
     margin-top: 0px;
@@ -707,13 +813,17 @@
     font-size: 18px;
     padding: 12px;
   }
-  .hotelDesc, .titleLienLac h1 {
+  .hotelDesc,
+  .titleLienLac h1 {
     font-size: 14px;
   }
   .danhGiaContain {
     padding-top: 15px;
   }
-  .btnLienQuan, .bookNow, .muaOnlineBtn, .btnXemDanhGiaKH {
+  .btnLienQuan,
+  .bookNow,
+  .muaOnlineBtn,
+  .btnXemDanhGiaKH {
     padding: 8px 12px;
     font-size: 14px;
   }
@@ -725,10 +835,12 @@
     width: 100%;
     margin-bottom: 15px;
   }
-  .titleLienQuan, .titleTourLienQuan {
+  .titleLienQuan,
+  .titleTourLienQuan {
     font-size: 16px;
   }
-  .giaTien, .pListItem2 p {
+  .giaTien,
+  .pListItem2 p {
     width: 100%;
   }
   .sliderIMG {
@@ -744,7 +856,9 @@
     width: 40px;
     height: 40px;
   }
-  .reviewText, .reviewerName, .giaChiTu {
+  .reviewText,
+  .reviewerName,
+  .giaChiTu {
     font-size: 14px;
   }
   .reviewRating {
@@ -762,7 +876,7 @@
     margin: 170px 120px 0px;
     text-align: center;
   }
-  .hotelImages{
+  .hotelImages {
     flex-wrap: nowrap;
     display: none;
   }
@@ -821,26 +935,29 @@
     margin: 5px 30px 5px 0px;
     cursor: pointer;
   }
-  .hotelTitle{
+  .hotelTitle {
     font-size: 17px;
   }
   .hotelImg {
     height: 180px;
   }
-  .hotelDesc{
+  .hotelDesc {
   }
-  .hotelDesc span{
+  .hotelDesc span {
     margin: auto;
     font-size: 13px;
   }
   .danhGiaKH {
     flex-direction: column;
   }
-  .muaOnlineBtn, .bookNow {
+  .muaOnlineBtn,
+  .bookNow {
     padding: 6px 10px;
     font-size: 13px;
   }
-  .hotelDetails, .iconic, .reviewPopup {
+  .hotelDetails,
+  .iconic,
+  .reviewPopup {
     flex-direction: column;
     align-items: center;
     text-align: center;
@@ -850,21 +967,21 @@
   }
   .cardTourLienQuan {
     margin: 0 auto 15px;
-  box-shadow: none;
-  padding: 0;
-  scroll-snap-align: start; 
-  border: 1px solid #e0e0e0;
-  padding: 10px;
-  border-radius: 15px;
+    box-shadow: none;
+    padding: 0;
+    scroll-snap-align: start;
+    border: 1px solid #e0e0e0;
+    padding: 10px;
+    border-radius: 15px;
   }
-  .tourLienquan{
-    overflow-x: auto; 
-    scroll-snap-type: x mandatory; 
+  .tourLienquan {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
   }
   .tourLienquan::-webkit-scrollbar {
     display: none;
   }
-  .titleLienQuan{
+  .titleLienQuan {
     font-size: 13px;
     text-align: justify;
   }
@@ -876,18 +993,18 @@
     width: 180px;
     height: 140px;
   }
-  .thth{
+  .thth {
     width: 90%;
     margin: auto;
     text-align: justify;
   }
-  .ththt{
+  .ththt {
     margin: auto;
   }
-  .grid-container2{
+  .grid-container2 {
     margin: auto;
   }
-  .plist2{
+  .plist2 {
   }
   .pListItem2 > p {
     white-space: normal;
@@ -913,7 +1030,7 @@
     margin: auto;
     border-top: none;
   }
-  .grDanhGiaKH{
+  .grDanhGiaKH {
     display: flex;
     justify-content: center;
   }
@@ -921,72 +1038,74 @@
     width: 50px;
     height: 50px;
   }
-  .ten{
+  .ten {
     font-size: 15px;
     padding-top: 17px;
   }
-  .iconDanhGia,.diemDanhGia{
+  .iconDanhGia,
+  .diemDanhGia {
     margin-top: 18px;
   }
-  .subDanhGia{
+  .subDanhGia {
     padding-right: 60px;
   }
-  .bangDanhGiaKH p{
+  .bangDanhGiaKH p {
     font-size: 12px;
     text-align: justify;
   }
   .titlecolumn > h4 {
     font-size: 15px;
   }
-  .ul {  
+  .ul {
     font-size: 13px;
   }
-  .titleThongTin p{
+  .titleThongTin p {
     font-size: 13px;
   }
-  .hotline{
+  .hotline {
     width: 50%;
     margin: auto;
     padding: 7px;
   }
-  .zxc{
+  .zxc {
     box-shadow: none;
     padding: 10px;
     border: 1px solid #e0e0e0;
   }
-  .subDG{
+  .subDG {
     padding-top: 20px;
   }
-  .giaChiTu{
+  .giaChiTu {
     padding: 0;
   }
   /* --------------------------------------- */
-  .tableContainMobile{
+  .tableContainMobile {
     padding: 10px;
     display: block;
   }
-  .grContainTong,.grContainTong2{
+  .grContainTong,
+  .grContainTong2 {
     background-color: #c4e1f6;
     border-radius: 15px;
     padding: 10px;
   }
-  .grContain1{
+  .grContain1 {
     display: flex;
     justify-content: space-between;
     margin: auto;
   }
-  .sa{
+  .sa {
     padding-top: 20px;
   }
-  .columnMobile{
+  .columnMobile {
     font-weight: 700;
   }
-  .titleThongTinChiTiet{
+  .titleThongTinChiTiet {
     font-weight: 700;
     font-size: 17px;
-    color: #18A0FB;
+    color: #18a0fb;
   }
-  .rowMobile{
+  .rowMobile {
     font-size: 14px;
     font-weight: 500;
     line-height: 24px;
@@ -1006,28 +1125,25 @@
     border-radius: 5px;
     padding: 10px;
   }
-  .reviewPopup{
+  .reviewPopup {
     width: 80%;
     margin: auto;
   }
-  .reviewHeader{
+  .reviewHeader {
     display: flex;
     flex-direction: column;
     margin: auto;
   }
-  .reviewerName{
+  .reviewerName {
     font-size: 12px;
   }
-  .reviewText{
+  .reviewText {
     font-size: 12px;
     text-align: justify;
   }
-  .likeButton{
+  .likeButton {
     font-size: 12px;
     display: flex;
     justify-content: right;
   }
 }
-
-
-

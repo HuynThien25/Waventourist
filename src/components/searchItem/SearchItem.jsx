@@ -53,8 +53,14 @@ import japan from "../../assets/img/hinhAnh/japan.jpg";
 import uc from "../../assets/img/hinhAnh/uc.jpg";
 import "./searchItem.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleLeft, faAngleRight, faCalendarDays, faCalendarWeek, faPlaneUp } from "@fortawesome/free-solid-svg-icons";
-import LazyLoad from 'react-lazy-load';
+import {
+  faAngleLeft,
+  faAngleRight,
+  faCalendarDays,
+  faCalendarWeek,
+  faPlaneUp,
+} from "@fortawesome/free-solid-svg-icons";
+import LazyLoad from "react-lazy-load";
 
 const SearchItem = ({
   destination,
@@ -902,28 +908,44 @@ const SearchItem = ({
           .map((tour, index) => (
             <div key={index} className="seList">
               <div className="seListCard" onClick={handleSee}>
-              <LazyLoad>
                 <div className="seListItem">
-                  <div className="seTietkiem">{tour.tietKiem}</div>
-                  <img
-                    src={tour.image1}
-                    alt="Favorite"
-                    className="seFavorite"
-                  />
-                  <img src={tour.image2} alt={tour.h1} className="seListImg" />
+                  <LazyLoad>
+                    <div>
+                      <div className="seTietkiem">{tour.tietKiem}</div>
+                      <img
+                        src={tour.image1}
+                        alt="Favorite"
+                        className="seFavorite"
+                      />
+                      <img
+                        src={tour.image2}
+                        alt={tour.h1}
+                        className="seListImg"
+                      />
+                    </div>
+                  </LazyLoad>
                   <div className="seListTitles">
                     <div className="seH1">{tour.h1}</div>
                     <div className="t">
                       <div className="seNgayDi">
-                        <FontAwesomeIcon icon={faCalendarDays} className="iconTitleThongTin"/>
+                        <FontAwesomeIcon
+                          icon={faCalendarDays}
+                          className="iconTitleThongTin"
+                        />
                         Khởi hành: <span>{tour.khoiHanh}</span>
                       </div>
                       <div className="seThoiGian">
-                        <FontAwesomeIcon icon={faCalendarWeek} className="iconTitleThongTin"/>
+                        <FontAwesomeIcon
+                          icon={faCalendarWeek}
+                          className="iconTitleThongTin"
+                        />
                         Thời gian: <span>{tour.thoiGian}</span>
                       </div>
                       <div className="sePhuongTien">
-                        <FontAwesomeIcon icon={faPlaneUp} className="iconTitleThongTin"/>
+                        <FontAwesomeIcon
+                          icon={faPlaneUp}
+                          className="iconTitleThongTin"
+                        />
                         Phương tiện: <span>{tour.phuongTien}</span>
                       </div>
                     </div>
@@ -936,12 +958,14 @@ const SearchItem = ({
                     <div className="seListTitle">
                       <div className="seIcon">
                         <div className="grIconDanhGia">
-                        <img
-                          className="seIconDanhGia"
-                          alt="Rating"
-                          src={tour.danhGia}
-                        />
-                        <div className="seDiemDanhGia">{tour.diemDanhGia}</div>
+                          <img
+                            className="seIconDanhGia"
+                            alt="Rating"
+                            src={tour.danhGia}
+                          />
+                          <div className="seDiemDanhGia">
+                            {tour.diemDanhGia}
+                          </div>
                         </div>
                         <div className="seTextDanhGia">{tour.textDanhGia}</div>
                       </div>
@@ -951,7 +975,6 @@ const SearchItem = ({
                     </div>
                   </div>
                 </div>
-              </LazyLoad>
               </div>
             </div>
           ))

@@ -6,6 +6,7 @@ import "./chiTietTour.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import share from "../../assets/img/logo/share.png";
 import heart from "../../assets/img/logo/heartSmall.png";
+import phuquoc from "../../assets/img/hinhAnh/phuquoc.jpg"
 import phuQuoc5 from "../../assets/img/hinhAnh/phuQuoc5.jpg";
 import phuQuoc6 from "../../assets/img/hinhAnh/phuQuoc6.jpg";
 import phuQuoc7 from "../../assets/img/hinhAnh/phuQuoc7.jpg";
@@ -38,7 +39,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-// import LazyLoad from "react-lazyload";
+import LazyLoad from "react-lazyload";
 
 const ChiTietTour = () => {
   const [activeTab, setActiveTab] = useState("1");
@@ -47,8 +48,26 @@ const ChiTietTour = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [destination, setDestination] = useState("");
-  // -------------đánh giá-------------
+  const [showPopup, setShowPopup] = useState(false);
+  const [showPopup2, setShowPopup2] = useState(false);
+  const [popupMessage, setPopupMessage] = useState("");
+  const [popupMessage2, setPopupMessage2] = useState("");
   const [isReviewPopupVisible, setReviewPopupVisible] = useState(false);
+  const handleClosePopup = () => setShowPopup(false);
+
+const Popup = ({ message, onClose }) => (
+  <div className="popup-container">
+    <div className="popup-content">
+      <div className="titlePopup">Bạn cần đăng nhập</div>
+      <p className="messagePopup">{message}</p>
+      <div>
+        <button onClick={onClose}>Để sau</button>
+        <button onClick={() => navigate("/login")}>Đăng nhập ngay</button>
+      </div>
+    </div>
+  </div>
+);
+// -------------đánh giá-------------
   const danhGiaData = [
     {
       id: 1,
@@ -82,18 +101,6 @@ const ChiTietTour = () => {
     },
     // Additional sample data objects can be added here
   ];
-
-  const toggleReviewPopup = () => {
-    setReviewPopupVisible(!isReviewPopupVisible);
-  };
-
-  const handleBuy = () => {
-    navigate("/trangDatTour", { state: { destination } });
-  };
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [location]);
 
   const chuongtrinh = [
     {
@@ -183,11 +190,19 @@ const ChiTietTour = () => {
     },
   ];
 
+  const toggleReviewPopup = () => {
+    setReviewPopupVisible(!isReviewPopupVisible);
+  };
+
+  const handleBuy = () => {
+    navigate("/trangDatTour", { state: { destination } });
+  };
+
   const handleOpen = (i) => {
     setSliderNumber(i);
     setOpen(true);
   };
-
+  
   const handleMove = (direction) => {
     let newSliderNumber;
     if (direction === "l") {
@@ -198,6 +213,10 @@ const ChiTietTour = () => {
     setSliderNumber(newSliderNumber);
   };
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
+  // ------------------------------------
   const renderItems = (items) => {
     return items.map((item, index) => (
       <div className="pList2" key={index}>
@@ -224,10 +243,65 @@ const ChiTietTour = () => {
     ));
   };
 
+  const shareOnFacebook = () => {
+    const facebookShareURL = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+      'https://waventourist.com' 
+    )}`;
+    // Lấy kích thước màn hình
+    const screenWidth = window.innerWidth;
+    const screenHeight = window.innerHeight;
+    // Kích thước popup
+    const popupWidth = 800;
+    const popupHeight = 400;
+    // Tính toán vị trí để popup nằm giữa màn hình
+    const left = (screenWidth - popupWidth) / 2;
+    const top = (screenHeight - popupHeight) / 2;
+    
+    window.open(
+      facebookShareURL,
+      'facebookShare',
+      `width=${popupWidth},height=${popupHeight},scrollbars=no,resizable=no,left=${left},top=${top}`
+    );
+  };
+  
+  const handleAddToFavorites = (tour) => {
+    const userToken = localStorage.getItem("userToken");
+    if (!userToken) {
+      // Người dùng chưa đăng nhập, hiển thị popup yêu cầu đăng nhập
+      setShowPopup(true);
+      setPopupMessage("Đây là tính năng chỉ dành cho thành viên, vui lòng đăng nhập tài khoản waventourist của bạn.");
+      return; // Kết thúc tại đây nếu chưa đăng nhập
+    }
+    // Người dùng đã đăng nhập, tiếp tục kiểm tra danh sách yêu thích
+    const existingFavorites = localStorage.getItem("favoriteTours");
+    const favorites = existingFavorites ? JSON.parse(existingFavorites) : [];
+    // Kiểm tra tour đã tồn tại trong danh sách yêu thích chưa
+    const isExist = favorites.some((item) => item.id === tour.id);
+    if (isExist) {
+      // Tour đã tồn tại, hiển thị thông báo
+      setShowPopup2(true);
+      setPopupMessage2("Tour này đã có trong danh sách yêu thích!");
+    } else {
+      // Tour chưa tồn tại, thêm vào danh sách yêu thích
+      const updatedFavorites = [...favorites, tour];
+      localStorage.setItem("favoriteTours", JSON.stringify(updatedFavorites));
+      // Hiển thị thông báo thêm thành công
+      setShowPopup2(true);
+      setPopupMessage2("Đã thêm vào danh sách yêu thích!");
+    }
+  };
+
+  useEffect(() => {
+    if (showPopup2) {
+      const timer = setTimeout(() => setShowPopup2(false), 3000);
+      return () => clearTimeout(timer); 
+    }
+  }, [showPopup2]);
+  
   return (
     <div className="Container">
       <Navbar />
-      {/* <LazyLoad> */}
+      <LazyLoad>
         <div className="center1024">
           <div className="sliderText2">
             Du Lịch Phú Quốc - Khám Phá Bắc Đảo - Safari - VinWonder - Grand
@@ -235,7 +309,7 @@ const ChiTietTour = () => {
           </div>
         </div>
         <img className="sliderIMG" alt="" src={pqTest5} />
-      {/* </LazyLoad> */}
+      </LazyLoad>
       {/* ----------------Icon đóng mở hình ảnh----------------- */}
       <div className="hotelContainer">
         {open && (
@@ -267,15 +341,22 @@ const ChiTietTour = () => {
         {/* ----------Icon share and fav--------- */}
         <div className="hotelWrapper">
           <div className="iconic">
-            <div className="share">
-              <img src={share} alt="" className="imgShare" />
-              <p>Chia sẻ</p>
-            </div>
-            <div className="share">
-              <img src={heart} alt="" className="imgShare" />
-              <p>Yêu thích</p>
-            </div>
+          <div className="share" onClick={() => shareOnFacebook()}>
+            <img src={share} alt="" className="imgShare" />
+            <p>Chia sẻ</p>
           </div>
+
+            <button className="share" onClick={() => handleAddToFavorites({ id: 1,image: phuquoc, maTour: "SN34545", ngayDi: "27/09/2024", ngayVe: "30/09/2024", diaDiem: "Du Lịch Phú Quốc - Khám Phá Bắc Đảo - Safari - VinWonder - Grand World", gia: "3.159.000 VND" })}>
+              <img src={heart} alt="" className="imgShare" />
+                Yêu thích
+            </button>
+            {showPopup2 && (
+        <div className="notification-popup">
+          <p>{popupMessage2}</p>
+        </div>
+      )}
+          </div>
+          {showPopup && <Popup message={popupMessage} onClose={handleClosePopup} />}
           {/* -------------chia ảnh bố cục-------------- */}
           <div className="hotelImages">
             {photos.map((photo, i) => (
@@ -527,7 +608,7 @@ const ChiTietTour = () => {
               </div>
               {/* ----------------Đánh giá KH----------------- */}
               <div className="danhGiaContain">
-                <div className="danhGiaKH">
+                <div div className="danhGiaKH">
                   <p>Ấn tượng từ những du khác khác</p>
                   <button
                     className="btnXemDanhGiaKH"

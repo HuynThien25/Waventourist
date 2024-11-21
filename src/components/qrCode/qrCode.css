@@ -58,9 +58,9 @@ body {
 .signOffer {
   width: 100vw;
   background-image: url(../../assets/img/hinhAnh/vintage.jpg);
-  background-size: contain;
+  background-size: cover;
   background-repeat: no-repeat;
-  background-position: 50% 50%;
+  background-position: center;
   background-attachment: fixed;
   padding: 20px;
   box-sizing: border-box;

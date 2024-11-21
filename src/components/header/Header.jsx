@@ -1,5 +1,5 @@
 import "./header.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect,useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faCalendarDays } from "@fortawesome/free-solid-svg-icons";
@@ -12,7 +12,7 @@ import korea from "../../assets/img/hinhAnh/korea.jpg";
 import thailand from "../../assets/img/hinhAnh/thailand.jpg";
 import singapore from "../../assets/img/hinhAnh/singapore.jpg";
 import china4 from "../../assets/img/hinhAnh/china4.jpg";
-import LazyLoad from "react-lazy-load";
+import LazyLoad from 'react-lazyload';
 
 const Header = ({ type }) => {
   const [destination, setDestination] = useState("");
@@ -38,16 +38,16 @@ const Header = ({ type }) => {
     return () => clearInterval(autoSlide);
   }, [slides.length]);
 
-  const handleSearch = () => {
-    navigate("/trangtimkiem", { state: { destination, startDate, endDate, } });
-  };
-
-  const toggleDatePicker = (start) => {
+  const handleSearch = useCallback(() => {
+    navigate("/trangtimkiem", { state: { destination, startDate, endDate } });
+  }, [destination, startDate, endDate, navigate]);
+  
+  const toggleDatePicker = useCallback((start) => {
     setOpenStartDate(start);
     setOpenEndDate(!start);
-  };
-
-  const updateDate = (item, isStartDate) => {
+  }, []);
+  
+  const updateDate = useCallback((item, isStartDate) => {
     if (isStartDate) {
       setStartDate(item.selection.startDate);
       toggleDatePicker(false);
@@ -55,12 +55,12 @@ const Header = ({ type }) => {
       setEndDate(item.selection.endDate);
       setOpenEndDate(false);
     }
-  };
+  }, [toggleDatePicker]);
 
   return (
     <div className="header">
       <div className={type === "list" ? "headerContainer listMode" : "headerContainer"}>
-        <LazyLoad>
+        <LazyLoad offset={200} >
           <div className="imageTransition">
             {slides.map((slide, index) => (
               <div

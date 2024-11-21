@@ -185,7 +185,7 @@
     flex-direction: column;
   }
   .imgKMcolumn {
-    width: 170px; 
+    /* width: 170px;  */
     height: auto; 
   }
   .imgSlider {

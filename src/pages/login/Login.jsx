@@ -11,11 +11,9 @@ import {
   faEye,
 } from "@fortawesome/free-solid-svg-icons";
 
-// Regex to validate email and phone number formats
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const phoneRegex = /^[0-9]{10,11}$/;
 
-// Dummy user data (you can customize this)
 const DUMMY_USER = {
   email: "thien25@gmail.com",
   phone: "0123456789",
@@ -26,24 +24,23 @@ const DUMMY_USER = {
 const Login = () => {
   const [emailOrPhone, setEmailOrPhone] = useState("");
   const [password, setPassword] = useState("");
-  const [isEmailOrPhoneValid, setIsEmailOrPhoneValid] = useState(true); // New state for validation
-  const [isPasswordEntered, setIsPasswordEntered] = useState(true); // State for password validation
-  const [isFormValid, setIsFormValid] = useState(false); // Form validation state
-  const [loginError, setLoginError] = useState(""); // State to track login error\
+  const [isEmailOrPhoneValid, setIsEmailOrPhoneValid] = useState(true); 
+  const [isPasswordEntered, setIsPasswordEntered] = useState(true); 
+  const [isFormValid, setIsFormValid] = useState(false);
+  const [loginError, setLoginError] = useState(""); 
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
-  // Function to check email/phone validation
   useEffect(() => {
     if (emailOrPhone === "") {
-      setIsEmailOrPhoneValid(true); // No error message if field is empty
+      setIsEmailOrPhoneValid(true); 
     } else {
       setIsEmailOrPhoneValid(
         emailRegex.test(emailOrPhone) || phoneRegex.test(emailOrPhone)
       );
     }
 
-    setIsPasswordEntered(password.length >= 6 || password === ""); // Password must be at least 6 characters
+    setIsPasswordEntered(password.length >= 6 || password === ""); 
     setIsFormValid(
       (emailRegex.test(emailOrPhone) || phoneRegex.test(emailOrPhone)) &&
         password.length >= 6
@@ -52,9 +49,9 @@ const Login = () => {
 
   const handleBack = () => {
     if (window.history.length > 1) {
-      navigate(-1); // Navigate back to previous page
+      navigate(-1); 
     } else {
-      navigate("/"); // Navigate to the homepage if no history
+      navigate("/"); 
     }
   };
 
@@ -68,22 +65,27 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+  
     if (isFormValid) {
-      // Simulate login without API using dummy data
       if (
-        (emailOrPhone === DUMMY_USER.email ||
-          emailOrPhone === DUMMY_USER.phone) &&
+        (emailOrPhone === DUMMY_USER.email || emailOrPhone === DUMMY_USER.phone) &&
         password === DUMMY_USER.password
       ) {
-        // Save username in local storage to persist login
+        // Tạo token giả lập từ thông tin người dùng
+        const token = btoa(`${emailOrPhone}:${new Date().getTime()}`);
+        localStorage.setItem("userToken", token); // Lưu token vào localStorage
+        
+        // Lưu thông tin username để hiển thị
         localStorage.setItem("loggedInUser", DUMMY_USER.username);
-        // Redirect to homepage after successful login
+  
+        // Điều hướng về trang trước đó hoặc trang chính
         navigate(-1);
       } else {
         setLoginError("Email/Số điện thoại hoặc mật khẩu không đúng");
       }
     }
   };
+  
 
   const location = useLocation();
 

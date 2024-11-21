@@ -31,8 +31,8 @@ const Navbar = () => {
 
   const handleHome = () => navigate("/", { state: { destination } });
   const handleRegister = () => navigate("/register", { state: { destination } });
-  const handleLogin = () => navigate("/login", { state: { destination } });
   const handleTourDaDat = () =>navigate("/TourDaDat", { state: { destination } });
+  const handleLogin = () => navigate("/login", { state: { destination } });
 
   const toggleDropdown = (e) => {
     e.stopPropagation();
@@ -53,8 +53,10 @@ const Navbar = () => {
     return () => document.removeEventListener("click", handleClickOutside);
   }, [isOpen, isOpen2]);
 
+
   const handleLogout = () => {
     localStorage.removeItem("loggedInUser");
+    localStorage.removeItem("userToken");
     setLoggedInUser(null);
     setIsModalOpen(false);
     navigate("/");
