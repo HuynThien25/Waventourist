@@ -11,7 +11,6 @@ const ScrollToTopButton = () => {
     const windowHeight = window.innerHeight;
     const docHeight = document.documentElement.offsetHeight;  
 
-    // Show button when scrolled beyond 60% of the page
     if (scrollTop + windowHeight >= docHeight * 0.6) {
       setIsVisible(true);
     } else {
@@ -22,14 +21,13 @@ const ScrollToTopButton = () => {
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: "smooth", // Smooth scroll
+      behavior: "smooth",
     });
   };
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
 
-    // Cleanup the event listener on component unmount
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };

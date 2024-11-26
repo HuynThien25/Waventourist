@@ -51,6 +51,8 @@ import germany from "../../assets/img/hinhAnh/germany.jpg";
 import halan from "../../assets/img/hinhAnh/halan.jpg";
 import japan from "../../assets/img/hinhAnh/japan.jpg";
 import uc from "../../assets/img/hinhAnh/uc.jpg";
+import fav from "../../assets/img/logo/fav.png";
+import favFill from "../../assets/img/logo/favFill.png";
 import "./searchItem.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -61,6 +63,7 @@ import {
   faPlaneUp,
 } from "@fortawesome/free-solid-svg-icons";
 import LazyLoad from "react-lazy-load";
+import useFavoriteHandler from "../useFavoriteHandler/UseFavoriteHandler";
 
 const SearchItem = ({
   destination,
@@ -83,10 +86,14 @@ const SearchItem = ({
   // -----------đà nẵng------------------
   const danangs = [
     {
+      id: 6,
       destination: "Đà nẵng",
       h1: "Tour Premium Bà Nà Hills, Đà Nẵng - 1 ngày",
+      maTour: "FGH-46284",
+      ngayDi: "22/11/2024",
+      ngayVe: "24/11/2024",
       tietKiem: "Tiết Kiệm 25%",
-      gia: 955300,
+      gia: "955.300 VND",
       giaGoc: "1.284.200 VND",
       image1: favorite,
       image2: banahill,
@@ -98,10 +105,14 @@ const SearchItem = ({
       phuongTien: "Máy bay",
     },
     {
+      id: 7,
       destination: "Đà nẵng",
       h1: "Tour chùa Linh Ứng, Ngũ Hành Sơn, Hội An - Nửa ngày",
+      maTour: "FGH-46284",
+      ngayDi: "22/11/2024",
+      ngayVe: "24/11/2024",
       tietKiem: "Tiết Kiệm 10%",
-      gia: 566200,
+      gia: "566.200 VND",
       giaGoc: "824.200 VND",
       image1: favorite,
       image2: chuaDN,
@@ -113,10 +124,14 @@ const SearchItem = ({
       phuongTien: "Xe du lịch",
     },
     {
+      id: 8,
       destination: "Đà nẵng",
       h1: "Tour Cù Lao Chàm - 1 ngày | Khởi hành: Đà Nẵng",
+      maTour: "FGH-46284",
+      ngayDi: "22/11/2024",
+      ngayVe: "24/11/2024",
       tietKiem: "Tiết Kiệm 10%",
-      gia: 650602,
+      gia: "650.602 VND",
       giaGoc: "824.200 VND",
       image1: favorite,
       image2: culaocham,
@@ -128,10 +143,14 @@ const SearchItem = ({
       phuongTien: "Xe du lịch",
     },
     {
+      id: 9,
       destination: "Hội An, Đà Nẵng",
       h1: "Tour Hội An - Đà Nẵng - 2 ngày 1 đêm",
+      maTour: "FGH-46284",
+      ngayDi: "22/11/2024",
+      ngayVe: "24/11/2024",
       tietKiem: "Tiết Kiệm 10%",
-      gia: 2179000,
+      gia: "2.179.000 VND",
       giaGoc: "1.824.200 VND",
       image1: favorite,
       image2: hoianDN,
@@ -143,10 +162,14 @@ const SearchItem = ({
       phuongTien: "Máy bay",
     },
     {
+      id: 10,
       destination: "Đà nẵng",
       h1: "Trải nghiệm du lượn trên núi Sơn Trà | Đà Nẵng",
+      maTour: "FGH-46284",
+      ngayDi: "22/11/2024",
+      ngayVe: "24/11/2024",
       tietKiem: "Tiết Kiệm 10%",
-      gia: 2079300,
+      gia: "2.079.300 VND",
       giaGoc: "824.200 VND",
       image1: favorite,
       image2: duluon,
@@ -158,10 +181,14 @@ const SearchItem = ({
       phuongTien: "Máy bay",
     },
     {
+      id: 11,
       destination: "Đà nẵng",
       tietKiem: "Tiết Kiệm 10%",
       h1: "Tour Du Thuyền ngắm Hoàng Hôn trên Sông Hàn",
-      gia: 390000,
+      maTour: "FGH-46284",
+      ngayDi: "22/11/2024",
+      ngayVe: "24/11/2024",
+      gia: "390.000 VND",
       giaGoc: "524.200 VND",
       image1: favorite,
       image2: duthuyen,
@@ -173,10 +200,14 @@ const SearchItem = ({
       phuongTien: "Máy bay",
     },
     {
+      id: 12,
       destination: "Đà nẵng",
       h1: "Tour ngày | Công Viên Súi Khoáng Nóng Núi Thần Tài",
+      maTour: "FGH-46284",
+      ngayDi: "22/11/2024",
+      ngayVe: "24/11/2024",
       tietKiem: "Tiết Kiệm 10%",
-      gia: 850000,
+      gia: "850.000 VND",
       giaGoc: "924.200 VND",
       image1: favorite,
       image2: nuiThanTai,
@@ -188,10 +219,14 @@ const SearchItem = ({
       phuongTien: "Máy bay",
     },
     {
+      id: 13,
       destination: "Đà nẵng, Hội An",
       h1: "Tour trải nghiệm thuyền thúng dừa, Hội An - Đà Nẵng",
+      maTour: "FGH-46284",
+      ngayDi: "22/11/2024",
+      ngayVe: "24/11/2024",
       tietKiem: "Tiết Kiệm 10%",
-      gia: 916200,
+      gia: "916.200 VND",
       giaGoc: "824.200 VND",
       image1: favorite,
       image2: thuyenThungHA,
@@ -203,10 +238,14 @@ const SearchItem = ({
       phuongTien: "Máy bay",
     },
     {
+      id: 14,
       destination: "Đà nẵng, Hội An",
       tietKiem: "Tiết Kiệm 10%",
       h1: "Tour Ngũ Hành Sơn và Phố Cổ Hội An - Nửa ngày",
-      gia: 434000,
+      maTour: "FGH-46284",
+      ngayDi: "22/11/2024",
+      ngayVe: "24/11/2024",
+      gia: "434.000 VND",
       giaGoc: "468.200 VND",
       image1: favorite,
       image2: NHSonVaHoiAn,
@@ -218,10 +257,14 @@ const SearchItem = ({
       phuongTien: "Máy bay",
     },
     {
+      id: 15,
       destination: "Đà nẵng",
       h1: "Tour Chơi Golf một ngày từ Đà Nẵng BRG Golf Resort",
+      maTour: "FGH-46284",
+      ngayDi: "22/11/2024",
+      ngayVe: "24/11/2024",
       tietKiem: "Tiết Kiệm 10%",
-      gia: 3800000,
+      gia: "3.800.000 VND",
       giaGoc: "2.824.200",
       image1: favorite,
       image2: choiGolfDN,
@@ -233,10 +276,14 @@ const SearchItem = ({
       phuongTien: "Máy bay",
     },
     {
+      id: 16,
       destination: "Đà nẵng",
       h1: "Tour thưởng thức ẩm thực Đà Nẵng bằng Xe Máy",
+      maTour: "FGH-46284",
+      ngayDi: "22/11/2024",
+      ngayVe: "24/11/2024",
       tietKiem: "Tiết Kiệm 10%",
-      gia: 938000,
+      gia: "938.000 VND",
       giaGoc: "824.200 VND",
       image1: favorite,
       image2: AmThucDN,
@@ -251,10 +298,14 @@ const SearchItem = ({
   // ----------đà lạt---------------------
   const dalats = [
     {
+      id: 17,
       destination: "Đà lạt",
       tietKiem: "Tiết Kiệm 10%",
       h1: "Tour Khám Phá Đà Lạt thơ mộng - 1 ngày",
-      gia: 530000,
+      maTour: "FGH-46284",
+      ngayDi: "22/11/2024",
+      ngayVe: "24/11/2024",
+      gia: "530.000 VND",
       giaGoc: "600.200 VND",
       image1: favorite,
       image2: dalat1,
@@ -266,10 +317,14 @@ const SearchItem = ({
       phuongTien: "Máy bay",
     },
     {
+      id: 18,
       destination: "Đà lạt",
       tietKiem: "Tiết Kiệm 10%",
       h1: "Chinh phục Langbiang, thác Datanla và Crazy House",
-      gia: 440000,
+      maTour: "FGH-46284",
+      ngayDi: "22/11/2024",
+      ngayVe: "24/11/2024",
+      gia: "440.000 VND",
       giaGoc: "504.200 VND",
       image1: favorite,
       image2: dalat2,
@@ -281,11 +336,14 @@ const SearchItem = ({
       phuongTien: "Máy bay",
     },
     {
+      id: 19,
       destination: "Đà lạt",
-
       tietKiem: "Tiết Kiệm 10%",
       h1: "Tour Khám Phá địa điểm mới tại Đà Lạt - 1 ngày",
-      gia: 550000,
+      maTour: "FGH-46284",
+      ngayDi: "22/11/2024",
+      ngayVe: "24/11/2024",
+      gia: "550.000 VND",
       giaGoc: "620.200 VND",
       image1: favorite,
       image2: dalat3,
@@ -297,11 +355,14 @@ const SearchItem = ({
       phuongTien: "Máy bay",
     },
     {
+      id: 20,
       destination: "Đà lạt",
-
       tietKiem: "Tiết Kiệm 10%",
       h1: "Tour săn mấy và đón bình minh tại Đà Lạt - Nửa ngày",
-      gia: 350000,
+      maTour: "FGH-46284",
+      ngayDi: "22/11/2024",
+      ngayVe: "24/11/2024",
+      gia: "350.000 VND",
       giaGoc: "404.200 VND",
       image1: favorite,
       image2: dalat4,
@@ -313,11 +374,14 @@ const SearchItem = ({
       phuongTien: "Máy bay",
     },
     {
+      id: 21,
       destination: "Đà lạt",
-
       tietKiem: "Tiết Kiệm 10%",
       h1: "Tour chèo thuyền Sup & ăn trưa picnic, Hồ Tuyền Lâm",
-      gia: 714000,
+      maTour: "FGH-46284",
+      ngayDi: "22/11/2024",
+      ngayVe: "24/11/2024",
+      gia: "714.000 VND",
       giaGoc: "924.000 VND",
       image1: favorite,
       image2: dalat5,
@@ -329,11 +393,14 @@ const SearchItem = ({
       phuongTien: "Xe du lịch",
     },
     {
+      id: 22,
       destination: "Đà lạt",
-
       tietKiem: "Tiết Kiệm 10%",
       h1: "Xe trượt Aipine Coaster Datanla tại Đà Lạt",
-      gia: 175000,
+      maTour: "FGH-46284",
+      ngayDi: "22/11/2024",
+      ngayVe: "24/11/2024",
+      gia: "175.000 VND",
       giaGoc: "180.200 VND",
       image1: favorite,
       image2: dalat6,
@@ -345,10 +412,14 @@ const SearchItem = ({
       phuongTien: "Xe du lịch",
     },
     {
+      id: 23,
       destination: "Đà lạt",
       tietKiem: "Tiết Kiệm 10%",
       h1: "Vé Nông Trại Cún Puppy Farm, Đà Lạt",
-      gia: 100000,
+      maTour: "FGH-46284",
+      ngayDi: "22/11/2024",
+      ngayVe: "24/11/2024",
+      gia: "100.000 VND",
       image1: favorite,
       image2: dalat7,
       danhGia: heartFill,
@@ -359,11 +430,14 @@ const SearchItem = ({
       phuongTien: "Máy bay",
     },
     {
+      id: 24,
       destination: "Đà lạt",
-
       tietKiem: "Tiết Kiệm 10%",
       h1: "Vé núi Langbiang, Đà Lạt",
-      gia: 50000,
+      maTour: "FGH-46284",
+      ngayDi: "22/11/2024",
+      ngayVe: "24/11/2024",
+      gia: "50.000 VND",
       image1: favorite,
       image2: dalat8,
       danhGia: heartFill,
@@ -374,11 +448,14 @@ const SearchItem = ({
       phuongTien: "Máy bay",
     },
     {
+      id: 25,
       destination: "Đà lạt",
-
       tietKiem: "Tiết Kiệm 10%",
       h1: "Vé khu du lịch rừng thông Núi Voi tại Đà Lạt",
-      gia: 180000,
+      maTour: "FGH-46284",
+      ngayDi: "22/11/2024",
+      ngayVe: "24/11/2024",
+      gia: "180.000 VND",
       giaGoc: "190.200 VND",
       image1: favorite,
       image2: dalat9,
@@ -390,11 +467,14 @@ const SearchItem = ({
       phuongTien: "Máy bay",
     },
     {
+      id: 26,
       destination: "Đà lạt",
-
       tietKiem: "Tiết Kiệm 45%",
       h1: "Vé Euro Garden Vườn Châu Âu, Đà Lạt",
-      gia: 90000,
+      maTour: "FGH-46284",
+      ngayDi: "22/11/2024",
+      ngayVe: "24/11/2024",
+      gia: "90.000 VND",
       giaGoc: "160.200 VND",
       image1: favorite,
       image2: dalat10,
@@ -406,11 +486,14 @@ const SearchItem = ({
       phuongTien: "Tàu",
     },
     {
+      id: 27,
       destination: "Đà lạt",
-
       tietKiem: "Tiết Kiệm 10%",
       h1: "Vé xe buýt 2 tầng Đà Lạt City Sightseeing",
-      gia: 120000,
+      maTour: "FGH-46284",
+      ngayDi: "22/11/2024",
+      ngayVe: "24/11/2024",
+      gia: "120.000 VND",
       giaGoc: "130.200 VND",
       image1: favorite,
       image2: dalat11,
@@ -422,11 +505,14 @@ const SearchItem = ({
       phuongTien: "Máy bay",
     },
     {
+      id: 28,
       destination: "Đà lạt",
-
       tietKiem: "Tiết Kiệm 10%",
       h1: "Vé Fresh Garden Đà Lạt",
-      gia: 108000,
+      maTour: "FGH-46284",
+      ngayDi: "22/11/2024",
+      ngayVe: "24/11/2024",
+      gia: "108.000 VND",
       giaGoc: "120.200 VND",
       image1: favorite,
       image2: dalat12,
@@ -441,9 +527,13 @@ const SearchItem = ({
   // ---------Hạ Long--------------
   const halongs = [
     {
+      id: 29,
       tietKiem: "Tiết Kiệm 10%",
       h1: "Tour Vịnh Hạ Long trên du thuyền 5 sao Cozy Bay",
-      gia: 960500,
+      maTour: "FGH-46284",
+      ngayDi: "22/11/2024",
+      ngayVe: "24/11/2024",
+      gia: "960.500 VND",
       giaGoc: "1.065.200 VND",
       image1: favorite,
       image2: halong1,
@@ -456,9 +546,13 @@ const SearchItem = ({
       phuongTien: "Máy bay",
     },
     {
+      id: 30,
       tietKiem: "Tiết Kiệm 10%",
       h1: "Tour vịnh Hạ Long trên du thuyền 5 sao Wego Halong",
-      gia: 788000,
+      maTour: "FGH-46284",
+      ngayDi: "22/11/2024",
+      ngayVe: "24/11/2024",
+      gia: "788.000 VND",
       image1: favorite,
       image2: halong2,
       danhGia: heartFill,
@@ -470,9 +564,13 @@ const SearchItem = ({
       phuongTien: "Máy bay",
     },
     {
+      id: 31,
       tietKiem: "Tiết Kiệm 10%",
       h1: "Khám vịnh Hạ Long trên du thuyền 5 sao",
-      gia: 1125000,
+      maTour: "FGH-46284",
+      ngayDi: "22/11/2024",
+      ngayVe: "24/11/2024",
+      gia: "1.125.000 VND",
       giaGoc: "1.435.200 VND",
       image1: favorite,
       image2: halong3,
@@ -485,9 +583,13 @@ const SearchItem = ({
       phuongTien: "Máy bay",
     },
     {
+      id: 32,
       tietKiem: "Tiết Kiệm 10%",
       h1: "Hạ Long Bay Day Cruise",
-      gia: 1044000,
+      maTour: "FGH-46284",
+      ngayDi: "22/11/2024",
+      ngayVe: "24/11/2024",
+      gia: "1.044.000 VND",
       image1: favorite,
       image2: halong4,
       danhGia: heartFill,
@@ -499,9 +601,13 @@ const SearchItem = ({
       phuongTien: "Máy bay",
     },
     {
+      id: 33,
       tietKiem: "Tiết Kiệm 10%",
       h1: "Khám phá vịnh Hạ Long với du thuyền 4 giờ",
-      gia: 813500,
+      maTour: "FGH-46284",
+      ngayDi: "22/11/2024",
+      ngayVe: "24/11/2024",
+      gia: "813.500 VND",
       image1: favorite,
       image2: halong5,
       danhGia: heartFill,
@@ -513,9 +619,13 @@ const SearchItem = ({
       phuongTien: "Máy bay",
     },
     {
+      id: 34,
       tietKiem: "Tiết Kiệm 15%",
       h1: "Tour Dragonfly Cruise Vịnh Hạ Long - 1 ngày",
-      gia: 687000,
+      maTour: "FGH-46284",
+      ngayDi: "22/11/2024",
+      ngayVe: "24/11/2024",
+      gia: "687.000 VND",
       giaGoc: "787.200 VND",
       image1: favorite,
       image2: halong6,
@@ -528,9 +638,13 @@ const SearchItem = ({
       phuongTien: "Máy bay",
     },
     {
+      id: 35,
       tietKiem: "Tiết Kiệm 10%",
       h1: "Khám phá Hạ Long với tour du thuyền Vitory Stande",
-      gia: 3123000,
+      maTour: "FGH-46284",
+      ngayDi: "22/11/2024",
+      ngayVe: "24/11/2024",
+      gia: "3.123.000 VND",
       image1: favorite,
       image2: halong7,
       danhGia: heartFill,
@@ -545,9 +659,13 @@ const SearchItem = ({
   // ------------phu quoc--------------------
   const phuquocs = [
     {
+      id: 36,
       tietKiem: "Tiết Kiệm 10%",
       h1: "Đi bộ dưới biển Seawalker Phú Quốc Namaste",
-      gia: 450000,
+      maTour: "FGH-46284",
+      ngayDi: "22/11/2024",
+      ngayVe: "24/11/2024",
+      gia: "450.000 VND",
       image1: favorite,
       image2: phuquoc1,
       danhGia: heartFill,
@@ -559,9 +677,13 @@ const SearchItem = ({
       phuongTien: "Máy bay",
     },
     {
+      id: 37,
       tietKiem: "Tiết Kiệm 25%",
       h1: "Đi bộ dưới biển Seawalker và khám phá 3 đảo Phú Quốc",
-      gia: 1990000,
+      maTour: "FGH-46284",
+      ngayDi: "22/11/2024",
+      ngayVe: "24/11/2024",
+      gia: "1.990.000 VND",
       giaGoc: "2.494.200 VND",
       image1: favorite,
       image2: phuquoc2,
@@ -574,9 +696,13 @@ const SearchItem = ({
       phuongTien: "Máy bay",
     },
     {
+      id: 38,
       tietKiem: "Tiết Kiệm 10%",
       h1: "Tour khám phá 3 đảo bằng tàu - 1 ngày",
-      gia: 605000,
+      maTour: "FGH-46284",
+      ngayDi: "22/11/2024",
+      ngayVe: "24/11/2024",
+      gia: "605.000 VND",
       giaGoc: "650.200",
       image1: favorite,
       image2: phuquoc3,
@@ -589,9 +715,13 @@ const SearchItem = ({
       phuongTien: "Máy bay",
     },
     {
+      id: 39,
       tietKiem: "Tiết Kiệm 10%",
       h1: "Vé Vin Wonder Phú Quốc",
-      gia: 200000,
+      maTour: "FGH-46284",
+      ngayDi: "22/11/2024",
+      ngayVe: "24/11/2024",
+      gia: "200.000 VND",
       image1: favorite,
       image2: phuquoc4,
       danhGia: heartFill,
@@ -606,9 +736,13 @@ const SearchItem = ({
   // ---------------sapa----------------
   const sapas = [
     {
+      id: 40,
       tietKiem: "Tiết Kiệm 10%",
       h1: "Khám phá Sapa - Khởi hành Hà Nội - 3N2Đ|2N1Đ",
-      gia: 1879000,
+      maTour: "FGH-46284",
+      ngayDi: "22/11/2024",
+      ngayVe: "24/11/2024",
+      gia: "1.879.000 VND",
       giaGoc: "1.624.200 VND",
       image1: favorite,
       image2: sapa1,
@@ -621,9 +755,13 @@ const SearchItem = ({
       phuongTien: "Máy bay",
     },
     {
+      id: 41,
       tietKiem: "Tiết Kiệm 10%",
       h1: "Trekking Sapa (Cát Cát , Lao Chải, Tả Van) - 2N1Đ",
-      gia: 2437000,
+      maTour: "FGH-46284",
+      ngayDi: "22/11/2024",
+      ngayVe: "24/11/2024",
+      gia: "2.437.000 VND",
       giaGoc: "2.500.200 VND",
       image1: favorite,
       image2: sapa2,
@@ -639,9 +777,13 @@ const SearchItem = ({
   // -----------------nha trang-------------------
   const nhatrangs = [
     {
+      id: 42,
       tietKiem: "Tiết Kiệm 10%",
       h1: "Tour tham quan đảo Nhà Trang (Lặn ống thở & tiệc nổi)",
-      gia: 510000,
+      maTour: "FGH-46284",
+      ngayDi: "22/11/2024",
+      ngayVe: "24/11/2024",
+      gia: "510.000 VND",
       giaGoc: "600.200 VND",
       image1: favorite,
       image2: nhatrang1,
@@ -654,9 +796,13 @@ const SearchItem = ({
       phuongTien: "Máy bay",
     },
     {
+      id: 43,
       tietKiem: "Tiết Kiệm 10%",
       h1: "Tour du thuyền Emperor Cruises trên Vịnh Nha Trang",
-      gia: 900000,
+      maTour: "FGH-46284",
+      ngayDi: "22/11/2024",
+      ngayVe: "24/11/2024",
+      gia: "900.000 VND",
       giaGoc: "800.200 VND",
       image1: favorite,
       image2: nhatrang2,
@@ -669,9 +815,13 @@ const SearchItem = ({
       phuongTien: "Máy bay",
     },
     {
+      id: 44,
       tietKiem: "Tiết Kiệm 10%",
       h1: "Tour Tham quan địa danh thành phố Nha Trang",
-      gia: 584000,
+      maTour: "FGH-46284",
+      ngayDi: "22/11/2024",
+      ngayVe: "24/11/2024",
+      gia: "584.000 VND",
       giaGoc: "615.200 VND",
       image1: favorite,
       image2: nhatrang3,
@@ -687,9 +837,13 @@ const SearchItem = ({
   // --------nước ngoài------------------------
   const hochiminh = [
     {
+      id: 52,
       h1: "Tour Trung Quốc trọn gói (Phượng Hoàng Cổ Trấn, ...) - 4N3Đ",
+      maTour: "FGH-46284",
+      ngayDi: "22/11/2024",
+      ngayVe: "24/11/2024",
       tietKiem: "Tiết Kiệm 10%",
-      gia: 10106200,
+      gia: "10.106.200 VND",
       giaGoc: "9.924.200 VND",
       image1: favorite,
       image2: china3,
@@ -702,9 +856,13 @@ const SearchItem = ({
       phuongTien: "Máy bay",
     },
     {
+      id: 53,
       h1: "Tour Trung Quốc trọn gói (Bắc Kinh, Thượng Hải, Hàng Châu) - 4N3Đ",
       tietKiem: "Tiết Kiệm 10%",
-      gia: 13106200,
+      maTour: "FGH-46284",
+      ngayDi: "22/11/2024",
+      ngayVe: "24/11/2024",
+      gia: "13.106.200 VND",
       giaGoc: "13.924.200 VND",
       image1: favorite,
       image2: china2,
@@ -747,9 +905,13 @@ const SearchItem = ({
       phuongTien: "Máy bay",
     },
     {
+      id: 54,
       h1: "Tour Ontabi Núi Phú Sĩ và hồ Kawaguchiko - 9 giờ",
       tietKiem: "Tiết Kiệm 10%",
-      gia: 1506200,
+      maTour: "FGH-46284",
+      ngayDi: "22/11/2024",
+      ngayVe: "24/11/2024",
+      gia: "1.506.200 VND",
       giaGoc: "1.824.200 VND",
       image1: favorite,
       image2: japan,
@@ -762,9 +924,13 @@ const SearchItem = ({
       phuongTien: "Máy bay",
     },
     {
+      id: 55,
       h1: "Tour Bali Nusa Penida Private - 11 giờ",
       tietKiem: "Tiết Kiệm 10%",
-      gia: 1106200,
+      maTour: "FGH-46284",
+      ngayDi: "22/11/2024",
+      ngayVe: "24/11/2024",
+      gia: "1.106.200 VND",
       giaGoc: "1.324.200 VND",
       image1: favorite,
       image2: bali,
@@ -777,9 +943,13 @@ const SearchItem = ({
       phuongTien: "Máy bay",
     },
     {
+      id: 56,
       h1: "Tour Ngày Giethoorn Hà Lan từ Amsterdam",
       tietKiem: "Tiết Kiệm 10%",
-      gia: 2506200,
+      maTour: "FGH-46284",
+      ngayDi: "22/11/2024",
+      ngayVe: "24/11/2024",
+      gia: "2.506.200 VND",
       giaGoc: "2.824.200 VND",
       image1: favorite,
       image2: halan,
@@ -792,9 +962,13 @@ const SearchItem = ({
       phuongTien: "Máy bay",
     },
     {
+      id: 57,
       h1: "Tour ngắm hoa anh đào, Busan - 2N1Đ",
       tietKiem: "Tiết Kiệm 15%",
-      gia: 2955300,
+      maTour: "FGH-46284",
+      ngayDi: "22/11/2024",
+      ngayVe: "24/11/2024",
+      gia: "2.955.300 VND",
       giaGoc: "4.284.200 VND",
       image1: favorite,
       image2: busan,
@@ -807,9 +981,13 @@ const SearchItem = ({
       phuongTien: "Máy bay",
     },
     {
+      id: 58,
       h1: "Tour tham quan lâu đài Linderloof & Neuschwanstein",
       tietKiem: "Tiết Kiệm 10%",
-      gia: 1886200,
+      maTour: "FGH-46284",
+      ngayDi: "22/11/2024",
+      ngayVe: "24/11/2024",
+      gia: "1.886.200 VND",
       giaGoc: "1.624.200 VND",
       image1: favorite,
       image2: germany,
@@ -824,7 +1002,10 @@ const SearchItem = ({
     {
       h1: "Tour cả ngày Sa Mạc Pinnacles New Morcia và Hoa Dại",
       tietKiem: "Tiết Kiệm 10%",
-      gia: 4106200,
+      maTour: "FGH-46284",
+      ngayDi: "22/11/2024",
+      ngayVe: "24/11/2024",
+      gia: "4.106.200 VND",
       giaGoc: "3.924.200 VND",
       image1: favorite,
       image2: uc,
@@ -894,6 +1075,31 @@ const SearchItem = ({
     }
   };
 
+  //Yêu thích
+  const { handleAddToFavorites, LoginPopup, NotificationPopup } =
+    useFavoriteHandler();
+
+  const [favorites, setFavorites] = useState([]);
+
+  // Lấy danh sách yêu thích từ localStorage khi component được render
+  useEffect(() => {
+    const existingFavorites = localStorage.getItem("favoriteTours");
+    setFavorites(existingFavorites ? JSON.parse(existingFavorites) : []);
+  }, []);
+
+  // Kiểm tra tour có trong danh sách yêu thích không
+  const isFavorite = (tourId) => {
+    return favorites.some((item) => item.id === tourId);
+  };
+
+  // Xử lý thêm yêu thích và cập nhật trạng thái
+  const handleFavoriteClick = (tour) => {
+    handleAddToFavorites(tour); 
+    const updatedFavorites = localStorage.getItem("favoriteTours");
+    setFavorites(updatedFavorites ? JSON.parse(updatedFavorites) : []);
+  };
+
+
   // Làm trang luôn nằm ở đầu
   useEffect(() => {
     window.scrollTo(0, 0); // Di chuyển lên đầu trang khi chuyển trang
@@ -907,16 +1113,17 @@ const SearchItem = ({
           .slice((currentPage - 1) * toursPerPage, currentPage * toursPerPage)
           .map((tour, index) => (
             <div key={index} className="seList">
-              <div className="seListCard" onClick={handleSee}>
+              <div className="seListCard" key={tour.id}>
                 <div className="seListItem">
                   <LazyLoad>
                     <div>
                       <div className="seTietkiem">{tour.tietKiem}</div>
                       <img
-                        src={tour.image1}
-                        alt="Favorite"
-                        className="seFavorite"
-                      />
+              src={isFavorite(tour.id) ? favFill : fav} 
+              alt="Favorite"
+              className="seFavorite"
+              onClick={() => handleFavoriteClick(tour)}
+            />
                       <img
                         src={tour.image2}
                         alt={tour.h1}
@@ -952,7 +1159,7 @@ const SearchItem = ({
                     <div className="seGia">
                       <p>{tour.giaGoc}</p>
                       <h1>
-                        <span>{tour.gia.toLocaleString("vi-VN")} VND</span>
+                        <span>{tour.gia.toLocaleString("vi-VN")}</span>
                       </h1>
                     </div>
                     <div className="seListTitle">
@@ -976,6 +1183,11 @@ const SearchItem = ({
                   </div>
                 </div>
               </div>
+              {/* Popup yêu cầu đăng nhập */}
+      <LoginPopup />
+
+{/* Popup thông báo */}
+<NotificationPopup />
             </div>
           ))
       ) : (

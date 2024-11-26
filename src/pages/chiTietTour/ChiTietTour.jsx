@@ -6,7 +6,6 @@ import "./chiTietTour.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import share from "../../assets/img/logo/share.png";
 import heart from "../../assets/img/logo/heartSmall.png";
-import phuquoc from "../../assets/img/hinhAnh/phuquoc.jpg"
 import phuQuoc5 from "../../assets/img/hinhAnh/phuQuoc5.jpg";
 import phuQuoc6 from "../../assets/img/hinhAnh/phuQuoc6.jpg";
 import phuQuoc7 from "../../assets/img/hinhAnh/phuQuoc7.jpg";
@@ -40,33 +39,22 @@ import {
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import LazyLoad from "react-lazyload";
+import useFavoriteHandler from "../../components/useFavoriteHandler/UseFavoriteHandler";
 
-const ChiTietTour = () => {
+
+const ChiTietTour = (tour) => {
   const [activeTab, setActiveTab] = useState("1");
   const [sliderNumber, setSliderNumber] = useState(0);
   const [open, setOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
   const [destination, setDestination] = useState("");
-  const [showPopup, setShowPopup] = useState(false);
   const [showPopup2, setShowPopup2] = useState(false);
-  const [popupMessage, setPopupMessage] = useState("");
-  const [popupMessage2, setPopupMessage2] = useState("");
   const [isReviewPopupVisible, setReviewPopupVisible] = useState(false);
-  const handleClosePopup = () => setShowPopup(false);
 
-const Popup = ({ message, onClose }) => (
-  <div className="popup-container">
-    <div className="popup-content">
-      <div className="titlePopup">Bạn cần đăng nhập</div>
-      <p className="messagePopup">{message}</p>
-      <div>
-        <button onClick={onClose}>Để sau</button>
-        <button onClick={() => navigate("/login")}>Đăng nhập ngay</button>
-      </div>
-    </div>
-  </div>
-);
+
+  const { handleAddToFavorites, LoginPopup, NotificationPopup } =
+    useFavoriteHandler();
 // -------------đánh giá-------------
   const danhGiaData = [
     {
@@ -82,7 +70,7 @@ const Popup = ({ message, onClose }) => (
     {
       id: 2,
       avatar: pl,
-      name: "Phuong Ly",
+      name: "Nguyen Phuong Ly",
       rating: "10.0/10",
       daysAgo: 4,
       review:
@@ -92,7 +80,7 @@ const Popup = ({ message, onClose }) => (
     {
       id: 3,
       avatar: ht2,
-      name: "Hai Thu Hieu",
+      name: "Tran Minh Hieu",
       rating: "9.5/10",
       daysAgo: 15,
       review:
@@ -264,32 +252,6 @@ const Popup = ({ message, onClose }) => (
     );
   };
   
-  const handleAddToFavorites = (tour) => {
-    const userToken = localStorage.getItem("userToken");
-    if (!userToken) {
-      // Người dùng chưa đăng nhập, hiển thị popup yêu cầu đăng nhập
-      setShowPopup(true);
-      setPopupMessage("Đây là tính năng chỉ dành cho thành viên, vui lòng đăng nhập tài khoản waventourist của bạn.");
-      return; // Kết thúc tại đây nếu chưa đăng nhập
-    }
-    // Người dùng đã đăng nhập, tiếp tục kiểm tra danh sách yêu thích
-    const existingFavorites = localStorage.getItem("favoriteTours");
-    const favorites = existingFavorites ? JSON.parse(existingFavorites) : [];
-    // Kiểm tra tour đã tồn tại trong danh sách yêu thích chưa
-    const isExist = favorites.some((item) => item.id === tour.id);
-    if (isExist) {
-      // Tour đã tồn tại, hiển thị thông báo
-      setShowPopup2(true);
-      setPopupMessage2("Tour này đã có trong danh sách yêu thích!");
-    } else {
-      // Tour chưa tồn tại, thêm vào danh sách yêu thích
-      const updatedFavorites = [...favorites, tour];
-      localStorage.setItem("favoriteTours", JSON.stringify(updatedFavorites));
-      // Hiển thị thông báo thêm thành công
-      setShowPopup2(true);
-      setPopupMessage2("Đã thêm vào danh sách yêu thích!");
-    }
-  };
 
   useEffect(() => {
     if (showPopup2) {
@@ -346,17 +308,22 @@ const Popup = ({ message, onClose }) => (
             <p>Chia sẻ</p>
           </div>
 
-            <button className="share" onClick={() => handleAddToFavorites({ id: 1,image: phuquoc, maTour: "SN34545", ngayDi: "27/09/2024", ngayVe: "30/09/2024", diaDiem: "Du Lịch Phú Quốc - Khám Phá Bắc Đảo - Safari - VinWonder - Grand World", gia: "3.159.000 VND" })}>
+            <button className="share" onClick={() => handleAddToFavorites(tour)}>
               <img src={heart} alt="" className="imgShare" />
                 Yêu thích
             </button>
-            {showPopup2 && (
+            {/* Popup yêu cầu đăng nhập */}
+      <LoginPopup />
+
+{/* Popup thông báo */}
+<NotificationPopup />
+            {/* {showPopup2 && (
         <div className="notification-popup">
           <p>{popupMessage2}</p>
         </div>
-      )}
+      )} */}
           </div>
-          {showPopup && <Popup message={popupMessage} onClose={handleClosePopup} />}
+          {/* {showPopup && <Popup message={popupMessage} onClose={handleClosePopup} />} */}
           {/* -------------chia ảnh bố cục-------------- */}
           <div className="hotelImages">
             {photos.map((photo, i) => (

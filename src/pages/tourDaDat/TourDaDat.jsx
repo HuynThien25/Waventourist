@@ -2,12 +2,19 @@ import "./tourDaDat.css";
 import Navbar from "../../components/navbar/Navbar";
 import Footer from "../../components/footer/Footer";
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const TourDaDat = () => {
   const location = useLocation();
   const [favoriteTours, setFavoriteTours] = useState([]);
   const [viewMode, setViewMode] = useState("info"); // "info" hoặc "favorites"
+  const [showConfirmPopup, setShowConfirmPopup] = useState(false); // Quản lý popup xác nhận
+  const [selectedTourId, setSelectedTourId] = useState(null); // Lưu id của tour được chọn
+  const navigate = useNavigate();
+
+  const handleWatch = () => {
+    navigate("/chiTietTour", { state: {} });
+  };
 
   useEffect(() => {
     const savedFavorites = localStorage.getItem("favoriteTours");
@@ -27,7 +34,38 @@ const TourDaDat = () => {
     setFavoriteTours(updatedFavorites);
     // Thông báo xóa thành công
     setShowPopup(true);
+    autoClosePopup(setShowPopup);
   };
+
+  const autoClosePopup = (setPopupState) => {
+    setTimeout(() => {
+      setPopupState(false);
+    }, 1000);
+  };
+
+  const handleOpenConfirmPopup = (id) => {
+    setSelectedTourId(id); // Lưu id của tour muốn xóa
+    setShowConfirmPopup(true); // Hiển thị popup xác nhận
+  };
+
+  const handleConfirmDelete = () => {
+    if (selectedTourId) {
+      handleRemoveFavorite(selectedTourId); // Thực hiện xóa
+    }
+    setShowConfirmPopup(false); // Đóng popup
+    setSelectedTourId(null); // Reset id
+  };
+
+  const handleCancelDelete = () => {
+    setShowConfirmPopup(false); // Đóng popup mà không làm gì
+    setSelectedTourId(null); // Reset id
+  };
+
+  useEffect(() => {
+    return () => {
+      setShowPopup(false);
+    };
+  }, []);
 
   const [showPopup, setShowPopup] = useState(false);
 
@@ -70,6 +108,7 @@ const TourDaDat = () => {
       <Navbar />
       <div className="tourDaDatContain">
         <div className="tourDaDat">
+          <div className="cvfg">
           <div className="bangTourDaDat">
             <h4>Quản lý thông tin của bạn</h4>
             <div className="tabOptions">
@@ -119,17 +158,17 @@ const TourDaDat = () => {
                 favoriteTours.map((tour, index) => (
                   <div className="tourCard" key={tour.id}>
                     {/* Hình ảnh bên trái */}
-                    <div className="cardImage">
+                    <div className="cardImage" onClick={handleWatch}>
                       <img
-                        src={tour.image || "https://via.placeholder.com/150"}
+                        src={tour.image2 || "https://via.placeholder.com/150"}
                         alt={`Tour ${tour.maTour}`}
                       />
                     </div>
                     {/* Nội dung bên phải */}
                     <div className="cardContent">
-                      <div className="cardHeader">
-                        <h3>{tour.diaDiem}</h3>
-                        <span>ID:{index + 1}</span>
+                      <div className="cardHeader" onClick={handleWatch}>
+                        <h3>{tour.h1}</h3>
+                        <span>ID: {index + 1}</span>
                       </div>
                       <div className="cardDetails">
                         <p>
@@ -148,15 +187,30 @@ const TourDaDat = () => {
                       {/* Nút xóa */}
                       <button
                         className="removeBtn"
-                        onClick={() => handleRemoveFavorite(tour.id)}
+                        onClick={() => handleOpenConfirmPopup(tour.id)}
                       >
-                        Xóa khỏi yêu thích
+                        Xóa khỏi mục yêu thích
                       </button>
                     </div>
                   </div>
                 ))
               ) : (
-                <p>Chưa có tour yêu thích nào.</p>
+                <p>Chưa có tour Yêu thích nào.</p>
+              )}
+              {showConfirmPopup && (
+                <>
+                  <div className="popupOverlay" onClick={handleCancelDelete}></div>
+                  <div className="confirmPopup">
+                    <div className="popupContent">
+                      <h1>Xóa mục yêu thích</h1>
+                      <p>Nếu bạn xóa mục yêu thích này, nó sẽ xóa khỏi danh sách yêu thích đã lưu. Bạn có muốn làm vậy?</p>
+                      <div className="popupActions">
+                        <button onClick={handleConfirmDelete}>Đồng ý</button>
+                        <button onClick={handleCancelDelete}>Hủy</button>
+                      </div>
+                    </div>
+                  </div>
+                </>
               )}
 
               {/* Popup thông báo */}
@@ -167,6 +221,7 @@ const TourDaDat = () => {
               )}
             </div>
           )}
+          </div>
         </div>
       </div>
       <Footer />

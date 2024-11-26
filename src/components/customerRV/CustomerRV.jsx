@@ -18,7 +18,7 @@ const CustomerRV = () => {
     {
       id: 2,
       image: ht2,
-      name: "Hai Thu Hieu",
+      name: "Tran Minh Hieu",
       content: "Đặt tour trên waventourist được hỗ trợ rất nhanh và nhiệt tình, giá tour hợp lý và mình nhận được rất nhiều ưu đãi.",
       danhGia: heartFill,
       diemDanhGia: "9.0/10",

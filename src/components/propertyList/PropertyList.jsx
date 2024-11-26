@@ -1,139 +1,161 @@
+import React, {useEffect, useState} from "react";
 import "./propertyList.css";
-import singapore11 from "../../assets/img/hinhAnh/singapore11.jpg";
-import thailand11 from "../../assets/img/hinhAnh/thailand11.jpg";
-import phuquoc11 from "../../assets/img/hinhAnh/phuquoc11.jpg";
-import china from "../../assets/img/hinhAnh/china.jpg";
-import korea2 from "../../assets/img/hinhAnh/korea2.jpg";
-import favorite from "../../assets/img/logo/favorite.png";
-import { useNavigate } from "react-router-dom";
 import LazyLoad from "react-lazy-load";
+import useFavoriteHandler from "../useFavoriteHandler/UseFavoriteHandler";
+import { useNavigate } from "react-router-dom";
+import china from "../../assets/img/hinhAnh/china.jpg"; 
+import korea2 from "../../assets/img/hinhAnh/korea2.jpg"; 
+import thailand11 from "../../assets/img/hinhAnh/thailand11.jpg";
+import singapore11 from "../../assets/img/hinhAnh/singapore11.jpg";
+import phuquoc11 from "../../assets/img/hinhAnh/phuquoc11.jpg";
+import fav from "../../assets/img/logo/fav.png";
+import favFill from "../../assets/img/logo/favFill.png";
 
 const PropertyList = () => {
   const navigate = useNavigate();
 
-  const handleBuy = () => {
-    navigate("/trangDatTour", { state: {} });
+  const handleBuy = (tourId) => {
+    navigate("/trangDatTour", { state: { tourId } });
   };
+
+  const { handleAddToFavorites, LoginPopup, NotificationPopup } =
+    useFavoriteHandler();
+
+  const [favorites, setFavorites] = useState([]);
+
+  // Lấy danh sách yêu thích từ localStorage khi component được render
+  useEffect(() => {
+    const existingFavorites = localStorage.getItem("favoriteTours");
+    setFavorites(existingFavorites ? JSON.parse(existingFavorites) : []);
+  }, []);
+
+  // Kiểm tra tour có trong danh sách yêu thích không
+  const isFavorite = (tourId) => {
+    return favorites.some((item) => item.id === tourId);
+  };
+
+  // Xử lý thêm yêu thích và cập nhật trạng thái
+  const handleFavoriteClick = (tour) => {
+    handleAddToFavorites(tour); 
+    const updatedFavorites = localStorage.getItem("favoriteTours");
+    setFavorites(updatedFavorites ? JSON.parse(updatedFavorites) : []);
+  };
+
+  const tours = [
+    {
+      id: 1,
+      maTour: "FGH-46284",
+      ngayDi: "22/11/2024",
+      ngayVe: "24/11/2024",
+      image2: china,
+      title: "Tour Trung Quốc",
+      h1: "Thượng Hải - Hàng Châu - Tô Châu - Ô Trấn (5N4Đ)",
+      gia: "17.600.000 VND",
+      giaGoc: "15.756.888 VND",
+      tietkiem: "15%",
+      diemDanhGia: "8.9",
+      textDanhGia: "(27 đánh giá)",
+    },
+    {
+      id: 2,
+      maTour: "GJH-46674",
+      ngayDi: "27/11/2024",
+      ngayVe: "28/11/2024",
+      image2: korea2,
+      title: "Tour Hàn Quốc",
+      h1: "Busan - Incheon - Seoul - Công viên Everland (7N6Đ)",
+      gia: "16.204.000 VND",
+      giaGoc: "15.456.888 VND",
+      tietkiem: "10%",
+      diemDanhGia: "8.9",
+      textDanhGia: "(27 đánh giá)",
+    },
+    {
+      id: 3,
+      maTour: "FGH-96841",
+      ngayDi: "24/11/2024",
+      ngayVe: "27/11/2024",
+      image2: thailand11,
+      title: "Tour Thái Lan",
+      h1: "Tour Thái Lan trọn gói - Bangkok - Pattaya (5N4Đ)",
+      gia: "6.139.000 VND",
+      giaGoc: "5.456.888 VND",
+      tietkiem: "10%",
+      diemDanhGia: "8.9",
+      textDanhGia: "(27 đánh giá)",
+    },
+    {
+      id: 4,
+      maTour: "SGH-78284",
+      ngayDi: "29/11/2024",
+      ngayVe: "30/11/2024",
+      image2: singapore11,
+      title: "Tour Singapore",
+      h1: "Tour trọn gói Singapore và Malaysia (4N3Đ)",
+      gia: "8.456.888 VND",
+      giaGoc: "9.879.000 VND",
+      tietkiem: "15%",
+      diemDanhGia: "8.9",
+      textDanhGia: "(27 đánh giá)",
+    },
+    {
+      id: 5,
+      maTour: "HGJ-67884",
+      ngayDi: "26/11/2024",
+      ngayVe: "28/11/2024",
+      image2: phuquoc11,
+      title: "Tour Việt Nam",
+      h1: "Tour Khám Phá Bắc Đảo - Safari - Vinwonder (3N2Đ)",
+      gia: "6.139.000 VND",
+      giaGoc: "5.456.888 VND",
+      tietkiem: "10%",
+      diemDanhGia: "8.9",
+      textDanhGia: "(27 đánh giá)",
+    },
+  ];
+
   return (
     <div className="pList">
       <div className="plistCenter">
-        <div className="pListCard" onClick={handleBuy}>
+        {tours.map((tour) => (
+          <div className="pListCard" key={tour.id}>
             <div className="pListItem">
-          <LazyLoad>
-              <div>
-              <div className="tietkiem">Giảm giá 15%</div>
-              <img src={favorite} alt="Tim" className="favorite" />
-              <img src={china} alt="trung quốc" className="pListImg" />
-              </div>
-          </LazyLoad>
+              <LazyLoad>
+                <div>
+                  <div className="tietkiem">Giảm giá {tour.tietkiem}</div>
+                  <img
+              src={isFavorite(tour.id) ? favFill : fav} 
+              alt="Favorite"
+              className="favorite"
+              onClick={() => handleFavoriteClick(tour)}
+            />
+                  <img src={tour.image2} alt={tour.title} className="pListImg" />
+                </div>
+              </LazyLoad>
               <div className="pListTitles">
-                <h1>Tour Trung Quốc</h1>
-                <h2>Thượng Hải - Hàng Châu - Tô Châu - Ô Trấn (5N4Đ)</h2>
-                <p>15.756.888 VND</p>
+                <h1>{tour.title}</h1>
+                <h2>{tour.h1}</h2>
+                <p>{tour.gia}</p>
                 <h2>
-                  {" "}
-                  <span>17.600.000 VND</span>
+                  <span>{tour.giaGoc}</span>
                 </h2>
               </div>
-              <button className="cardBtn" onClick={handleBuy}>
+              <button
+                className="cardBtn"
+                onClick={() => handleBuy(tour.id)}
+              >
                 Mua Tour
               </button>
             </div>
-        </div>
-
-        <div className="pListCard" onClick={handleBuy}>
-            <div className="pListItem">
-          <LazyLoad>
-            <div>
-              <div className="tietkiem">Giảm giá 10%</div>
-              <img src={favorite} alt="Tim" className="favorite" />
-              <img src={korea2} alt="hàn" className="pListImg" />
-            </div>
-          </LazyLoad>
-              <div className="pListTitles">
-                <h1>Tour Hàn Quốc</h1>
-                <h2>Busan - Incheon - Seoul - Công viên everland (7N6Đ)</h2>
-                <p>15.456.888 VND</p>
-                <h2>
-                  <span>16.204.000 VND</span>
-                </h2>
-              </div>
-              <button className="cardBtn" onClick={handleBuy}>
-                Mua Tour
-              </button>
-            </div>
-        </div>
-
-        <div className="pListCard" onClick={handleBuy}>
-            <div className="pListItem">
-          <LazyLoad>
-            <div>
-              <div className="tietkiem">Giảm giá 10%</div>
-              <img src={favorite} alt="Tim" className="favorite" />
-              <img src={thailand11} alt="thailand" className="pListImg" />
-            </div>
-          </LazyLoad>
-              <div className="pListTitles">
-                <h1>Tour Thái Lan</h1>
-                <h2>Tour Thái Lan trọn gói - Bangkok -Pataya - (5N4Đ)</h2>
-                <p>5.456.888 VND</p>
-                <h2>
-                  <span>6.139.000 VND</span>
-                </h2>
-              </div>
-              <button className="cardBtn" onClick={handleBuy}>
-                Mua Tour
-              </button>
-            </div>
-        </div>
-
-        <div className="pListCard" onClick={handleBuy}>
-            <div className="pListItem">
-          <LazyLoad>
-              <div>
-              <div className="tietkiem">Giảm giá 15%</div>
-              <img src={favorite} alt="Tim" className="favorite" />
-              <img src={singapore11} alt="sing" className="pListImg" />
-              </div>
-          </LazyLoad>
-              <div className="pListTitles">
-                <h1>Tour Singapore</h1>
-                <h2>Tour trọn gói Singapore và Malaysia (4N3Đ)</h2>
-                <p>8.456.888 VND</p>
-                <h2>
-                  <span>9.879.000 VND</span>
-                </h2>
-              </div>
-              <button className="cardBtn" onClick={handleBuy}>
-                Mua Tour
-              </button>
-            </div>
-        </div>
-
-        <div className="pListCard" onClick={handleBuy}>
-            <div className="pListItem">
-          <LazyLoad>
-            <div>
-              <div className="tietkiem">Giảm giá 10%</div>
-              <img src={favorite} alt="Tim" className="favorite" />
-              <img src={phuquoc11} alt="phú quốc" className="pListImg" />
-            </div>
-          </LazyLoad>
-              <div className="pListTitles">
-                <h1>Tour Việt Nam</h1>
-                <h2>Tour Khám Phá Bắc Đảo - Safari - Vinwonder (3N2Đ)</h2>
-                <p>5.456.888 VND</p>
-                <h2>
-                  <span>6.139.000 VND</span>
-                </h2>
-              </div>
-              <button className="cardBtn" onClick={handleBuy}>
-                Mua Tour
-              </button>
-            </div>
-        </div>
-
+          </div>
+        ))}
       </div>
+
+      {/* Popup yêu cầu đăng nhập */}
+      <LoginPopup />
+
+      {/* Popup thông báo */}
+      <NotificationPopup />
     </div>
   );
 };

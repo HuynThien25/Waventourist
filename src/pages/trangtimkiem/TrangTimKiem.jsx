@@ -43,13 +43,22 @@ const TrangTimKiem = () => {
 
   const handleRangeChange = (e) => {
     const value = Number(e.target.value);
-    const index = Number(e.target.dataset.index); // Lấy index của thanh kéo
+    const index = Number(e.target.dataset.index);
     const newPriceRange = [...priceRange];
-    newPriceRange[index] = value;
 
-    if (newPriceRange[0] < newPriceRange[1]) {
-      setPriceRange(newPriceRange); // Cập nhật nếu minPrice < maxPrice
+    if (index === 0) {
+      // Chỉ cập nhật nếu giá trị mới nhỏ hơn giá trị max
+      if (value <= newPriceRange[1]) {
+        newPriceRange[index] = value;
+      }
+    } else {
+      // Chỉ cập nhật nếu giá trị mới lớn hơn giá trị min
+      if (value >= newPriceRange[0]) {
+        newPriceRange[index] = value;
+      }
     }
+
+    setPriceRange(newPriceRange);
   };
 
   // load nằm ở đầu trang
@@ -79,21 +88,21 @@ const TrangTimKiem = () => {
       </LazyLoad>
       <div className="sapxepContainer">
         <div className="grSapXep">
-        <div className="sapxep">Xếp theo: </div>
-        <div className="lsOptionItem1">
-          {/* <span className="lsOptionText1">Giá thấp nhất</span> */}
-          <select
-            value={sapxep}
-            onChange={(e) => setSapxep(e.target.value)}
-            className="lsSelect2"
-          >
-            <option value="tatca">Phổ biến nhất</option>
-            <option value="gia1">Giá thấp nhất</option>
-            <option value="gia2">Giá cao nhất</option>
-            <option value="gia3">Đánh giá cao nhất</option>
-            <option value="gia4">Liên quan nhất</option>
-          </select>
-        </div>
+          <div className="sapxep">Xếp theo: </div>
+          <div className="lsOptionItem1">
+            {/* <span className="lsOptionText1">Giá thấp nhất</span> */}
+            <select
+              value={sapxep}
+              onChange={(e) => setSapxep(e.target.value)}
+              className="lsSelect2"
+            >
+              <option value="tatca">Phổ biến nhất</option>
+              <option value="gia1">Giá thấp nhất</option>
+              <option value="gia2">Giá cao nhất</option>
+              <option value="gia3">Đánh giá cao nhất</option>
+              <option value="gia4">Liên quan nhất</option>
+            </select>
+          </div>
         </div>
       </div>
 
@@ -150,6 +159,9 @@ const TrangTimKiem = () => {
                     data-index="0"
                     onChange={handleRangeChange}
                     className="range-slider-thumb"
+                    style={{
+                      zIndex: priceRange[0] === priceRange[1] ? "3" : "auto",
+                    }}
                   />
                   <input
                     type="range"
@@ -160,9 +172,19 @@ const TrangTimKiem = () => {
                     onChange={handleRangeChange}
                     className="range-slider-thumb"
                   />
+                  <div
+                    className="range-highlight"
+                    style={{
+                      left: `${(priceRange[0] / 4000000) * 100}%`,
+                      width: `${
+                        ((priceRange[1] - priceRange[0]) / 4000000) * 100
+                      }%`,
+                    }}
+                  />
                 </div>
               </div>
             </div>
+
             {/* Category Filter */}
             <div className="lsItem1">
               <label>Loại hoạt động hạng mục</label>

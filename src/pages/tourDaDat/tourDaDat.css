@@ -3,6 +3,9 @@
   justify-content: center;
   padding: 40px;
 }
+.cvfg{
+  display: flex;
+}
 .tourDaDat {
   width: 100%;
   display: flex;
@@ -17,7 +20,7 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
   text-align: center;
   border-radius: 7px;
-  width: 280px;
+  /* width: 290px; */
   height: 280px;
   margin-right: 20px;
 }
@@ -43,7 +46,7 @@
   cursor: pointer;
 }
 .bangCacThongTinTour {
-  width: 100%;
+  /* width: 100%; */
   display: flex;
   flex-direction: column;
 }
@@ -122,7 +125,8 @@ ul {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
-  width: 100%;
+  width: 700px;
+  cursor: pointer;
 }
 .cardContainer p{
   color: #18A0FB;
@@ -134,14 +138,12 @@ ul {
   border-radius: 8px;
   box-shadow: #03121a33 0px 2px 2px 0px;
   overflow: hidden;
-  height: 220px;
+  width: 680px;
+  height: 180px;
   transition: transform 0.2s ease-in-out;
 }
-.cardImage {
-  width: 50%;
-}
 .cardImage img {
-  width: 100%;
+  width: 300px;
   height: 100%;
   object-fit: cover;
 }
@@ -158,21 +160,27 @@ ul {
   margin-bottom: 10px;
 }
 .cardHeader h3 {
-  font-size: 16px;
+  font-size: 14px;
   margin: 0;
   color: #333;
+  height: 20px;
+  width: 300px;
 }
 .cardHeader span {
   font-size: 14px;
-  color: #777;
+  font-weight: 700;
+  color: #ff6060;
 }
 .cardDetails p {
   margin: 5px 0;
-  font-size: 14px;
-  color: #555;
+  font-size: 13px;
+  color: #18A0FB;
+  font-weight: 700;
+  height: 13px;
 }
 .cardDetails strong {
-  color: #000;
+  color: #555;
+  padding-right: 5px;
 }
 .removeBtn {
   margin-top: 10px;
@@ -188,10 +196,27 @@ ul {
 .removeBtn:hover {
   background: #c0392b;
 }
+.notification-popup{
+  position: fixed;
+  top: 10;
+  right: 500px;
+  bottom: 7px;
+  background: #4caf50;
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 20px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transform: translateY(20px); 
+  animation: fadeInSlideUp 0.3s forwards, fadeOut 0.5s 1.5s forwards;
+  z-index: 1000;
+}
 .popupNotification {
   position: fixed;
-  top: 100px;
-  right: 20px;
+  top: 80px;
+  right: 10px;
   background: #4caf50;
   color: #fff;
   font-size: 14px;
@@ -202,19 +227,78 @@ ul {
   opacity: 0;
   transform: translateX(20px); 
   animation: fadeInSlideUp 0.3s forwards, fadeOut 0.5s 1.5s forwards;
+  z-index: 1000;
 }
 @keyframes fadeInSlideUp {
   from {
     opacity: 0;
-    transform: translateX(20px);
+    transform: translateY(20px);
   }
   to {
     opacity: 1;
-    transform: translatex(0);
+    transform: translateY(0);
   }
 }
 @keyframes fadeOut {
   to {
     opacity: 0;
   }
+}
+.popupOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999; 
+}
+.confirmPopup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 5px;
+  z-index: 1000; 
+}
+.popupContent {
+  text-align: center;
+  width: 250px;
+}
+.popupContent h1{
+  font-size: 17px;
+  font-weight: 700;
+  text-align: left;
+  color: #03121a;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e0e0e0;
+}
+.popupContent p{
+  font-size: 14px;
+  color: #555;
+  font-weight: 700;
+  line-height: 24px;
+  text-align: left;
+}
+.popupActions {
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  gap: 10px;
+}
+.popupActions button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 700;
+}
+.popupActions button:first-child {
+  background-color: #f5f5f5;
+  color: #18A0FB;
+}
+.popupActions button:last-child {
+  color: white;
+  background-color: #18A0FB;
 }

@@ -749,7 +749,6 @@
   margin-right: 20px;
 }
 .reviewInfo {
-  flex-grow: 1;
 }
 .reviewerName {
   font-weight: bold;
@@ -776,7 +775,9 @@
 }
 .reviewText {
   margin: 10px 0;
+  text-align: justify;
   font-size: 15px;
+  width: 550px;
 }
 .likeButton {
   background-color: #ffcc00;
