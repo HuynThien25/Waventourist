@@ -64,6 +64,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import LazyLoad from "react-lazy-load";
 import useFavoriteHandler from "../useFavoriteHandler/UseFavoriteHandler";
+import ReviewPopup from "../reviewPopup/ReviewPopup";
 
 const SearchItem = ({
   destination,
@@ -77,6 +78,11 @@ const SearchItem = ({
   const [currentPage, setCurrentPage] = useState(1); // Trang hiện tại
   const itemsPerPage = 5; // Số mục trên mỗi trang
   const toursPerPage = 5; // Số lượng tour hiển thị trên mỗi trang
+  const [isReviewPopupVisible, setReviewPopupVisible] = useState(false);
+
+  const toggleReviewPopup = () => {
+    setReviewPopupVisible(!isReviewPopupVisible);
+  };
 
   const handleSee = () => {
     navigate("/chiTietTour", {
@@ -1170,11 +1176,11 @@ const SearchItem = ({
                             alt="Rating"
                             src={tour.danhGia}
                           />
-                          <div className="seDiemDanhGia">
+                          <div className="seDiemDanhGia" onClick={toggleReviewPopup}>
                             {tour.diemDanhGia}
                           </div>
                         </div>
-                        <div className="seTextDanhGia">{tour.textDanhGia}</div>
+                        <div className="seTextDanhGia" onClick={toggleReviewPopup}>{tour.textDanhGia}</div>
                       </div>
                       <button className="seCardBtn2" onClick={handleSee}>
                         Xem chi tiết
@@ -1183,11 +1189,6 @@ const SearchItem = ({
                   </div>
                 </div>
               </div>
-              {/* Popup yêu cầu đăng nhập */}
-      <LoginPopup />
-
-{/* Popup thông báo */}
-<NotificationPopup />
             </div>
           ))
       ) : (
@@ -1215,6 +1216,16 @@ const SearchItem = ({
           </button>
         </div>
       )}
+       {/* Popup yêu cầu đăng nhập */}
+       <LoginPopup />
+
+{/* Popup thông báo */}
+<NotificationPopup />
+{/* popup đánh giá du khác */}
+<ReviewPopup
+        isVisible={isReviewPopupVisible}
+        togglePopup={toggleReviewPopup}
+      />
     </div>
   );
 };

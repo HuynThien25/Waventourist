@@ -23,8 +23,6 @@ import pqTest3 from "../../assets/img/hinhAnh/pqTest3.jpg";
 import pqTest4 from "../../assets/img/hinhAnh/pqTest4.jpg";
 import pqTest5 from "../../assets/img/hinhAnh/pqTest5.jpg";
 import st from "../../assets/img/anhDaiDien/mtp.jpg";
-import ht2 from "../../assets/img/anhDaiDien/ht2.jpg";
-import pl from "../../assets/img/anhDaiDien/pl.jpg";
 import heartFill from "../../assets/img/logo/heartFill.png";
 import { useLocation } from "react-router-dom";
 import {
@@ -34,13 +32,12 @@ import {
   faCircleXmark,
   faLocationDot,
   faPlaneDeparture,
-  faThumbsUp,
 } from "@fortawesome/free-solid-svg-icons";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import LazyLoad from "react-lazyload";
 import useFavoriteHandler from "../../components/useFavoriteHandler/UseFavoriteHandler";
-
+import ReviewPopup from "../../components/reviewPopup/ReviewPopup";
 
 const ChiTietTour = (tour) => {
   const [activeTab, setActiveTab] = useState("1");
@@ -52,43 +49,8 @@ const ChiTietTour = (tour) => {
   const [showPopup2, setShowPopup2] = useState(false);
   const [isReviewPopupVisible, setReviewPopupVisible] = useState(false);
 
-
   const { handleAddToFavorites, LoginPopup, NotificationPopup } =
     useFavoriteHandler();
-// -------------đánh giá-------------
-  const danhGiaData = [
-    {
-      id: 1,
-      avatar: st,
-      name: "Nguyen Thanh Tung",
-      rating: "9.2/10",
-      daysAgo: 7,
-      review:
-        "Mình chụp được khá nhiều ảnh đẹp. Nhân viên hướng dẫn thân thiện và hiểu biết. Tổng quan mình thấy tour này khá thú vị và hợp lý.",
-      likes: 23,
-    },
-    {
-      id: 2,
-      avatar: pl,
-      name: "Nguyen Phuong Ly",
-      rating: "10.0/10",
-      daysAgo: 4,
-      review:
-        "Tour rất ổn. Tuy có hơi gấp một chút nhưng mình thông cảm được. Có mấy người cùng tour xếp hàng sau mình chưa kịp đi Seawalking đã bị kêu lên không được đi nữa nên họ khá buồn. Mình may mắn thay đồ nhanh nên đi kịp. Chắc chắn Seawalking là điểm nhấn của tour rồi.",
-      likes: 78,
-    },
-    {
-      id: 3,
-      avatar: ht2,
-      name: "Tran Minh Hieu",
-      rating: "9.5/10",
-      daysAgo: 15,
-      review:
-        "hướng dẫn viên vui tính nhiệt tình, đồ ăn ngon, phương tiện di chuyển an toàn, đưa đón tận nơi, rất ok nha.",
-      likes: 45,
-    },
-    // Additional sample data objects can be added here
-  ];
 
   const chuongtrinh = [
     {
@@ -190,7 +152,7 @@ const ChiTietTour = (tour) => {
     setSliderNumber(i);
     setOpen(true);
   };
-  
+
   const handleMove = (direction) => {
     let newSliderNumber;
     if (direction === "l") {
@@ -233,7 +195,7 @@ const ChiTietTour = (tour) => {
 
   const shareOnFacebook = () => {
     const facebookShareURL = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
-      'https://waventourist.com' 
+      "https://waventourist.com"
     )}`;
     // Lấy kích thước màn hình
     const screenWidth = window.innerWidth;
@@ -244,22 +206,21 @@ const ChiTietTour = (tour) => {
     // Tính toán vị trí để popup nằm giữa màn hình
     const left = (screenWidth - popupWidth) / 2;
     const top = (screenHeight - popupHeight) / 2;
-    
+
     window.open(
       facebookShareURL,
-      'facebookShare',
+      "facebookShare",
       `width=${popupWidth},height=${popupHeight},scrollbars=no,resizable=no,left=${left},top=${top}`
     );
   };
-  
 
   useEffect(() => {
     if (showPopup2) {
       const timer = setTimeout(() => setShowPopup2(false), 3000);
-      return () => clearTimeout(timer); 
+      return () => clearTimeout(timer);
     }
   }, [showPopup2]);
-  
+
   return (
     <div className="Container">
       <Navbar />
@@ -303,27 +264,23 @@ const ChiTietTour = (tour) => {
         {/* ----------Icon share and fav--------- */}
         <div className="hotelWrapper">
           <div className="iconic">
-          <div className="share" onClick={() => shareOnFacebook()}>
-            <img src={share} alt="" className="imgShare" />
-            <p>Chia sẻ</p>
-          </div>
+            <div className="share" onClick={() => shareOnFacebook()}>
+              <img src={share} alt="" className="imgShare" />
+              <p>Chia sẻ</p>
+            </div>
 
-            <button className="share" onClick={() => handleAddToFavorites(tour)}>
+            <button
+              className="share"
+              onClick={() => handleAddToFavorites(tour)}
+            >
               <img src={heart} alt="" className="imgShare" />
-                Yêu thích
+              Yêu thích
             </button>
             {/* Popup yêu cầu đăng nhập */}
-      <LoginPopup />
-
-{/* Popup thông báo */}
-<NotificationPopup />
-            {/* {showPopup2 && (
-        <div className="notification-popup">
-          <p>{popupMessage2}</p>
-        </div>
-      )} */}
+            <LoginPopup />
+            {/* Popup thông báo */}
+            <NotificationPopup />
           </div>
-          {/* {showPopup && <Popup message={popupMessage} onClose={handleClosePopup} />} */}
           {/* -------------chia ảnh bố cục-------------- */}
           <div className="hotelImages">
             {photos.map((photo, i) => (
@@ -337,7 +294,7 @@ const ChiTietTour = (tour) => {
               </div>
             ))}
           </div>
-          
+
           <div className="hotelDetails">
             <div className="hotelDetailsTexts">
               {/* -----------Bảng Thông tin mobile--------------- */}
@@ -602,65 +559,11 @@ const ChiTietTour = (tour) => {
                 </div>
               </div>
               {/* ------------popup------------ */}
-              {isReviewPopupVisible && (
-                <div className="reviewPopupOverlay" onClick={toggleReviewPopup}>
-                  <div
-                    className="reviewPopup"
-                    onClick={(e) => e.stopPropagation()}
-                  >
-                    <button
-                      className="closePopupButton"
-                      onClick={toggleReviewPopup}
-                    >
-                      &times;
-                    </button>
-                    <h2>Đánh giá của du khách</h2>
-                    <div className="scrollInside">
-                      <div className="reviewsList">
-                        {danhGiaData.map((review) => (
-                          <div className="reviewItem" key={review.id}>
-                            <div className="reviewHeader">
-                              <div className="rvh">
-                                <img
-                                  alt="Avatar"
-                                  className="avatarImage"
-                                  src={review.avatar}
-                                />
-                                <span className="reviewerName">
-                                  {review.name}
-                                </span>
-                              </div>
-                              <div className="reviewInfo">
-                                <div className="rvf">
-                                  <span className="reviewRating">
-                                    <img
-                                      className="iconReview"
-                                      alt=""
-                                      src={heartFill}
-                                    />
-                                    {review.rating}
-                                  </span>
-                                  <div className="reviewDate">
-                                    Đánh giá cách đây {review.daysAgo} ngày
-                                  </div>
-                                </div>
-                                <p className="reviewText">{review.review}</p>
-                                <button className="likeButton">
-                                  <FontAwesomeIcon
-                                    icon={faThumbsUp}
-                                    className="iconThumsUp"
-                                  />
-                                  Thông tin này hữu ích ({review.likes})
-                                </button>
-                              </div>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              )}
+              <ReviewPopup
+                isVisible={isReviewPopupVisible}
+                togglePopup={toggleReviewPopup}
+              />
+
             </div>
           </div>
           {/* ----------------Tour liên quan------------------ */}

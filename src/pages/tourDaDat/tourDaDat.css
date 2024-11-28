@@ -198,9 +198,9 @@ ul {
 }
 .notification-popup{
   position: fixed;
-  top: 10;
-  right: 500px;
-  bottom: 7px;
+  top: 12;
+  right: 12px;
+  bottom: 9px;
   background: #4caf50;
   color: #fff;
   font-size: 14px;
@@ -301,4 +301,60 @@ ul {
 .popupActions button:last-child {
   color: white;
   background-color: #18A0FB;
+}
+@media (max-width: 767px) {
+
+}
+
+@media (max-width: 480px) {
+  .tourDaDatContain {
+    padding: 0px;
+  }
+  .cvfg{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  .tourDaDat {
+    width: 100%;
+    padding: 0px;
+    margin: auto;
+  }
+  .bangTourDaDat {
+    margin: auto;
+    width: 90%;
+    height: 200px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+  .cardContainer {
+    gap: 20px;
+    width: 100%;
+    margin: auto;
+    padding-bottom: 50px;
+  }
+  .tourCard {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    margin: auto;
+    height: 390px;
+  }
+  .cardImage img {
+    width: 100%;
+    height: 200px;
+  }
+  .bangCacThongTinTour {
+    width: 90%;
+    margin: auto;
+    padding-bottom: 30px;
+  }
+  .tourHeader,
+.tourRow {
+  padding: 10px;
+  font-size: 10px;
+}
+.removeBtn {
+  font-size: 12px;
+}
 }

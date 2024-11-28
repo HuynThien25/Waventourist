@@ -18,6 +18,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { useTotalAmount } from "../../components/tongGiaTien/TongGiaTien";
 import LazyLoad from "react-lazy-load";
+import ReviewPopup from "../../components/reviewPopup/ReviewPopup";
 
 const TrangDatTour = () => {
   const navigate = useNavigate();
@@ -32,6 +33,12 @@ const TrangDatTour = () => {
   const [destination, setDestination] = useState("");
   const [isChecked, setIsChecked] = useState(false); // State checkbox
   const [errorMessage, setErrorMessage] = useState(""); // State thông báo lỗi
+  const [isReviewPopupVisible, setReviewPopupVisible] = useState(false);
+
+  // toggle đánh giá du khách
+  const toggleReviewPopup = () => {
+    setReviewPopupVisible(!isReviewPopupVisible);
+  };
 
   // hiển thị giá chi tiết dựa trên khách hàng bấm số lượng
   const [showPricing, setShowPricing] = useState(false);
@@ -271,8 +278,8 @@ const TrangDatTour = () => {
                     <div className="theDanhGiaThongTin">
                       <img className="iconDanhGia" alt="" src={heartFill} />
                       <div className="diemDanhGia">8.8</div>
-                      <div className="textDanhGia">(21 Đánh giá)</div>
-                      <button className="xemDanhGia">
+                      <div className="textDanhGia" onClick={toggleReviewPopup}>(21 Đánh giá)</div>
+                      <button className="xemDanhGia" onClick={toggleReviewPopup}>
                         Xem tất cả đánh giá{" "}
                         <FontAwesomeIcon icon={faAngleRight} />
                       </button>
@@ -358,6 +365,11 @@ const TrangDatTour = () => {
         </div>
       </div>
       <Footer />
+      {/* popup đánh giá du khác */}
+      <ReviewPopup
+        isVisible={isReviewPopupVisible}
+        togglePopup={toggleReviewPopup}
+      />
     </div>
   );
 };

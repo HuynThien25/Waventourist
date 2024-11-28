@@ -1,5 +1,5 @@
 import "./tourNgoaiNuoc.css";
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import favorite from "../../assets/img/logo/favorite.png";
 import heartFill from "../../assets/img/logo/heartFill.png";
 import bali from "../../assets/img/hinhAnh/bali.jpg";
@@ -17,10 +17,16 @@ import favFill from "../../assets/img/logo/favFill.png";
 import { useNavigate } from "react-router-dom";
 import LazyLoad from "react-lazy-load";
 import useFavoriteHandler from "../useFavoriteHandler/UseFavoriteHandler";
+import ReviewPopup from "../reviewPopup/ReviewPopup";
 
 const TourNgoaiNuoc = () => {
   const [activeTab, setActiveTab] = useState("1");
   const navigate = useNavigate();
+  const [isReviewPopupVisible, setReviewPopupVisible] = useState(false);
+
+  const toggleReviewPopup = () => {
+    setReviewPopupVisible(!isReviewPopupVisible);
+  };
 
   const handleWatch = () => {
     navigate("/chiTietTour", { state: {} });
@@ -44,7 +50,7 @@ const TourNgoaiNuoc = () => {
 
   // Xử lý thêm yêu thích và cập nhật trạng thái
   const handleFavoriteClick = (tour) => {
-    handleAddToFavorites(tour); 
+    handleAddToFavorites(tour);
     const updatedFavorites = localStorage.getItem("favoriteTours");
     setFavorites(updatedFavorites ? JSON.parse(updatedFavorites) : []);
   };
@@ -406,45 +412,48 @@ const TourNgoaiNuoc = () => {
   const renderItems = (tours) => {
     return tours.map((tour) => (
       <div className="pList2">
-          <div className="pListCard2" key={tour.id}>
-            <div className="pListItem2">
-              <LazyLoad>
+        <div className="pListCard2" key={tour.id}>
+          <div className="pListItem2">
+            <LazyLoad>
               <div>
-              <div className="tietkiem2">{tour.tietKiem}</div>
-              <img
-              src={isFavorite(tour.id) ? favFill : fav} 
-              alt="Favorite"
-              className="favorite2"
-              onClick={() => handleFavoriteClick(tour)}
-            />
-              <img src={tour.image2} alt={tour.image2} className="pListImg2" />
+                <div className="tietkiem2">{tour.tietKiem}</div>
+                <img
+                  src={isFavorite(tour.id) ? favFill : fav}
+                  alt="Favorite"
+                  className="favorite2"
+                  onClick={() => handleFavoriteClick(tour)}
+                />
+                <img
+                  src={tour.image2}
+                  alt={tour.image2}
+                  className="pListImg2"
+                />
               </div>
-              </LazyLoad>
-              <div className="pListTitles2">
-                <h1>{tour.h1}</h1>
-                <p>{tour.giaGoc}</p>
-                <h1>
-                  <span>{tour.gia}</span>
-                </h1>
-              </div>
-              <div className="pListTitle3">
-                <div className="grIconDanhGia">
-                  <img className="iconDanhGia" alt="" src={tour.danhGia} />
-                  <div className="diemDanhGia">{tour.diemDanhGia}</div>
+            </LazyLoad>
+            <div className="pListTitles2">
+              <h1>{tour.h1}</h1>
+              <p>{tour.giaGoc}</p>
+              <h1>
+                <span>{tour.gia}</span>
+              </h1>
+            </div>
+            <div className="pListTitle3">
+              <div className="grIconDanhGia">
+                <img className="iconDanhGia" alt="" src={tour.danhGia} />
+                <div className="diemDanhGia" onClick={toggleReviewPopup}>
+                  {tour.diemDanhGia}
                 </div>
-                <div className="textDanhGia">{tour.textDanhGia}</div>
-                <button className="cardBtn2" onClick={handleWatch}>
-                  Xem chi tiết
-                </button>
               </div>
+              <div className="textDanhGia" onClick={toggleReviewPopup}>
+                {tour.textDanhGia}
+              </div>
+              <button className="cardBtn2" onClick={handleWatch}>
+                Xem chi tiết
+              </button>
             </div>
           </div>
-           {/* Popup yêu cầu đăng nhập */}
-      <LoginPopup />
-
-{/* Popup thông báo */}
-<NotificationPopup />
         </div>
+      </div>
     ));
   };
 
@@ -496,6 +505,15 @@ const TourNgoaiNuoc = () => {
         </div>
       </div>
       <div className="xemtatca">Xem Tất Cả ►</div>
+      {/* Popup yêu cầu đăng nhập */}
+      <LoginPopup />
+      {/* Popup thông báo */}
+      <NotificationPopup />
+      {/* popup đánh giá du khác */}
+      <ReviewPopup
+        isVisible={isReviewPopupVisible}
+        togglePopup={toggleReviewPopup}
+      />
     </div>
   );
 };
