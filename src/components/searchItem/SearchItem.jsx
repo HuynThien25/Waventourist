@@ -1137,7 +1137,7 @@ const SearchItem = ({
                       />
                     </div>
                   </LazyLoad>
-                  <div className="seListTitles">
+                  <div className="seListTitles" onClick={handleSee}>
                     <div className="seH1">{tour.h1}</div>
                     <div className="t">
                       <div className="seNgayDi">
