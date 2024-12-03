@@ -109,7 +109,11 @@
   margin: 10px 0;
 }
 .customCheckBox input[type="checkbox"] {
-  display: none;
+  display: block;
+  position: absolute;
+  opacity: 0;
+  z-index: 5;
+  cursor: pointer;
 }
 .customCheckBox label {
   position: relative;
@@ -165,10 +169,11 @@
   font-size: 14px;
 }
 .inputDiemDen input {
-  border: 1px solid #ccc;
+  border: 1px solid #b7bbbd;
   border-radius: 5px;
-  padding: 6px 14px;
-  padding-left: 25px;
+  padding: 8px 12px;
+  padding-left: 30px;
+  font-weight: 500;
 }
 .formInput:focus {
   border: 1px solid #ffffff;
@@ -183,14 +188,16 @@
 }
 .inputIcon {
   position: absolute;
-  padding: 7px 1px 10px 5px;
+  padding: 9px 5px 12px 9px;
   color: #888; 
+  font-weight: 700;
   z-index: 1;
 }
 .lsItem1 label {
   font-size: 15px;
   color: #03121a;
   font-weight: 700;
+  margin-top: 10px;
   margin-bottom: 8px;
 }
 .lsOptions1 {
@@ -337,6 +344,7 @@
   background-color: #febe10;
 }
 .listResult1 {
+  width: 675px;
   flex: 3;
 }
 .sapxepContainer {
@@ -560,7 +568,7 @@
   .inputDiemDen input {
     width: 100%;
     border-radius: 5px;
-    padding: 12px 13px;
+    padding: 12px 16px;
     padding-left: 25px;
     font-size: 16px;
   }

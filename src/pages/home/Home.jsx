@@ -34,7 +34,6 @@ const Home = () => {
     <div>
       <Navbar username={username} />
       <Header />
-
       <div className="homeContainer">
         <h1 className="homeTitle">
           <Link to="tourMoi" smooth={true} duration={500} offset={-70}>TOUR MỚI 2024</Link>

@@ -25,17 +25,10 @@ import pqTest5 from "../../assets/img/hinhAnh/pqTest5.jpg";
 import st from "../../assets/img/anhDaiDien/mtp.jpg";
 import heartFill from "../../assets/img/logo/heartFill.png";
 import { useLocation } from "react-router-dom";
-import {
-  faCalendarDays,
-  faCircleArrowLeft,
-  faCircleArrowRight,
-  faCircleXmark,
-  faLocationDot,
-  faPlaneDeparture,
+import {faCalendarDays,faCircleArrowLeft,faCircleArrowRight,faCircleXmark,faLocationDot,faPlaneDeparture,
 } from "@fortawesome/free-solid-svg-icons";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import LazyLoad from "react-lazyload";
 import useFavoriteHandler from "../../components/useFavoriteHandler/UseFavoriteHandler";
 import ReviewPopup from "../../components/reviewPopup/ReviewPopup";
 
@@ -224,7 +217,6 @@ const ChiTietTour = (tour) => {
   return (
     <div className="Container">
       <Navbar />
-      <LazyLoad>
         <div className="center1024">
           <div className="sliderText2">
             Du Lịch Phú Quốc - Khám Phá Bắc Đảo - Safari - VinWonder - Grand
@@ -232,7 +224,6 @@ const ChiTietTour = (tour) => {
           </div>
         </div>
         <img className="sliderIMG" alt="" src={pqTest5} />
-      </LazyLoad>
       {/* ----------------Icon đóng mở hình ảnh----------------- */}
       <div className="hotelContainer">
         {open && (
@@ -571,7 +562,7 @@ const ChiTietTour = (tour) => {
           <div className="tourLienquan">
             <div className="cardTourLienQuan">
               <img className="imgLienQuan" alt="" src={duLichPQDN}></img>
-              <div className="titleLienQuan">
+              <div className="titleLienQuan" onClick={handleBuy}>
                 Du lịch Phú Quốc - Cáp treo Hòn Thơm <br />
                 Thành Phố Hồ Chí Minh - Phú Quốc
               </div>
@@ -584,15 +575,15 @@ const ChiTietTour = (tour) => {
               <div className="groupLN">
                 <div className="LN">
                   <img className="iconDanhGia" alt="" src={heartFill} />
-                  <div className="diemDanhGia">9.2/10</div>
-                  <div className="subDG">(27 Đánh giá)</div>
+                  <div className="diemDanhGia" onClick={toggleReviewPopup}>9.2/10</div>
+                  <div className="subDG" onClick={toggleReviewPopup}>(27 Đánh giá)</div>
                 </div>
-                <button className="btnLienQuan">Mua ngay</button>
+                <button className="btnLienQuan" onClick={handleBuy}>Mua ngay</button>
               </div>
             </div>
             <div className="cardTourLienQuan">
               <img className="imgLienQuan" alt="" src={captreoHT}></img>
-              <div className="titleLienQuan">
+              <div className="titleLienQuan" onClick={handleBuy}>
                 Du lịch Phú Quốc - Cáp treo Hòn Thơm <br />
                 Thành Phố Hồ Chí Minh - Phú Quốc
               </div>
@@ -605,15 +596,15 @@ const ChiTietTour = (tour) => {
               <div className="groupLN">
                 <div className="LN">
                   <img className="iconDanhGia" alt="" src={heartFill} />
-                  <div className="diemDanhGia">9.2/10</div>
-                  <div className="subDG">(27 Đánh giá)</div>
+                  <div className="diemDanhGia" onClick={toggleReviewPopup}>9.2/10</div>
+                  <div className="subDG" onClick={toggleReviewPopup}>(27 Đánh giá)</div>
                 </div>
-                <button className="btnLienQuan">Mua ngay</button>
+                <button className="btnLienQuan" onClick={handleBuy}>Mua ngay</button>
               </div>
             </div>
             <div className="cardTourLienQuan">
               <img className="imgLienQuan" alt="" src={thienDuongGT}></img>
-              <div className="titleLienQuan">
+              <div className="titleLienQuan" onClick={handleBuy}>
                 Du lịch Phú Quốc - Cáp treo Hòn Thơm
                 <br /> Thành Phố Hồ Chí Minh - Phú Quốc
               </div>
@@ -626,10 +617,10 @@ const ChiTietTour = (tour) => {
               <div className="groupLN">
                 <div className="LN">
                   <img className="iconDanhGia" alt="" src={heartFill} />
-                  <div className="diemDanhGia">9.2/10</div>
-                  <div className="subDG">(27 Đánh giá)</div>
+                  <div className="diemDanhGia" onClick={toggleReviewPopup}>9.2/10</div>
+                  <div className="subDG" onClick={toggleReviewPopup}>(27 Đánh giá)</div>
                 </div>
-                <button className="btnLienQuan">Mua ngay</button>
+                <button className="btnLienQuan" onClick={handleBuy}>Mua ngay</button>
               </div>
             </div>
           </div>

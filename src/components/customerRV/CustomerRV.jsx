@@ -2,7 +2,7 @@ import "./customerRV.css";
 import mtp from "../../assets/img/anhDaiDien/mtp.jpg";
 import ht2 from "../../assets/img/anhDaiDien/ht2.jpg";
 import heartFill from "../../assets/img/logo/heartFill.png";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 
 const CustomerRV = () => {
   const slides = [
@@ -34,13 +34,20 @@ const CustomerRV = () => {
     const autoScroll = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % slides.length);
     }, 10000);
+  
     return () => clearInterval(autoScroll); 
-  }, [slides.length]);
+  }, [slides.length]);  
   //clearInterval được gọi khi component bị hủy, giúp ngăn ngừa rò rỉ bộ nhớ.
 
   //goNext: tăng chỉ số currentIndex lên một giá trị để hiển thị slide tiếp theo, và nếu đang ở slide cuối cùng thì trở lại slide đầu tiên.
-  const goNext = () => setCurrentIndex((prevIndex) => (prevIndex + 1) % slides.length);
-  const goPrev = () => setCurrentIndex((prevIndex) => (prevIndex === 0 ? slides.length - 1 : prevIndex - 1));
+  const goNext = useCallback(() => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % slides.length);
+  }, [slides.length]);
+  
+  const goPrev = useCallback(() => {
+    setCurrentIndex((prevIndex) => (prevIndex === 0 ? slides.length - 1 : prevIndex - 1));
+  }, [slides.length]);
+  
   //goPrev: giảm chỉ số currentIndex để hiển thị slide trước, và nếu đang ở slide đầu tiên thì trở lại slide cuối cùng.
   
   //Mỗi khi currentIndex thay đổi, sliderRef sẽ cập nhật vị trí transform của thẻ div chứa slider, 

@@ -12,7 +12,6 @@ import korea from "../../assets/img/hinhAnh/korea.jpg";
 import thailand from "../../assets/img/hinhAnh/thailand.jpg";
 import singapore from "../../assets/img/hinhAnh/singapore.jpg";
 import china4 from "../../assets/img/hinhAnh/china4.jpg";
-import LazyLoad from 'react-lazyload';
 
 const Header = ({ type }) => {
   const [destination, setDestination] = useState("");
@@ -60,7 +59,6 @@ const Header = ({ type }) => {
   return (
     <div className="header">
       <div className={type === "list" ? "headerContainer listMode" : "headerContainer"}>
-        <LazyLoad offset={200} >
           <div className="imageTransition">
             {slides.map((slide, index) => (
               <div
@@ -70,7 +68,6 @@ const Header = ({ type }) => {
               />
             ))}
           </div>
-        </LazyLoad>
 
         <button className="prev" onClick={() => setCurrentImageIndex((currentImageIndex - 1 + slides.length) % slides.length)}>❮</button>
         <button className="next" onClick={() => setCurrentImageIndex((currentImageIndex + 1) % slides.length)}>❯</button>

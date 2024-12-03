@@ -195,7 +195,7 @@ const TourDaDat = () => {
                   </div>
                 ))
               ) : (
-                <p>Chưa có tour Yêu thích nào.</p>
+                <p className="chuaCoTour">Chưa có tour Yêu thích nào.</p>
               )}
               {showConfirmPopup && (
                 <>

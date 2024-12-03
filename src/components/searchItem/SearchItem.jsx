@@ -55,29 +55,18 @@ import fav from "../../assets/img/logo/fav.png";
 import favFill from "../../assets/img/logo/favFill.png";
 import "./searchItem.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faAngleLeft,
-  faAngleRight,
-  faCalendarDays,
-  faCalendarWeek,
-  faPlaneUp,
+import {faAngleLeft,faAngleRight,faCalendarDays,faCalendarWeek,faPlaneUp,
 } from "@fortawesome/free-solid-svg-icons";
-import LazyLoad from "react-lazy-load";
 import useFavoriteHandler from "../useFavoriteHandler/UseFavoriteHandler";
 import ReviewPopup from "../reviewPopup/ReviewPopup";
 
-const SearchItem = ({
-  destination,
-  date,
-  options,
-  category,
-  transport,
-  priceRange,
-}) => {
+const SearchItem = ({destination,date,options,category,transport,priceRange,}) => {
   const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(1); // Trang hiện tại
   const itemsPerPage = 5; // Số mục trên mỗi trang
   const toursPerPage = 5; // Số lượng tour hiển thị trên mỗi trang
+  const [isLoading,setIsLoading] = useState(true);
+  const [filteredTours, setFilteredTours] = useState([]);
   const [isReviewPopupVisible, setReviewPopupVisible] = useState(false);
 
   const toggleReviewPopup = () => {
@@ -1047,18 +1036,21 @@ const SearchItem = ({
   };
 
   // Lọc danh sách tour dựa trên điều kiện tìm kiếm
-  const filteredTours = allTours.filter((tour) => {
-    const matchesDestination =
-      !destination ||
-      tour.destination.toLowerCase().includes(destination.toLowerCase());
-    const matchesTransport =
-      transport === "all" ||
-      tour.phuongTien.toLowerCase().includes(transport.toLowerCase());
-    const tourPrice = parsePrice(tour.gia);
-    const matchesPrice =
-      tourPrice >= priceRange[0] && tourPrice <= priceRange[1];
-    return matchesDestination && matchesTransport && matchesPrice;
-  });
+  useEffect(()=>{
+    setIsLoading(true);
+    const timer = setTimeout(()=>{
+      const filtered  = allTours.filter((tour)=>{
+        const matchesDestination = !destination || tour.destination.toLowerCase().includes(destination.toLowerCase());
+        const matchesTransport = transport === "all" || tour.phuongTien.toLowerCase().includes(transport.toLowerCase());
+        const matchesPrice = parsePrice(tour.gia) >= priceRange[0] && parsePrice(tour.gia) <= priceRange[1];
+        return matchesDestination && matchesTransport && matchesPrice;
+      });
+      setFilteredTours(filtered);
+      setCurrentPage(1); //Đặt lại trang về nếu có thay đổi
+      setIsLoading(false);
+    },2000);
+    return () => clearTimeout(timer);
+  },[destination, transport, priceRange]);
 
   // Tính toán số trang
   const totalPages = Math.ceil(filteredTours.length / itemsPerPage);
@@ -1084,7 +1076,6 @@ const SearchItem = ({
   //Yêu thích
   const { handleAddToFavorites, LoginPopup, NotificationPopup } =
     useFavoriteHandler();
-
   const [favorites, setFavorites] = useState([]);
 
   // Lấy danh sách yêu thích từ localStorage khi component được render
@@ -1092,54 +1083,49 @@ const SearchItem = ({
     const existingFavorites = localStorage.getItem("favoriteTours");
     setFavorites(existingFavorites ? JSON.parse(existingFavorites) : []);
   }, []);
-
   // Kiểm tra tour có trong danh sách yêu thích không
   const isFavorite = (tourId) => {
     return favorites.some((item) => item.id === tourId);
   };
-
   // Xử lý thêm yêu thích và cập nhật trạng thái
   const handleFavoriteClick = (tour) => {
-    handleAddToFavorites(tour); 
+    handleAddToFavorites(tour);
     const updatedFavorites = localStorage.getItem("favoriteTours");
     setFavorites(updatedFavorites ? JSON.parse(updatedFavorites) : []);
   };
-
-
-  // Làm trang luôn nằm ở đầu
+  // Trang luôn nằm ở đầu
   useEffect(() => {
     window.scrollTo(0, 0); // Di chuyển lên đầu trang khi chuyển trang
   }, [currentPage]);
 
   return (
     <div className="searchItemContainer">
-      {filteredTours.length > 0 ? (
-        // Phân trang: chỉ hiển thị một số tour trên mỗi trang
-        filteredTours
-          .slice((currentPage - 1) * toursPerPage, currentPage * toursPerPage)
-          .map((tour, index) => (
-            <div key={index} className="seList">
+      {isLoading ? (
+        <div className="loadingContainer">
+          {Array.from({ length: itemsPerPage }).map((_, index) => (
+            <div key={index} className="skeletonCard"></div>
+          ))}
+        </div>
+      ) : toursToDisplay.length > 0 ? (
+        toursToDisplay.map((tour, index) => (
+          <div key={index} className="seList">
               <div className="seListCard" key={tour.id}>
                 <div className="seListItem">
-                  <LazyLoad>
-                    <div>
-                      <div className="seTietkiem">{tour.tietKiem}</div>
-                      <img
-              src={isFavorite(tour.id) ? favFill : fav} 
-              alt="Favorite"
-              className="seFavorite"
-              onClick={() => handleFavoriteClick(tour)}
-            />
-                      <img
-                        src={tour.image2}
-                        alt={tour.h1}
-                        className="seListImg"
-                      />
+                  {/* ------ */}
+                  <div className="seTietkiem">{tour.tietKiem}</div>
+                  <img
+                    src={isFavorite(tour.id) ? favFill : fav}
+                    alt="Favorite"
+                    className="seFavorite"
+                    onClick={() => handleFavoriteClick(tour)}
+                  />
+                  <img src={tour.image2} alt={tour.h1} className="seListImg" />
+                  {/* ------ */}
+                  <div className="seListTitles">
+                    <div className="seH1" onClick={handleSee}>
+                      {tour.h1}
                     </div>
-                  </LazyLoad>
-                  <div className="seListTitles" onClick={handleSee}>
-                    <div className="seH1">{tour.h1}</div>
-                    <div className="t">
+                    <div className="t" onClick={handleSee}>
                       <div className="seNgayDi">
                         <FontAwesomeIcon
                           icon={faCalendarDays}
@@ -1176,11 +1162,19 @@ const SearchItem = ({
                             alt="Rating"
                             src={tour.danhGia}
                           />
-                          <div className="seDiemDanhGia" onClick={toggleReviewPopup}>
+                          <div
+                            className="seDiemDanhGia"
+                            onClick={toggleReviewPopup}
+                          >
                             {tour.diemDanhGia}
                           </div>
                         </div>
-                        <div className="seTextDanhGia" onClick={toggleReviewPopup}>{tour.textDanhGia}</div>
+                        <div
+                          className="seTextDanhGia"
+                          onClick={toggleReviewPopup}
+                        >
+                          {tour.textDanhGia}
+                        </div>
                       </div>
                       <button className="seCardBtn2" onClick={handleSee}>
                         Xem chi tiết
@@ -1190,11 +1184,10 @@ const SearchItem = ({
                 </div>
               </div>
             </div>
-          ))
+        ))
       ) : (
         <p className="khongTimThayKetQua">Không tìm thấy kết quả phù hợp.</p>
       )}
-
       {/* Pagination: điều hướng giữa các trang */}
       {filteredTours.length > toursPerPage && (
         <div className="pagination">
@@ -1216,13 +1209,12 @@ const SearchItem = ({
           </button>
         </div>
       )}
-       {/* Popup yêu cầu đăng nhập */}
-       <LoginPopup />
-
-{/* Popup thông báo */}
-<NotificationPopup />
-{/* popup đánh giá du khác */}
-<ReviewPopup
+      {/* Popup yêu cầu đăng nhập */}
+      <LoginPopup />
+      {/* Popup thông báo */}
+      <NotificationPopup />
+      {/* popup đánh giá du khác */}
+      <ReviewPopup
         isVisible={isReviewPopupVisible}
         togglePopup={toggleReviewPopup}
       />

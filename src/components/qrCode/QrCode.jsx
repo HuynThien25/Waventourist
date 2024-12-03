@@ -2,9 +2,18 @@ import "./qrCode.css";
 import imgTitle from "../../assets/img/hinhAnh/imgTitle.jpg";
 import imgQR from "../../assets/img/logo/QRcode.jpg";
 import getitGG from "../../assets/img/logo/getitGGPlay.png";
-import LazyLoad from "react-lazy-load";
+import { useEffect, useState } from "react";
 
 const QrCode = () => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false); 
+    }, 10000);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <div className="mainContainer">
       <div className="cart">
@@ -28,23 +37,33 @@ const QrCode = () => {
         </div>
       </div>
 
-      <LazyLoad>
+
+      <div className="signOfferContainer">
+      {isLoading ? (
+        <div className="skeletonSignOffer">
+          <div className="skeleton3 skeleton-title3"></div>
+          <div className="skeleton3 skeleton-form3"></div>
+        </div>
+      ) : (
         <div className="signOffer">
-          <div className="cartSign">
-            <h1 className="offerTitle">
-              Đăng ký nhận thông tin mới nhất về các Tour ưu đãi
-            </h1>
-            <div className="grForm">
-              <button className="formBtn">Đăng ký</button>
-              <input
-                className="formInput"
-                type="Email"
-                placeholder="Địa chỉ email của bạn"
-              ></input>
-            </div>
+        <div className="cartSign">
+          <h1 className="offerTitle">
+            Đăng ký nhận thông tin mới nhất về các Tour ưu đãi
+          </h1>
+          <div className="grForm">
+            <button className="formBtn">Đăng ký</button>
+            <input
+              className="formInput"
+              type="email"
+              placeholder="Địa chỉ email của bạn"
+            />
           </div>
         </div>
-      </LazyLoad>
+    </div>
+      )}
+      </div>
+      
+
     </div>
   );
 };

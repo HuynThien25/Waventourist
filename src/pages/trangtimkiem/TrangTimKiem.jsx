@@ -11,10 +11,10 @@ import vietNam from "../../assets/img/hinhAnh/vietNam.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faAngleDown,
+  faArrowRight,
   faSearch,
   faXmark,
 } from "@fortawesome/free-solid-svg-icons";
-import LazyLoad from "react-lazyload";
 
 const TrangTimKiem = () => {
   const location = useLocation();
@@ -80,12 +80,10 @@ const TrangTimKiem = () => {
   return (
     <div>
       <Navbar />
-      <LazyLoad>
         <div className="center1024">
           <div className="sliderText">Kết quả tìm kiếm: {destination}</div>
         </div>
         <img className="sliderIMG" alt="" src={vietNam} />
-      </LazyLoad>
       <div className="sapxepContainer">
         <div className="grSapXep">
           <div className="sapxep">Xếp theo: </div>

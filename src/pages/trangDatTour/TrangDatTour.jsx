@@ -7,17 +7,9 @@ import phuquoc from "../../assets/img/hinhAnh/phuquoc.jpg";
 import heartFill from "../../assets/img/logo/heartFill.png";
 import "./trangDatTour.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faAngleRight,
-  faBaby,
-  faBarcode,
-  faCalendar,
-  faCalendarDays,
-  faChildReaching,
-  faPerson,
+import {faAngleRight,faBaby,faBarcode,faCalendar,faCalendarDays,faChildReaching,faPerson,
 } from "@fortawesome/free-solid-svg-icons";
 import { useTotalAmount } from "../../components/tongGiaTien/TongGiaTien";
-import LazyLoad from "react-lazy-load";
 import ReviewPopup from "../../components/reviewPopup/ReviewPopup";
 
 const TrangDatTour = () => {
@@ -94,9 +86,7 @@ const TrangDatTour = () => {
       <div className="center1024">
         <div className="sliderText3">Đặt Tour</div>
       </div>
-      {/* <LazyLoad> */}
       <img className="sliderIMG" alt="" src={test} loading="eager" />
-      {/* </LazyLoad> */}
 
       <div className="cvb">
         <div className="cacBuocDatTour">
@@ -267,7 +257,6 @@ const TrangDatTour = () => {
           <div className="a2">
             <div className="bangTheThongTin">
               <div className="hotline">Hỗ Trợ giao dịch: 1800 1990</div>
-              <LazyLoad>
                 <div className="cardTT">
                   <img className="imgCard" src={phuquoc} alt="Phu Quoc" />
                   <div className="borderCard">
@@ -359,7 +348,6 @@ const TrangDatTour = () => {
                     </div>
                   </div>
                 </div>
-              </LazyLoad>
             </div>
           </div>
         </div>

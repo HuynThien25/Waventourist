@@ -1,3 +1,26 @@
+/* H Ứ loading skeleton */
+.loadingContainer {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+.skeletonCard {
+  width: 100%;
+  height: 200px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loadingAnimation 3.5s infinite;
+  border-radius: 10px;
+}
+@keyframes loadingAnimation {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+/* ----------------------- */
 .seList {
   width: 100%;
   max-width: 1024px;
@@ -7,8 +30,6 @@
 .seListCard {
   border-radius: 10px;
   box-shadow: #03121a26 0px 2px 5px 0px;
-  min-width: 670px; 
-  max-width: 100px; 
   display: flex;
 }
 .seListItem {
@@ -24,7 +45,7 @@
 }
 .seListTitles {
   padding-left: 10px;
-  padding-top: 10px;
+  padding-top: 15px;
   width: 400px;
   display: flex;
   flex-direction: column;
@@ -34,7 +55,6 @@
   gap: 10px;
   justify-content: left;
   display: flex;
-  padding-top: 10px;
 }
 .seGia > p {
   font-size: 13px;
@@ -170,7 +190,6 @@
   transition: 0.2s linear;
 }
 .khongTimThayKetQua{
-  width: 670px;
   text-align: center;
   font-size: 17px;
   font-weight: bold;

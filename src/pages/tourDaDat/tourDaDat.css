@@ -3,7 +3,7 @@
   justify-content: center;
   padding: 40px;
 }
-.cvfg{
+.cvfg {
   display: flex;
 }
 .tourDaDat {
@@ -24,7 +24,7 @@
   height: 280px;
   margin-right: 20px;
 }
-.bangTourDaDat h4{
+.bangTourDaDat h4 {
   background-color: #f2f3f3;
   padding: 20px;
   font-size: 15px;
@@ -128,8 +128,8 @@ ul {
   width: 700px;
   cursor: pointer;
 }
-.cardContainer p{
-  color: #18A0FB;
+.cardContainer p {
+  color: #18a0fb;
 }
 .tourCard {
   display: flex;
@@ -174,7 +174,7 @@ ul {
 .cardDetails p {
   margin: 5px 0;
   font-size: 13px;
-  color: #18A0FB;
+  color: #18a0fb;
   font-weight: 700;
   height: 13px;
 }
@@ -196,7 +196,7 @@ ul {
 .removeBtn:hover {
   background: #c0392b;
 }
-.notification-popup{
+.notification-popup {
   position: fixed;
   top: 12;
   right: 12px;
@@ -209,7 +209,7 @@ ul {
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   opacity: 0;
-  transform: translateY(20px); 
+  transform: translateY(20px);
   animation: fadeInSlideUp 0.3s forwards, fadeOut 0.5s 1.5s forwards;
   z-index: 1000;
 }
@@ -225,7 +225,7 @@ ul {
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   opacity: 0;
-  transform: translateX(20px); 
+  transform: translateX(20px);
   animation: fadeInSlideUp 0.3s forwards, fadeOut 0.5s 1.5s forwards;
   z-index: 1000;
 }
@@ -251,7 +251,7 @@ ul {
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.5);
-  z-index: 999; 
+  z-index: 999;
 }
 .confirmPopup {
   position: fixed;
@@ -259,13 +259,13 @@ ul {
   left: 50%;
   transform: translate(-50%, -50%);
   border-radius: 5px;
-  z-index: 1000; 
+  z-index: 1000;
 }
 .popupContent {
   text-align: center;
   width: 250px;
 }
-.popupContent h1{
+.popupContent h1 {
   font-size: 17px;
   font-weight: 700;
   text-align: left;
@@ -273,12 +273,15 @@ ul {
   padding-bottom: 10px;
   border-bottom: 1px solid #e0e0e0;
 }
-.popupContent p{
+.popupContent p {
   font-size: 14px;
   color: #555;
   font-weight: 700;
   line-height: 24px;
   text-align: left;
+}
+.chuaCoTour {
+  padding-top: 135px;
 }
 .popupActions {
   margin-top: 15px;
@@ -296,21 +299,20 @@ ul {
 }
 .popupActions button:first-child {
   background-color: #f5f5f5;
-  color: #18A0FB;
+  color: #18a0fb;
 }
 .popupActions button:last-child {
   color: white;
-  background-color: #18A0FB;
+  background-color: #18a0fb;
 }
 @media (max-width: 767px) {
-
 }
 
 @media (max-width: 480px) {
   .tourDaDatContain {
     padding: 0px;
   }
-  .cvfg{
+  .cvfg {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -350,11 +352,23 @@ ul {
     padding-bottom: 30px;
   }
   .tourHeader,
-.tourRow {
-  padding: 10px;
-  font-size: 10px;
-}
-.removeBtn {
-  font-size: 12px;
-}
+  .tourRow {
+    padding: 10px;
+    font-size: 10px;
+  }
+  .removeBtn {
+    font-size: 12px;
+  }
+  .chuaCoTour {
+    padding-top: 10px;
+    margin: auto;
+  }
+  .notification-popup {
+    text-align: center;
+    margin: auto;
+    top: 12;
+    right: 20px;
+    left: 20px;
+    bottom: 12px;
+  }
 }

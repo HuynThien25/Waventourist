@@ -1,4 +1,3 @@
-// ScrollToTopButton.js
 import React, { useState, useEffect } from "react";
 import { FaArrowUp } from "react-icons/fa";
 import "./goBackBtn.css";
@@ -27,7 +26,6 @@ const ScrollToTopButton = () => {
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
-
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };

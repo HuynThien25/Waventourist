@@ -468,6 +468,10 @@
   cursor: pointer;
   padding-left: 10px;
 }
+.subDG:hover{
+  color: #333;
+  transition: 0.2s linear;
+}
 .giaChiTu {
   color: #333;
   font-size: 14px;
@@ -476,6 +480,7 @@
   padding: 10px;
   border-radius: 3px;
   text-align: right;
+  cursor: pointer;
 }
 .giaChiTu p {
   color: #18a0fb;
@@ -952,6 +957,7 @@
   }
   .giaChiTu {
     padding: 0;
+
   }
   /* --------------------------------------- */
   .tableContainMobile {

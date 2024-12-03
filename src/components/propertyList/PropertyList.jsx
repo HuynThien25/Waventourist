@@ -1,10 +1,9 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import "./propertyList.css";
-import LazyLoad from "react-lazy-load";
 import useFavoriteHandler from "../useFavoriteHandler/UseFavoriteHandler";
 import { useNavigate } from "react-router-dom";
-import china from "../../assets/img/hinhAnh/china.jpg"; 
-import korea2 from "../../assets/img/hinhAnh/korea2.jpg"; 
+import china from "../../assets/img/hinhAnh/china.jpg";
+import korea2 from "../../assets/img/hinhAnh/korea2.jpg";
 import thailand11 from "../../assets/img/hinhAnh/thailand11.jpg";
 import singapore11 from "../../assets/img/hinhAnh/singapore11.jpg";
 import phuquoc11 from "../../assets/img/hinhAnh/phuquoc11.jpg";
@@ -13,33 +12,9 @@ import favFill from "../../assets/img/logo/favFill.png";
 
 const PropertyList = () => {
   const navigate = useNavigate();
-
-  const handleBuy = (tourId) => {
-    navigate("/trangDatTour", { state: { tourId } });
-  };
-
-  const { handleAddToFavorites, LoginPopup, NotificationPopup } =
-    useFavoriteHandler();
-
+  const [isLoading, setIsLoading] = useState(true);
+  const { handleAddToFavorites, LoginPopup, NotificationPopup } = useFavoriteHandler();
   const [favorites, setFavorites] = useState([]);
-
-  // Lấy danh sách yêu thích từ localStorage khi component được render
-  useEffect(() => {
-    const existingFavorites = localStorage.getItem("favoriteTours");
-    setFavorites(existingFavorites ? JSON.parse(existingFavorites) : []);
-  }, []);
-
-  // Kiểm tra tour có trong danh sách yêu thích không
-  const isFavorite = (tourId) => {
-    return favorites.some((item) => item.id === tourId);
-  };
-
-  // Xử lý thêm yêu thích và cập nhật trạng thái
-  const handleFavoriteClick = (tour) => {
-    handleAddToFavorites(tour); 
-    const updatedFavorites = localStorage.getItem("favoriteTours");
-    setFavorites(updatedFavorites ? JSON.parse(updatedFavorites) : []);
-  };
 
   const tours = [
     {
@@ -114,46 +89,81 @@ const PropertyList = () => {
     },
   ];
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false); 
+    }, 5000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Kiểm tra tour có phải yêu thích hay không
+  const isFavorite = (tourId) => favorites.some((item) => item.id === tourId);
+
+  const handleFavoriteClick = (tour) => {
+    handleAddToFavorites(tour);
+    const updatedFavorites = localStorage.getItem("favoriteTours");
+    setFavorites(updatedFavorites ? JSON.parse(updatedFavorites) : []);
+  };
+
+  const handleBuy = (tourId) => {
+    navigate("/trangDatTour", { state: { tourId } });
+  };
+
   return (
     <div className="pList">
       <div className="plistCenter">
-        {tours.map((tour) => (
-          <div className="pListCard" key={tour.id}>
-            <div className="pListItem">
-              <LazyLoad>
-                <div>
-                  <div className="tietkiem">Giảm giá {tour.tietkiem}</div>
-                  <img
-              src={isFavorite(tour.id) ? favFill : fav} 
-              alt="Favorite"
-              className="favorite"
-              onClick={() => handleFavoriteClick(tour)}
-            />
-                  <img src={tour.image2} alt={tour.title} className="pListImg" />
+        {isLoading
+          ? // Hiển thị Skeleton trong lúc tải dữ liệu
+            Array(5)
+              .fill(null)
+              .map((_, index) => (
+                <div className="pListCard" key={index}>
+                  <div className="pListItem">
+                    <div className="skeleton skeleton-img"></div>
+                    <div className="skeleton skeleton-title"></div>
+                    <div className="skeleton skeleton-text"></div>
+                    <div className="skeleton skeleton-button"></div>
+                  </div>
                 </div>
-              </LazyLoad>
-              <div className="pListTitles">
-                <h1>{tour.title}</h1>
-                <h2>{tour.h1}</h2>
-                <p>{tour.gia}</p>
-                <h2>
-                  <span>{tour.giaGoc}</span>
-                </h2>
+              ))
+          : // Hiển thị dữ liệu thật sau khi tải xong
+            tours.map((tour) => (
+              <div className="pListCard" key={tour.id}>
+                <div className="pListItem">
+                 
+                      <div className="tietkiem">Giảm giá {tour.tietkiem}</div>
+                      <img
+                        src={isFavorite(tour.id) ? favFill : fav}
+                        alt="Favorite"
+                        className="favorite"
+                        onClick={() => handleFavoriteClick(tour)}
+                      />
+                      <img
+                        src={tour.image2}
+                        alt={tour.title}
+                        className="pListImg"
+                      />
+                    
+                  <div className="pListTitles">
+                    <h1>{tour.title}</h1>
+                    <h2>{tour.h1}</h2>
+                    <p>{tour.gia}</p>
+                    <h2>
+                      <span>{tour.giaGoc}</span>
+                    </h2>
+                  </div>
+                  <button
+                    className="cardBtn"
+                    onClick={() => handleBuy(tour.id)}
+                  >
+                    Mua Tour
+                  </button>
+                </div>
               </div>
-              <button
-                className="cardBtn"
-                onClick={() => handleBuy(tour.id)}
-              >
-                Mua Tour
-              </button>
-            </div>
-          </div>
-        ))}
+            ))}
       </div>
-
       {/* Popup yêu cầu đăng nhập */}
       <LoginPopup />
-
       {/* Popup thông báo */}
       <NotificationPopup />
     </div>

@@ -44,13 +44,13 @@ import nhatrang3 from "../../assets/img/hinhAnh/nhatrang3.jpg";
 import fav from "../../assets/img/logo/fav.png";
 import favFill from "../../assets/img/logo/favFill.png";
 import { useNavigate } from "react-router-dom";
-import LazyLoad from "react-lazy-load";
 import useFavoriteHandler from "../useFavoriteHandler/UseFavoriteHandler";
 import ReviewPopup from "../reviewPopup/ReviewPopup";
 
 const TourTrongNuoc = () => {
   const [activeTab, setActiveTab] = useState("1");
   const navigate = useNavigate();
+  const [isLoading,setIsLoading] = useState(true);
   const [isReviewPopupVisible, setReviewPopupVisible] = useState(false);
 
   const toggleReviewPopup = () => {
@@ -60,6 +60,13 @@ const TourTrongNuoc = () => {
   const handleWatch = () => {
     navigate("/chiTietTour");
   };
+
+  useEffect(()=>{
+    const timer = setTimeout(()=>{
+      setIsLoading(false); 
+    },7000);
+    return ()=> clearTimeout(timer);
+  },[]);
 
   const { handleAddToFavorites, LoginPopup, NotificationPopup } =
     useFavoriteHandler();
@@ -678,53 +685,71 @@ const TourTrongNuoc = () => {
     },
   ];
 
-  const renderItems = (tours) => {
-    return tours.map((tour) => (
-      <div className="pList2">
-        <div className="pListCard2" key={tour.id}>
-          <div className="pListItem2">
-            <LazyLoad>
-              <div>
-                <div className="tietkiem2">{tour.tietKiem}</div>
-                <img
-                  src={isFavorite(tour.id) ? favFill : fav}
-                  alt="Favorite"
-                  className="favorite2"
-                  onClick={() => handleFavoriteClick(tour)}
-                />
-                <img
-                  src={tour.image2}
-                  alt={tour.image2}
-                  className="pListImg2"
-                />
-              </div>
-            </LazyLoad>
-            <div className="pListTitles2" onClick={handleWatch}>
-              <h1>{tour.h1}</h1>
-              <p>{tour.giaGoc}</p>
-              <h1>
-                <span>{tour.gia}</span>
-              </h1>
-            </div>
-            <div className="pListTitle3">
-              <div className="grIconDanhGia">
-                <img className="iconDanhGia" alt="" src={tour.danhGia} />
-                <div className="diemDanhGia" onClick={toggleReviewPopup}>
-                  {tour.diemDanhGia}
+  const renderItems = (tours, isLoading) => {
+    return isLoading
+      ? // Hiển thị Skeleton khi dữ liệu đang tải
+        Array(8)
+          .fill(null)
+          .map((_, index) => (
+            <div className="pList2" key={index}>
+              <div className="pListCard2 ">
+                <div className="pListItem2">
+                  <div className="skeleton2 skeleton-img2"></div>
+                  <div className="skeleton2 skeleton-tietkiem2"></div>
+                  <div className="skeleton2 skeleton-title2"></div>
+                  <div className="skeleton2 skeleton-price2"></div>
+                  <div className="skeleton2 skeleton-rating2"></div>
+                  <div className="skeleton2 skeleton-button2"></div>
                 </div>
               </div>
-              <div className="textDanhGia" onClick={toggleReviewPopup}>
-                {tour.textDanhGia}
+            </div>
+          ))
+      : // Hiển thị danh sách tour khi đã tải xong
+        tours.map((tour) => (
+          <div className="pList2" key={tour.id}>
+            <div className="pListCard2">
+              <div className="pListItem2">
+                
+                    <div className="tietkiem2">{tour.tietKiem}</div>
+                    <img
+                      src={isFavorite(tour.id) ? favFill : fav}
+                      alt="Favorite"
+                      className="favorite2"
+                      onClick={() => handleFavoriteClick(tour)}
+                    />
+                    <img
+                      src={tour.image2}
+                      alt={tour.image2}
+                      className="pListImg2"
+                    />
+                  
+                <div className="pListTitles2" onClick={handleWatch}>
+                  <h1>{tour.h1}</h1>
+                  <p>{tour.giaGoc}</p>
+                  <h1>
+                    <span>{tour.gia}</span>
+                  </h1>
+                </div>
+                <div className="pListTitle3">
+                  <div className="grIconDanhGia">
+                    <img className="iconDanhGia" alt="" src={tour.danhGia} />
+                    <div className="diemDanhGia" onClick={toggleReviewPopup}>
+                      {tour.diemDanhGia}
+                    </div>
+                  </div>
+                  <div className="textDanhGia" onClick={toggleReviewPopup}>
+                    {tour.textDanhGia}
+                  </div>
+                  <button className="cardBtn2" onClick={handleWatch}>
+                    Xem chi tiết
+                  </button>
+                </div>
               </div>
-              <button className="cardBtn2" onClick={handleWatch}>
-                Xem chi tiết
-              </button>
             </div>
           </div>
-        </div>
-      </div>
-    ));
+        ));
   };
+  
 
   return (
     <div className="">
@@ -772,22 +797,22 @@ const TourTrongNuoc = () => {
         </div>
         {/* ---------------------------------- */}
         <div className={`content ${activeTab === "1" ? "active" : ""}`} id="1">
-          <div className="grid-container">{renderItems(danangs)}</div>
+          <div className="grid-container">{renderItems(danangs, isLoading)}</div>
         </div>
         <div className={`content ${activeTab === "2" ? "active" : ""}`} id="2">
-          <div className="grid-container">{renderItems(dalats)}</div>
+          <div className="grid-container">{renderItems(dalats, isLoading)}</div>
         </div>
         <div className={`content ${activeTab === "3" ? "active" : ""}`} id="3">
-          <div className="grid-container">{renderItems(halongs)}</div>
+          <div className="grid-container">{renderItems(halongs, isLoading)}</div>
         </div>
         <div className={`content ${activeTab === "4" ? "active" : ""}`} id="4">
-          <div className="grid-container">{renderItems(phuquocs)}</div>
+          <div className="grid-container">{renderItems(phuquocs, isLoading)}</div>
         </div>
         <div className={`content ${activeTab === "5" ? "active" : ""}`} id="5">
-          <div className="grid-container">{renderItems(sapas)}</div>
+          <div className="grid-container">{renderItems(sapas, isLoading)}</div>
         </div>
         <div className={`content ${activeTab === "6" ? "active" : ""}`} id="6">
-          <div className="grid-container">{renderItems(nhatrangs)}</div>
+          <div className="grid-container">{renderItems(nhatrangs, isLoading)}</div>
         </div>
       </div>
       {/* ------------------------------------------ */}
