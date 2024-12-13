@@ -4,19 +4,15 @@ import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-
 const QuenMatKhau2 = () => {
   const navigate = useNavigate();
-
-  // States to manage form inputs, validation, and countdown
   const [verificationCode, setVerificationCode] = useState("");
   const [isFormValid, setIsFormValid] = useState(true);
   const [isCodeSent, setIsCodeSent] = useState(false);
   const [countdown, setCountdown] = useState(0);
 
-  const fixedCode = "123456"; // Mã xác nhận cố định
+  const fixedCode = "123456"; 
 
-  // Back navigation handling
   const handleBack = () => {
     if (window.history.length > 1) {
       navigate(-1);
@@ -25,13 +21,11 @@ const QuenMatKhau2 = () => {
     }
   };
 
-  // Handle sending verification code and start countdown
   const handleSendCode = () => {
     setIsCodeSent(true);
-    setCountdown(60); // Set countdown to 60 seconds
+    setCountdown(60); 
   };
 
-  // Countdown logic
   useEffect(() => {
     let timer;
     if (countdown > 0) {
@@ -39,17 +33,16 @@ const QuenMatKhau2 = () => {
         setCountdown((prevCount) => prevCount - 1);
       }, 1000);
     }
-    return () => clearInterval(timer); // Cleanup the interval on unmount
+    return () => clearInterval(timer); 
   }, [countdown]);
 
-  // Validation check function
   const handleSubmit = (e) => {
     e.preventDefault();
     if (verificationCode === fixedCode) {
       setIsFormValid(true);
-      navigate("/quenMatKhau3"); // Điều hướng sang trang tiếp theo khi mã đúng
+      navigate("/quenMatKhau3"); 
     } else {
-      setIsFormValid(false); // Không hợp lệ, báo lỗi
+      setIsFormValid(false); 
     }
   };
 
@@ -76,7 +69,7 @@ const QuenMatKhau2 = () => {
                   type="button"
                   className="gui"
                   onClick={handleSendCode}
-                  disabled={countdown > 0} // Disable the button while countdown is active
+                  disabled={countdown > 0} 
                 >
                   {countdown > 0 ? `${countdown}s` : "Gửi"}
                 </button>

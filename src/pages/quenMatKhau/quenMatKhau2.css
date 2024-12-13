@@ -74,7 +74,6 @@
   cursor: pointer;
   font-weight: 700;
 }
-
 /* -----------responsive ---------------*/
 @media (max-width: 768px) {
   .cardForgetPass2 {
@@ -82,7 +81,6 @@
     padding: 40px;
   }
 }
-
 @media (max-width: 480px) {
   .cardForgetPass2 {
     width: 100%;

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import favoriteIcon from "../../assets/img/logo/favorite.png";
 import "./favoriteButton.css";
-
 const FavoriteButton = ({ tour, onUpdateFavorites }) => {
   const [isFavorite, setIsFavorite] = useState(false);
 

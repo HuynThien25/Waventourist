@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useMemo, useCallback } from "react";
 import "./khuyenMai.css";
 import km1 from "../../assets/img/sliderQC/km1.jpg";
 import km2 from "../../assets/img/sliderQC/km2.jpg";
@@ -14,30 +14,30 @@ import km12 from "../../assets/img/sliderQC/km12.jpg";
 import km13 from "../../assets/img/sliderQC/km13.jpg";
 import km14 from "../../assets/img/sliderQC/km14.jpg";
 import campodia from "../../assets/img/sliderQC/campodia.png";
-
 const KhuyenMai = () => {
-  const images = [km1,km2,km3,km4,km5,km6,km8,km9,km10,km12,km14,km1,km2,km3,
-     km4,km5,km6,km8,km9,km12,km14,km4,km5,km6,km8,km9,km12,km14,
-  ]; // List of images
+  const images = useMemo(
+    () => [
+      km1, km2, km3, km4, km5, km6, km8, km9, km10, km12, km14,km1, km2, km3, km4, km5, km6, km8, km9, km12, km14,km4, km5, km6, km8, km9, km12, km14,
+    ],
+    []
+  );
   const [currentIndex, setCurrentIndex] = useState(0);
   const sliderRef = useRef(null) ;
   
-  // Tự động chuyển slide sau mỗi 5 giây
   useEffect(() => {
     const autoScroll =setInterval(()=>{
       setCurrentIndex((prevIndex)=>(prevIndex + 1)% images.length);
     },3000);
     return ()=> clearInterval(autoScroll);
-    },[images.length]); // 5 giây mỗi lần
+    },[images.length]); 
 
-  //handle
-  const goNext = () =>{
+  const handlNextClick = useCallback(()=>{
     setCurrentIndex((prevIndex)=>(prevIndex+1)%images.length);
-  };
+  },[images.length]);
 
-  const goPrev = () =>{
-    setCurrentIndex((prevIndex)=>prevIndex === 0 ?images.length - 1: prevIndex -1);
-  };
+  const handlePrevClick = useCallback(() => {
+    setCurrentIndex((prevIndex) => (prevIndex === 0 ? images.length - 1 : prevIndex - 1));
+  }, [images.length]);
 
   // Xử lý khi chuyển slide xong, sau 0.5s sẽ ngắt hiệu ứng chuyển động
   useEffect(() => {
@@ -56,9 +56,8 @@ const KhuyenMai = () => {
         </div>
       </div>
       <div className="sliderKMContainer">
-        <button className="prevBtn" onClick={goPrev}>
-          {"‹"}
-        </button>
+      <button className="prevBtn" onClick={handlePrevClick}>{"‹"}</button>
+
         <div className="sliderKM" ref={sliderRef}>
           {images.map((img, index) => (
             <img
@@ -69,9 +68,8 @@ const KhuyenMai = () => {
             />
           ))}
         </div>
-        <button className="nextBtn" onClick={goNext}>
-          {"›"}
-        </button>
+        
+        <button className="nextBtn" onClick={handlNextClick}>{"›"}</button>
       </div>
       <div className="xemChiTiet">
       <button className="xemChiTietBtn">Xem chi tiết ►</button>

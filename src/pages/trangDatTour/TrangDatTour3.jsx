@@ -18,24 +18,16 @@ import circleK from "../../assets/img/logo/circlek.jpg";
 import fptshop from "../../assets/img/logo/fptshop.jpg";
 import techcombank from "../../assets/img/logo/techcombank.jpg";
 import heartFill from "../../assets/img/logo/heartFill.png";
-import {
-  faClock,
-  faTags,
-  faAngleRight,
-  faBarcode,
-  faCalendar,
-  faCalendarDays,
-} from "@fortawesome/free-solid-svg-icons";
+import {faClock,faTags,faAngleRight,faBarcode,faCalendar,faCalendarDays,} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSpinner } from "@fortawesome/free-solid-svg-icons"; // Import spinner icon
+import { faSpinner } from "@fortawesome/free-solid-svg-icons"; 
 import { useTotalAmount } from "../../components/tongGiaTien/TongGiaTien";
-
 const TrangDatTour3 = () => {
   const navigate = useNavigate();
   const { totalAmount } = useTotalAmount();
   const [destination, setDestination] = useState("");
   const location = useLocation();
-  const [selectedPayment, setSelectedPayment] = useState(""); // State for selected payment method
+  const [selectedPayment, setSelectedPayment] = useState(""); 
   const [selectedBank, setSelectedBank] = useState("");
   const [timeLeft, setTimeLeft] = useState(10000);
   const [isProcessing, setIsProcessing] = useState(false);
@@ -43,14 +35,9 @@ const TrangDatTour3 = () => {
   const handleTT = () => {
     setIsProcessing(true);
 
-    // Simulate processing time with setTimeout (2 seconds in this case)
     setTimeout(() => {
       navigate("/trangDatTour4", { state: { destination } });
     }, 2000);
-  };
-
-  const handleBack = () => {
-    navigate("/trangDatTour2", { state: { destination } });
   };
 
   useEffect(() => {
@@ -66,12 +53,12 @@ const TrangDatTour3 = () => {
 
   // Chuyển đổi từ giây sang giờ, phút, giây
   const formatTime = (timeInSeconds) => {
-    const hours = Math.floor(timeInSeconds / 3600); // Số giờ
-    const minutes = Math.floor((timeInSeconds % 3600) / 60); // Số phút
-    const seconds = timeInSeconds % 60; // Số giây
+    const hours = Math.floor(timeInSeconds / 3600); 
+    const minutes = Math.floor((timeInSeconds % 3600) / 60); 
+    const seconds = timeInSeconds % 60; 
     return `${hours.toString().padStart(2, "0")}:${minutes
       .toString()
-      .padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`; // Định dạng hh:mm:ss
+      .padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`; 
   };
 
   useEffect(() => {
@@ -105,6 +92,7 @@ const TrangDatTour3 = () => {
 
       <div className="cvb">
         <div className="datTourContainer">
+          <div className="mklp">
           <div className="c1">
             <div className="thanhToanContainer">
               <div className="timeLeft">
@@ -117,8 +105,6 @@ const TrangDatTour3 = () => {
               <div className="soLuongHK3">
                 {/* <h1>PHƯƠNG THỨC THANH TOÁN</h1> */}
                 <h4>Chọn một trong các phương thức thanh toán sau:</h4>
-
-                {/* Payment method checkboxes */}
                 <div className="paymentMethods">
                   <div className="method">
                     <div className="th">
@@ -307,7 +293,7 @@ const TrangDatTour3 = () => {
                       <label className="customRadio">
                         <input
                           type="radio"
-                          name="paymentMethod" // Add the same name attribute for all radio buttons
+                          name="paymentMethod" 
                           checked={selectedPayment === "cuaHang"}
                           onChange={() => togglePaymentMethod("cuaHang")}
                         />
@@ -450,6 +436,7 @@ const TrangDatTour3 = () => {
                 </div>
               </div>
             </div>
+          </div>
           </div>
         </div>
       </div>

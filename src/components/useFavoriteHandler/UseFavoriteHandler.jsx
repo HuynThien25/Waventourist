@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
 const useFavoriteHandler = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [popupMessage, setPopupMessage] = useState("");
@@ -18,7 +17,6 @@ const useFavoriteHandler = () => {
       setShowPopup(true);
       return;
     }
-
     // Kiểm tra danh sách yêu thích
     const existingFavorites = localStorage.getItem("favoriteTours");
     const favorites = existingFavorites ? JSON.parse(existingFavorites) : [];

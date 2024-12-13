@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { FaArrowUp } from "react-icons/fa";
 import "./goBackBtn.css";
-
 const ScrollToTopButton = () => {
   const [isVisible, setIsVisible] = useState(false);
 

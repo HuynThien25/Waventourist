@@ -7,31 +7,46 @@ import plane from "../../assets/img/logo/plane.png";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import {
-  faBarcode,
-  faCalendar,
-  faCalendarDays,
-} from "@fortawesome/free-solid-svg-icons";
+import {faBarcode,faCalendar,faCalendarDays,} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useTotalAmount } from "../../components/tongGiaTien/TongGiaTien";
-
 const TrangDatTour4 = () => {
   const navigate = useNavigate();
   const { totalAmount } = useTotalAmount();
-  const [destination, setDestination] = useState("");
+  const [showPopup, setShowPopup] = useState(false); 
   const location = useLocation();
 
-  const handleTT = () => {
-    navigate("/trangtimkiem", { state: { destination } });
-  };
-
-  const handleBack = () => {
-    navigate("/", { state: { destination } });
+  const handlePopupAction = (action) => {
+    if (action === "home") {
+      navigate("/");
+    } else if (action === "details") {
+      navigate("/tourDaDat");
+    }
+    setShowPopup(false); 
   };
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [location]);
+
+  const handleSaveTour = () => {
+    const savedTours = localStorage.getItem("bookedTours");
+    const tours = savedTours ? JSON.parse(savedTours) : [];
+
+    const newTour = {
+      id: tours.length + 1,
+      maTour: "BNG-384920",
+      ngayDi: "24/12/2024",
+      ngayVe: "26/12/2024",
+      diaDiem: "Phú Quốc",
+      gia: totalAmount.toLocaleString() + " VND",
+    };
+   // Lưu lại danh sách đã cập nhật
+   const updatedTours = [...tours, newTour];
+   localStorage.setItem("bookedTours", JSON.stringify(updatedTours));
+ 
+   setShowPopup(true);
+ };
 
   return (
     <div className="datTourContain">
@@ -88,14 +103,15 @@ const TrangDatTour4 = () => {
                   <p className="tong">
                     Tổng: <span>{totalAmount.toLocaleString()} VND</span>
                   </p>
+              
                 </div>
               </div>
-
               <div className="btnTong">
-                <button className="xacNhanBtn" onClick={handleBack}>
-                  Xác nhận quay về trang chủ
+                <button className="xacNhanBtn" onClick={handleSaveTour}>
+                  Xác nhận 
                 </button>
               </div>
+
             </div>
             <div className="plane">
               <img src={plane} alt="" className="planeIMG" />
@@ -103,6 +119,27 @@ const TrangDatTour4 = () => {
           </div>
         </div>
       </div>
+
+      {/* Popup xác nhận */}
+      {showPopup && (
+        <div className="popupOverlay">
+          <div className="popupContent">
+            <h2>Bạn muốn làm gì tiếp theo?</h2>
+            <button
+              className="popupBtn"
+              onClick={() => handlePopupAction("home")}
+            >
+              Trang chủ
+            </button>
+            <button
+              className="popupBtn"
+              onClick={() => handlePopupAction("details")}
+            >
+              Xem tour đã đặt
+            </button>
+          </div>
+        </div>
+      )}
 
       <Footer />
     </div>

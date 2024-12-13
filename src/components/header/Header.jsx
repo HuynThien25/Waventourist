@@ -1,5 +1,5 @@
 import "./header.css";
-import { useState, useEffect,useCallback } from "react";
+import { useState, useEffect,useCallback,useRef, memo } from "react";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faCalendarDays } from "@fortawesome/free-solid-svg-icons";
@@ -13,14 +13,15 @@ import thailand from "../../assets/img/hinhAnh/thailand.jpg";
 import singapore from "../../assets/img/hinhAnh/singapore.jpg";
 import china4 from "../../assets/img/hinhAnh/china4.jpg";
 
-const Header = ({ type }) => {
+const Header = memo (({ type }) => {
   const [destination, setDestination] = useState("");
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const [openStartDate, setOpenStartDate] = useState(false);
   const [openEndDate, setOpenEndDate] = useState(false);
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const navigate = useNavigate();
+  const currentImageIndexRef = useRef(0);
+  const [currentImageIndex, setCurrentImageIndex] = useState(currentImageIndexRef.current);
 
   const slides = [
     { image: thailand, headerDesc: "KHÁM PHÁ THÁI LAN", headerTitle: "BANGKOK - PATTAYA - PHUKET", headerBtn1: "XEM THÊM" },
@@ -32,9 +33,24 @@ const Header = ({ type }) => {
 
   useEffect(() => {
     const autoSlide = setInterval(() => {
-      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % slides.length);
-    }, 5000);
+      const nextIndex = (currentImageIndexRef.current + 1) % slides.length;
+      currentImageIndexRef.current = nextIndex; 
+      setCurrentImageIndex(nextIndex);
+    }, 10000);
+
     return () => clearInterval(autoSlide);
+  }, [slides.length]);
+
+  const handlePrevSlide = useCallback(() => {
+    const prevIndex = (currentImageIndexRef.current - 1 + slides.length) % slides.length;
+    currentImageIndexRef.current = prevIndex;
+    setCurrentImageIndex(prevIndex);
+  }, [slides.length]);
+
+  const handleNextSlide = useCallback(() => {
+    const nextIndex = (currentImageIndexRef.current + 1) % slides.length;
+    currentImageIndexRef.current = nextIndex;
+    setCurrentImageIndex(nextIndex);
   }, [slides.length]);
 
   const handleSearch = useCallback(() => {
@@ -69,8 +85,8 @@ const Header = ({ type }) => {
             ))}
           </div>
 
-        <button className="prev" onClick={() => setCurrentImageIndex((currentImageIndex - 1 + slides.length) % slides.length)}>❮</button>
-        <button className="next" onClick={() => setCurrentImageIndex((currentImageIndex + 1) % slides.length)}>❯</button>
+          <button className="prev" onClick={handlePrevSlide}>❮</button>
+          <button className="next" onClick={handleNextSlide}>❯</button>
 
         {type !== "list" && (
           <>
@@ -138,6 +154,6 @@ const Header = ({ type }) => {
       </div>
     </div>
   );
-};
+});
 
 export default Header;

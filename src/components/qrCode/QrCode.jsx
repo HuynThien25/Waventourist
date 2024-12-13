@@ -3,13 +3,12 @@ import imgTitle from "../../assets/img/hinhAnh/imgTitle.jpg";
 import imgQR from "../../assets/img/logo/QRcode.jpg";
 import getitGG from "../../assets/img/logo/getitGGPlay.png";
 import { useEffect, useState } from "react";
-
 const QrCode = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setIsLoading(false); 
+      setIsLoading(false);
     }, 10000);
     return () => clearTimeout(timer);
   }, []);
@@ -37,33 +36,30 @@ const QrCode = () => {
         </div>
       </div>
 
-
       <div className="signOfferContainer">
-      {isLoading ? (
-        <div className="skeletonSignOffer">
-          <div className="skeleton3 skeleton-title3"></div>
-          <div className="skeleton3 skeleton-form3"></div>
-        </div>
-      ) : (
-        <div className="signOffer">
-        <div className="cartSign">
-          <h1 className="offerTitle">
-            Đăng ký nhận thông tin mới nhất về các Tour ưu đãi
-          </h1>
-          <div className="grForm">
-            <button className="formBtn">Đăng ký</button>
-            <input
-              className="formInput"
-              type="email"
-              placeholder="Địa chỉ email của bạn"
-            />
+        {isLoading ? (
+          <div className="skeletonSignOffer">
+            <div className="skeleton3 skeleton-title3"></div>
+            <div className="skeleton3 skeleton-form3"></div>
           </div>
-        </div>
-    </div>
-      )}
+        ) : (
+          <div className="signOffer">
+            <div className="cartSign">
+              <h1 className="offerTitle">
+                Đăng ký nhận thông tin mới nhất về các Tour ưu đãi
+              </h1>
+              <div className="grForm">
+                <button className="formBtn">Đăng ký</button>
+                <input
+                  className="formInput"
+                  type="email"
+                  placeholder="Địa chỉ email của bạn"
+                />
+              </div>
+            </div>
+          </div>
+        )}
       </div>
-      
-
     </div>
   );
 };

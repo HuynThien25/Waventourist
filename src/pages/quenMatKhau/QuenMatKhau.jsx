@@ -4,20 +4,15 @@ import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-
 const QuenMatKhau = () => {
   const navigate = useNavigate();
-
-  // States to manage form inputs and validation
   const [fullName, setFullName] = useState("");
   const [emailOrPhone, setEmailOrPhone] = useState("");
   const [isFormValid, setIsFormValid] = useState(true);
 
-  // Regex to validate email and phone number formats
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const phoneRegex = /^[0-9]{10,11}$/;
 
-  // Back navigation handling
   const handleBack = () => {
     if (window.history.length > 1) {
       navigate(-1);
@@ -26,7 +21,6 @@ const QuenMatKhau = () => {
     }
   };
 
-  // Validation check function
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -36,7 +30,7 @@ const QuenMatKhau = () => {
     if (fullName && isEmailOrPhoneValid) {
       setIsFormValid(true);
     } else {
-      setIsFormValid(false); // Không hợp lệ, báo lỗi
+      setIsFormValid(false);
     }
   };
 

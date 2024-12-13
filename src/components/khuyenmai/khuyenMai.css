@@ -29,6 +29,7 @@
 .sliderKM {
   display: flex;
   transition: transform 0.5s ease-in-out; 
+  will-change: transform;
   gap: 5px;
   cursor: pointer;
 }
@@ -93,7 +94,7 @@
   color: #FEBE10;
   transition: ease-in-out 0.3s;
 }
-/* -------responsive----------- */
+/* ----------responsive----------- */
 .khuyenMai {
   max-width: 1024px;
   margin: auto;
@@ -113,7 +114,6 @@
   width: 320px;
   height: 151px;
 }
-
 .sliderKMContainer {
   display: flex;
   align-items: center;
@@ -176,7 +176,7 @@
   color: #FEBE10;
   transition: ease-in-out 0.3s;
 }
-/* Responsive adjustments for tablet screens */
+/* Responsive */
 @media (max-width: 768px) {
   .imgKM {
     width: 70px; 
@@ -185,7 +185,6 @@
     flex-direction: column;
   }
   .imgKMcolumn {
-    /* width: 170px;  */
     height: auto; 
   }
   .imgSlider {
@@ -196,7 +195,6 @@
     font-size: 18px; 
   }
 }
-/* Responsive adjustments for mobile screens */
 @media (max-width: 480px) {
   .imgKM {
     display: flex;

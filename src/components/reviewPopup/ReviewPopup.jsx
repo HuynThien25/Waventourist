@@ -7,7 +7,6 @@ import heartFill from "../../assets/img/logo/heartFill.png";
 import st from "../../assets/img/anhDaiDien/mtp.jpg";
 import ht2 from "../../assets/img/anhDaiDien/ht2.jpg";
 import pl from "../../assets/img/anhDaiDien/pl.jpg";
-
 const ReviewPopup = ({ isVisible, togglePopup }) => {
   const reviews = [
     {
@@ -41,8 +40,6 @@ const ReviewPopup = ({ isVisible, togglePopup }) => {
       likes: 45,
     },
   ];
-
-  
 
   if (!isVisible) return null;
 

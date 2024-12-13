@@ -1,5 +1,4 @@
-import "./tourNgoaiNuoc.css";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect ,useCallback } from "react";
 import favorite from "../../assets/img/logo/favorite.png";
 import heartFill from "../../assets/img/logo/heartFill.png";
 import bali from "../../assets/img/hinhAnh/bali.jpg";
@@ -17,20 +16,19 @@ import favFill from "../../assets/img/logo/favFill.png";
 import { useNavigate } from "react-router-dom";
 import useFavoriteHandler from "../useFavoriteHandler/UseFavoriteHandler";
 import ReviewPopup from "../reviewPopup/ReviewPopup";
-
 const TourNgoaiNuoc = () => {
   const [activeTab, setActiveTab] = useState("1");
   const navigate = useNavigate();
   const [isLoading,setIsLoading] = useState(true);
   const [isReviewPopupVisible, setReviewPopupVisible] = useState(false);
 
-  const toggleReviewPopup = () => {
-    setReviewPopupVisible(!isReviewPopupVisible);
-  };
+  const toggleReviewPopup = useCallback(() => {
+    setReviewPopupVisible((prev) => !prev);
+  }, []);
 
-  const handleWatch = () => {
-    navigate("/chiTietTour", { state: {} });
-  };
+  const handleWatch = useCallback(() => {
+    navigate("/chiTietTour");
+  }, [navigate]);
 
   useEffect(()=>{
     const timer = setTimeout(()=>{
@@ -51,16 +49,17 @@ const TourNgoaiNuoc = () => {
   }, []);
 
   // Kiểm tra tour có trong danh sách yêu thích không
-  const isFavorite = (tourId) => {
-    return favorites.some((item) => item.id === tourId);
-  };
+  const isFavorite = useCallback(
+    (tourId) => favorites.some((item) => item.id === tourId),
+    [favorites]
+  );
 
   // Xử lý thêm yêu thích và cập nhật trạng thái
-  const handleFavoriteClick = (tour) => {
+  const handleFavoriteClick = useCallback((tour) => {
     handleAddToFavorites(tour);
     const updatedFavorites = localStorage.getItem("favoriteTours");
     setFavorites(updatedFavorites ? JSON.parse(updatedFavorites) : []);
-  };
+  }, [handleAddToFavorites]);
 
   const danang = [
     {

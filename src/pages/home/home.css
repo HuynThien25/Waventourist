@@ -21,6 +21,10 @@ body {
   @media (max-width: 480px) {
     .homeTitle{
       font-size: 17px;
+      width: 90%;
       padding-top: 0px;
+    }
+    .homeContainer{
+      gap: 15px;
     }
   }  

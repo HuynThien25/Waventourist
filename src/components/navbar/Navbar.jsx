@@ -13,7 +13,6 @@ import singapore from "../../assets/img/logo/singapore.png";
 import thailand from "../../assets/img/logo/thailand.png";
 import { faAngleDown, faBars, faCircleUser, faUser, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
 const Navbar = () => {
   const [destination, setDestination] = useState("");
   const [isOpen, setIsOpen] = useState(false);
@@ -52,7 +51,6 @@ const Navbar = () => {
     document.addEventListener("click", handleClickOutside);
     return () => document.removeEventListener("click", handleClickOutside);
   }, [isOpen, isOpen2]);
-
 
   const handleLogout = () => {
     localStorage.removeItem("loggedInUser");
@@ -154,7 +152,6 @@ const Navbar = () => {
             </>
           )}
         </div>
-
       </div>
       {/* ---------navMobile------------ */}
         <div className="grIconMobile">
@@ -251,7 +248,6 @@ const Navbar = () => {
           </div>
           <div className="headerListItemMobile1"><span>Liên Hệ</span></div>
         </div>
-
       </div>
       {/* -------------------------------------*/}
       {isModalOpen && (

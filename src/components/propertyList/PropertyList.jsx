@@ -9,13 +9,11 @@ import singapore11 from "../../assets/img/hinhAnh/singapore11.jpg";
 import phuquoc11 from "../../assets/img/hinhAnh/phuquoc11.jpg";
 import fav from "../../assets/img/logo/fav.png";
 import favFill from "../../assets/img/logo/favFill.png";
-
 const PropertyList = () => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
   const { handleAddToFavorites, LoginPopup, NotificationPopup } = useFavoriteHandler();
   const [favorites, setFavorites] = useState([]);
-
   const tours = [
     {
       id: 1,
@@ -95,7 +93,6 @@ const PropertyList = () => {
     }, 5000);
     return () => clearTimeout(timer);
   }, []);
-
   // Kiểm tra tour có phải yêu thích hay không
   const isFavorite = (tourId) => favorites.some((item) => item.id === tourId);
 

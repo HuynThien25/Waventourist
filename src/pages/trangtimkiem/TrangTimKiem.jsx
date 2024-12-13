@@ -9,16 +9,19 @@ import { useState, useEffect } from "react";
 import SearchItem from "../../components/searchItem/SearchItem";
 import vietNam from "../../assets/img/hinhAnh/vietNam.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faAngleDown,
-  faArrowRight,
-  faSearch,
-  faXmark,
-} from "@fortawesome/free-solid-svg-icons";
-
+import {faAngleDown,faSearch,faXmark,} from "@fortawesome/free-solid-svg-icons";
+import { DateRange } from "react-date-range";
+import { format } from "date-fns";
 const TrangTimKiem = () => {
   const location = useLocation();
   const [destination, setDestination] = useState(location.state.destination);
+  const [openDate, setOpenDate] = useState(false);
+  const [priceRange, setPriceRange] = useState([0, 15000000]);
+  const [sapxep, setSapxep] = useState("tatca");
+  const [category, setCategory] = useState("all"); 
+  const [transport, setTransport] = useState("all"); 
+  const [isOpen, setIsOpen] = useState(false); 
+  const [isOpen2, setIsOpen2] = useState(false); 
   const [date, setDate] = useState(
     location.state.date || [
       {
@@ -29,17 +32,9 @@ const TrangTimKiem = () => {
     ]
   );
 
-  const [category, setCategory] = useState("all"); // Lưu trạng thái của danh mục
-  const [transport, setTransport] = useState("all"); // Lưu trạng thái của phương tiện di chuyển
-  const [sapxep, setSapxep] = useState("tatca");
-  // hàm xử lý tìm kiếm
-
-  // hàm định dạng số với dấu chấm
   const formatCurrency = (amount) => {
     return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   };
-  // State cho range slider
-  const [priceRange, setPriceRange] = useState([0, 4000000]);
 
   const handleRangeChange = (e) => {
     const value = Number(e.target.value);
@@ -60,23 +55,18 @@ const TrangTimKiem = () => {
 
     setPriceRange(newPriceRange);
   };
-
-  // load nằm ở đầu trang
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [location]);
-
-  // dropdow checkbox
-  const [isOpen, setIsOpen] = useState(false); // State để điều khiển dropdown
-  const [isOpen2, setIsOpen2] = useState(false); // State để điều khiển dropdown
-
+  
   const handleToggle = () => {
-    setIsOpen(!isOpen); // Thay đổi trạng thái khi click
+    setIsOpen(!isOpen); 
   };
   const handleToggle2 = () => {
     setIsOpen2(!isOpen2);
   };
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
+  
   return (
     <div>
       <Navbar />
@@ -88,22 +78,19 @@ const TrangTimKiem = () => {
         <div className="grSapXep">
           <div className="sapxep">Xếp theo: </div>
           <div className="lsOptionItem1">
-            {/* <span className="lsOptionText1">Giá thấp nhất</span> */}
             <select
               value={sapxep}
               onChange={(e) => setSapxep(e.target.value)}
               className="lsSelect2"
-            >
+            > 
               <option value="tatca">Phổ biến nhất</option>
               <option value="gia1">Giá thấp nhất</option>
               <option value="gia2">Giá cao nhất</option>
               <option value="gia3">Đánh giá cao nhất</option>
-              <option value="gia4">Liên quan nhất</option>
             </select>
           </div>
         </div>
       </div>
-
       {/* --------------------thẻ con ---------------- */}
       <div className="btnOpenListSearch">
         <label for="nav-mobile-input2">
@@ -120,13 +107,13 @@ const TrangTimKiem = () => {
           id="nav-mobile-input2"
         />
         <label for="nav-mobile-input2" className="navOverlay"></label>
-        {/* ----------------------------------------------- */}
+        {/* ------------Mobile------------- */}
         <div className="listSearchMobile1">
           <label for="nav-mobile-input2">
             <FontAwesomeIcon icon={faXmark} className="navMobileClose2" />
           </label>
-          {/* Destination */}
           <div className="thethu1">
+          {/* Destination */}
             <div className="lsItem1">
               <label>Điểm đến</label>
               <div className="inputDiemDen">
@@ -140,19 +127,34 @@ const TrangTimKiem = () => {
                 />
               </div>
             </div>
+            {/* time */}
+            <div className="lsItem1">
+              <label>Thời gian</label>
+              <span onClick={() => setOpenDate(!openDate)}>{`${format(
+                date[0].startDate,
+                "MM/dd/yyyy"
+              )} - ${format(date[0].endDate, "MM/dd/yyyy")}`}</span>
+              {openDate && (
+                <DateRange
+                  onChange={(item) => setDate([item.selection])}
+                  minDate={new Date()}
+                  ranges={date}
+                />
+              )}
+            </div>
             {/* Price Filter */}
             <div className="lsItem1">
               <label>Khoảng giá</label>
               <div>
                 <div className="khoangGia">
-                  {formatCurrency(priceRange[0])} <span>VND</span> đến{" "}
+                  {formatCurrency(priceRange[0])} <span>VND</span> -{" "}
                   {formatCurrency(priceRange[1])} <span>VND+</span>
                 </div>
                 <div className="slider-container">
                   <input
                     type="range"
                     min="0"
-                    max="4000000"
+                    max="15000000"
                     value={priceRange[0]}
                     data-index="0"
                     onChange={handleRangeChange}
@@ -164,7 +166,7 @@ const TrangTimKiem = () => {
                   <input
                     type="range"
                     min="0"
-                    max="4000000"
+                    max="15000000"
                     value={priceRange[1]}
                     data-index="1"
                     onChange={handleRangeChange}
@@ -192,15 +194,14 @@ const TrangTimKiem = () => {
                 className="lsSelect1"
               >
                 <option value="all">Tất cả</option>
-                <option value="attraction">Điểm Thiên Nhiên</option>
-                <option value="attraction">Ngắm cảnh</option>
-                <option value="attraction">Nghệ thuật và văn hóa</option>
-                <option value="attraction">Tour dưới nước</option>
-                <option value="attraction">Tour trên đất liền</option>
-                <option value="attraction">Tour theo chủ đề</option>
-                <option value="attraction">Tour bằng xe buýt</option>
-                <option value="food">Trải nghiệm ẩm thực</option>
-                <option value="event">Sự kiện</option>
+                <option value="Điểm thiên nhiên">Điểm Thiên Nhiên</option>
+                <option value="Ngắm cảnh">Ngắm cảnh</option>
+                <option value="Nghệ thuật và văn hóa">Nghệ thuật và văn hóa</option>
+                <option value="Tour dưới nước">Tour dưới nước</option>
+                <option value="Tour theo chủ đề">Tour theo chủ đề</option>
+                <option value="Tour bằng xe buýt">Tour bằng xe buýt</option>
+                <option value="Trải nghiệm ẩm thực">Trải nghiệm ẩm thực</option>
+                <option value="Sự kiện">Sự kiện</option>
               </select>
             </div>
             {/* Transport Filter */}
@@ -212,9 +213,9 @@ const TrangTimKiem = () => {
                 className="lsSelect1"
               >
                 <option value="all">Tất cả</option>
-                <option value="car">Xe du lịch</option>
-                <option value="plane">Máy bay</option>
-                <option value="train">Tàu</option>
+                <option value="Xe du lịch">Xe du lịch</option>
+                <option value="Hàng không">Máy bay</option>
+                <option value="Tàu">Tàu</option>
               </select>
             </div>
           </div>
@@ -344,6 +345,66 @@ const TrangTimKiem = () => {
                   <input type="checkbox" id="uc" name="uc" />
                   <label htmlFor="uc">Úc</label>
                 </div>
+                <div className="customCheckBox">
+                  <input type="checkbox" id="maCao" name="maCao" />
+                  <label htmlFor="maCao">Ma Cao</label>
+                </div>
+                <div className="customCheckBox">
+                  <input type="checkbox" id="campuchia" name="campuchia" />
+                  <label htmlFor="campuchia">Campuchia</label>
+                </div>
+                <div className="customCheckBox">
+                  <input type="checkbox" id="philippines" name="philippines" />
+                  <label htmlFor="philippines">Philippines</label>
+                </div>
+                <div className="customCheckBox">
+                  <input type="checkbox" id="hoaKy" name="hoaKy" />
+                  <label htmlFor="hoaKy">Hoa Kỳ</label>
+                </div>
+                <div className="customCheckBox">
+                  <input type="checkbox" id="Anh" name="Anh" />
+                  <label htmlFor="Anh">Vương Quốc Anh</label>
+                </div>
+                <div className="customCheckBox">
+                  <input type="checkbox" id="bi" name="bi" />
+                  <label htmlFor="bi">Bỉ</label>
+                </div>
+                <div className="customCheckBox">
+                  <input type="checkbox" id="newZealand" name="newZealand" />
+                  <label htmlFor="newZealand">New Zealand</label>
+                </div>
+                <div className="customCheckBox">
+                  <input type="checkbox" id="ao" name="ao" />
+                  <label htmlFor="ao">Áo</label>
+                </div>
+                <div className="customCheckBox">
+                  <input type="checkbox" id="tayBanNha" name="tayBanNha" />
+                  <label htmlFor="tayBanNha">Tây Ban Nha</label>
+                </div>
+                <div className="customCheckBox">
+                  <input type="checkbox" id="mexico" name="mexico" />
+                  <label htmlFor="mexico">Mexico</label>
+                </div>    
+                <div className="customCheckBox">
+                  <input type="checkbox" id="y" name="y" />
+                  <label htmlFor="y">Ý</label>
+                </div>
+                <div className="customCheckBox">
+                  <input type="checkbox" id="hongkong" name="hongkong" />
+                  <label htmlFor="hongkong">Hồng Kông</label>
+                </div>
+                <div className="customCheckBox">
+                  <input type="checkbox" id="daiLoan" name="daiLoan" />
+                  <label htmlFor="daiLoan">Đài Loan</label>
+                </div>
+                <div className="customCheckBox">
+                  <input type="checkbox" id="indonesia" name="indonesia" />
+                  <label htmlFor="indonesia">Indonesia</label>
+                </div>
+                <div className="customCheckBox">
+                  <input type="checkbox" id="singapore" name="singapore" />
+                  <label htmlFor="singapore">Singapore</label>
+                </div>
               </fieldset>
             </div>
           </div>
@@ -358,14 +419,14 @@ const TrangTimKiem = () => {
 
       <div className="listContainer1">
         <div className="listWrapper1">
-          {/* ---------------------------- */}
+          {/* ------------PC------------- */}
           <div className="listSearch1">
             {/* Destination */}
             <div className="thethu1">
               <div className="lsItem1">
                 <label>Điểm đến</label>
-                <div className="inputDiemDen">
                   <FontAwesomeIcon icon={faSearch} className="inputIcon" />
+                <div className="inputDiemDen">
                   <input
                     className="formInput"
                     placeholder="Tìm kiếm địa điểm ở đây"
@@ -375,19 +436,34 @@ const TrangTimKiem = () => {
                   />
                 </div>
               </div>
+              {/* time */}
+              <div className="lsItem1">
+              <label>Thời gian</label>
+              <span onClick={() => setOpenDate(!openDate)}>{`${format(
+                date[0].startDate,
+                "MM/dd/yyyy"
+              )} – ${format(date[0].endDate, "MM/dd/yyyy")}`}</span>
+              {openDate && (
+                <DateRange
+                  onChange={(item) => setDate([item.selection])}
+                  minDate={new Date()}
+                  ranges={date}
+                />
+              )}
+            </div>
               {/* Price Filter */}
               <div className="lsItem1">
                 <label>Khoảng giá</label>
                 <div>
                   <div className="khoangGia">
-                    {formatCurrency(priceRange[0])} <span>VND</span> đến{" "}
+                    {formatCurrency(priceRange[0])} <span>VND</span> – {" "}
                     {formatCurrency(priceRange[1])} <span>VND+</span>
                   </div>
                   <div className="slider-container">
                     <input
                       type="range"
                       min="0"
-                      max="4000000"
+                      max="15000000"
                       value={priceRange[0]}
                       data-index="0"
                       onChange={handleRangeChange}
@@ -396,7 +472,7 @@ const TrangTimKiem = () => {
                     <input
                       type="range"
                       min="0"
-                      max="4000000"
+                      max="15000000"
                       value={priceRange[1]}
                       data-index="1"
                       onChange={handleRangeChange}
@@ -409,21 +485,20 @@ const TrangTimKiem = () => {
               <div className="lsItem1">
                 <label>Loại hoạt động hạng mục</label>
                 <select
-                  value={category}
-                  onChange={(e) => setCategory(e.target.value)}
-                  className="lsSelect1"
-                >
-                  <option value="all">Tất cả</option>
-                  <option value="attraction">Điểm Thiên Nhiên</option>
-                  <option value="attraction">Ngắm cảnh</option>
-                  <option value="attraction">Nghệ thuật và văn hóa</option>
-                  <option value="attraction">Tour dưới nước</option>
-                  <option value="attraction">Tour trên đất liền</option>
-                  <option value="attraction">Tour theo chủ đề</option>
-                  <option value="attraction">Tour bằng xe buýt</option>
-                  <option value="food">Trải nghiệm ẩm thực</option>
-                  <option value="event">Sự kiện</option>
-                </select>
+                value={category}
+                onChange={(e) => setCategory(e.target.value)}
+                className="lsSelect1"
+              >
+                <option value="all">Tất cả</option>
+                <option value="Điểm thiên nhiên">Điểm Thiên Nhiên</option>
+                <option value="Ngắm cảnh">Ngắm cảnh</option>
+                <option value="Nghệ thuật và văn hóa">Nghệ thuật và văn hóa</option>
+                <option value="Tour dưới nước">Tour dưới nước</option>
+                <option value="Tour theo chủ đề">Tour theo chủ đề</option>
+                <option value="Tour bằng xe buýt">Tour bằng xe buýt</option>
+                <option value="Trải nghiệm ẩm thực">Trải nghiệm ẩm thực</option>
+                <option value="Sự kiện">Sự kiện</option>
+              </select>
               </div>
               {/* Transport Filter */}
               <div className="lsItem1">
@@ -434,9 +509,9 @@ const TrangTimKiem = () => {
                   className="lsSelect1"
                 >
                   <option value="all">Tất cả</option>
-                  <option value="car">Xe du lịch</option>
-                  <option value="plane">Máy bay</option>
-                  <option value="train">Tàu</option>
+                  <option value="Xe du lịch">Xe du lịch</option>
+                  <option value="Hàng không">Máy bay</option>
+                  <option value="Tàu">Tàu hỏa</option>
                 </select>
               </div>
             </div>
@@ -452,11 +527,11 @@ const TrangTimKiem = () => {
                 {/* Áp dụng class 'open' khi dropdown mở */}
                 <fieldset className={`dropdownContent ${isOpen ? "open" : ""}`}>
                   <div className="customCheckBox">
-                    <input type="checkbox" id="daNang" name="daNang" />
+                    <input type="checkbox" id="daNang" name="daNang"/>
                     <label htmlFor="daNang">Đà Nẵng</label>
                   </div>
                   <div className="customCheckBox">
-                    <input type="checkbox" id="hue" name="hue" />
+                    <input type="checkbox" id="hue" name="hue"/>
                     <label htmlFor="hue">Thừa Thiên Huế</label>
                   </div>
                   <div className="customCheckBox">
@@ -533,42 +608,100 @@ const TrangTimKiem = () => {
                   />
                 </div>
                 {/* Áp dụng class 'open' khi dropdown mở */}
-                <fieldset
-                  className={`dropdownContent ${isOpen2 ? "open" : ""}`}
-                >
-                  <div className="customCheckBox">
-                    <input type="checkbox" id="thaiLan" name="thaiLan" />
-                    <label htmlFor="thaiLan">Thái Lan</label>
-                  </div>
-                  <div className="customCheckBox">
-                    <input type="checkbox" id="nhatBan" name="nhatBan" />
-                    <label htmlFor="nhatBan">Nhật Bản</label>
-                  </div>
-                  <div className="customCheckBox">
-                    <input type="checkbox" id="hanQuoc" name="hanQuoc" />
-                    <label htmlFor="hanQuoc">Hàn Quốc</label>
-                  </div>
-                  <div className="customCheckBox">
-                    <input type="checkbox" id="trungQuoc" name="trungQuoc" />
-                    <label htmlFor="trungQuoc">Trung Quốc</label>
-                  </div>
-                  <div className="customCheckBox">
-                    <input type="checkbox" id="haLan" name="haLan" />
-                    <label htmlFor="haLan">Hà Lan</label>
-                  </div>
-                  <div className="customCheckBox">
-                    <input type="checkbox" id="duc" name="duc" />
-                    <label htmlFor="duc">Đức</label>
-                  </div>
-                  <div className="customCheckBox">
-                    <input type="checkbox" id="phap" name="phap" />
-                    <label htmlFor="phap">Pháp</label>
-                  </div>
-                  <div className="customCheckBox">
-                    <input type="checkbox" id="uc" name="uc" />
-                    <label htmlFor="uc">Úc</label>
-                  </div>
-                </fieldset>
+                <fieldset className={`dropdownContent ${isOpen2 ? "open" : ""}`}>
+                <div className="customCheckBox">
+                  <input type="checkbox" id="thaiLan" name="thaiLan" />
+                  <label htmlFor="thaiLan">Thái Lan</label>
+                </div>
+                <div className="customCheckBox">
+                  <input type="checkbox" id="nhatBan" name="nhatBan" />
+                  <label htmlFor="nhatBan">Nhật Bản</label>
+                </div>
+                <div className="customCheckBox">
+                  <input type="checkbox" id="hanQuoc" name="hanQuoc" />
+                  <label htmlFor="hanQuoc">Hàn Quốc</label>
+                </div>
+                <div className="customCheckBox">
+                  <input type="checkbox" id="trungQuoc" name="trungQuoc" />
+                  <label htmlFor="trungQuoc">Trung Quốc</label>
+                </div>
+                <div className="customCheckBox">
+                  <input type="checkbox" id="haLan" name="haLan" />
+                  <label htmlFor="haLan">Hà Lan</label>
+                </div>
+                <div className="customCheckBox">
+                  <input type="checkbox" id="duc" name="duc" />
+                  <label htmlFor="duc">Đức</label>
+                </div>
+                <div className="customCheckBox">
+                  <input type="checkbox" id="phap" name="phap" />
+                  <label htmlFor="phap">Pháp</label>
+                </div>
+                <div className="customCheckBox">
+                  <input type="checkbox" id="uc" name="uc" />
+                  <label htmlFor="uc">Úc</label>
+                </div>
+                <div className="customCheckBox">
+                  <input type="checkbox" id="maCao" name="maCao" />
+                  <label htmlFor="maCao">Ma Cao</label>
+                </div>
+                <div className="customCheckBox">
+                  <input type="checkbox" id="campuchia" name="campuchia" />
+                  <label htmlFor="campuchia">Campuchia</label>
+                </div>
+                <div className="customCheckBox">
+                  <input type="checkbox" id="philippines" name="philippines" />
+                  <label htmlFor="philippines">Philippines</label>
+                </div>
+                <div className="customCheckBox">
+                  <input type="checkbox" id="hoaKy" name="hoaKy" />
+                  <label htmlFor="hoaKy">Hoa Kỳ</label>
+                </div>
+                <div className="customCheckBox">
+                  <input type="checkbox" id="Anh" name="Anh" />
+                  <label htmlFor="Anh">Vương Quốc Anh</label>
+                </div>
+                <div className="customCheckBox">
+                  <input type="checkbox" id="bi" name="bi" />
+                  <label htmlFor="bi">Bỉ</label>
+                </div>
+                <div className="customCheckBox">
+                  <input type="checkbox" id="newZealand" name="newZealand" />
+                  <label htmlFor="newZealand">New Zealand</label>
+                </div>
+                <div className="customCheckBox">
+                  <input type="checkbox" id="ao" name="ao" />
+                  <label htmlFor="ao">Áo</label>
+                </div>
+                <div className="customCheckBox">
+                  <input type="checkbox" id="tayBanNha" name="tayBanNha" />
+                  <label htmlFor="tayBanNha">Tây Ban Nha</label>
+                </div>
+                <div className="customCheckBox">
+                  <input type="checkbox" id="mexico" name="mexico" />
+                  <label htmlFor="mexico">Mexico</label>
+                </div>    
+                <div className="customCheckBox">
+                  <input type="checkbox" id="y" name="y" />
+                  <label htmlFor="y">Ý</label>
+                </div>
+                <div className="customCheckBox">
+                  <input type="checkbox" id="hongkong" name="hongkong" />
+                  <label htmlFor="hongkong">Hồng Kông</label>
+                </div>
+                <div className="customCheckBox">
+                  <input type="checkbox" id="daiLoan" name="daiLoan" />
+                  <label htmlFor="daiLoan">Đài Loan</label>
+                </div>
+                <div className="customCheckBox">
+                  <input type="checkbox" id="indonesia" name="indonesia" />
+                  <label htmlFor="indonesia">Indonesia</label>
+                </div>
+                <div className="customCheckBox">
+                  <input type="checkbox" id="singapore" name="singapore" />
+                  <label htmlFor="singapore">Singapore</label>
+                </div>
+              </fieldset>
               </div>
             </div>
             <div className="thethu4">
@@ -579,7 +712,6 @@ const TrangTimKiem = () => {
             </div>
           </div>
 
-          {/* Search Results */}
           <div className="listResult1">
             <SearchItem
               destination={destination}
@@ -587,6 +719,7 @@ const TrangTimKiem = () => {
               category={category}
               transport={transport}
               priceRange={priceRange}
+              sapxep={sapxep}
             />
           </div>
         </div>

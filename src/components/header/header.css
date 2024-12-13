@@ -161,7 +161,6 @@ button.next:hover {
   }
   .headerDesc {
     font-size: 16px;
-    /* padding-top: 50px; */
     text-align: center;
   }
   .headerBtn,
@@ -171,7 +170,6 @@ button.next:hover {
     margin: 10px auto;
   }
   .headerSearch {
-    /* position: relative; */
     width: 90%;
     margin-top: 10px;
     padding: 0px 0px;

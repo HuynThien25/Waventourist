@@ -1,3 +1,7 @@
+.mklp{
+  display: flex;
+  gap: 30px;
+}
 .datTourContain {
   width: 100%;
 }
@@ -265,6 +269,7 @@
 .nguoiLon,
 .treEm,
 .emBe {
+  padding-top: 5px;
   line-height: 30px;
   font-size: 15px;
   font-weight: bold;
@@ -351,7 +356,6 @@
     padding: 8px 10px;
   }
 }
-/* Additional adjustments for extra small screens (very small mobiles) */
 @media (max-width: 480px) {
   .mainContain {
     padding: 0 10px;
@@ -364,12 +368,18 @@
     width: 50%;
     gap: 20px;
   }
+  .mklp{
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    width: 90%;
+  }
   .datTourContainer {
     padding-top: 5px;
   }
   .a1 {
     margin: auto;
-    width: 90%;
+    width: 100%;
   }
   .soLuongHK > h1 {
     font-size: 16px;
@@ -414,6 +424,8 @@
   }
   .hotline {
     font-size: 14px;
+    width: 90%;
+    padding: 10px;
   }
   .textDanhGia {
     margin-top: 20px;

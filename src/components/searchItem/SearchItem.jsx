@@ -59,13 +59,13 @@ import {faAngleLeft,faAngleRight,faCalendarDays,faCalendarWeek,faPlaneUp,
 } from "@fortawesome/free-solid-svg-icons";
 import useFavoriteHandler from "../useFavoriteHandler/UseFavoriteHandler";
 import ReviewPopup from "../reviewPopup/ReviewPopup";
-
-const SearchItem = ({destination,date,options,category,transport,priceRange,}) => {
+const SearchItem = ({destination,date,options,category,transport,priceRange,sapxep,
+}) => {
   const navigate = useNavigate();
-  const [currentPage, setCurrentPage] = useState(1); // Trang hiện tại
-  const itemsPerPage = 5; // Số mục trên mỗi trang
-  const toursPerPage = 5; // Số lượng tour hiển thị trên mỗi trang
-  const [isLoading,setIsLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10; // Số mục trên mỗi trang
+  const toursPerPage = 10; // Số lượng tour hiển thị trên mỗi trang
+  const [isLoading, setIsLoading] = useState(true);
   const [filteredTours, setFilteredTours] = useState([]);
   const [isReviewPopupVisible, setReviewPopupVisible] = useState(false);
 
@@ -93,11 +93,12 @@ const SearchItem = ({destination,date,options,category,transport,priceRange,}) =
       image1: favorite,
       image2: banahill,
       danhGia: heartFill,
-      diemDanhGia: 9.7,
+      diemDanhGia: "9.7",
       textDanhGia: "(27 đánh giá)",
       khoiHanh: "15/12/2024 | 15/11/2024",
       thoiGian: "4 ngày 3 đêm",
-      phuongTien: "Máy bay",
+      phuongTien: "Hàng không Vietnam Airlines",
+      category: "Ngắm cảnh",
     },
     {
       id: 7,
@@ -112,11 +113,12 @@ const SearchItem = ({destination,date,options,category,transport,priceRange,}) =
       image1: favorite,
       image2: chuaDN,
       danhGia: heartFill,
-      diemDanhGia: 8.7,
+      diemDanhGia: "8.7",
       textDanhGia: "(7 đánh giá)",
       khoiHanh: "15/12/2024 | 15/11/2024",
       thoiGian: "4 ngày 3 đêm",
-      phuongTien: "Xe du lịch",
+      phuongTien: "Xe du lịch Limousine 9 chỗ",
+      category: "Ngắm cảnh",
     },
     {
       id: 8,
@@ -131,11 +133,12 @@ const SearchItem = ({destination,date,options,category,transport,priceRange,}) =
       image1: favorite,
       image2: culaocham,
       danhGia: heartFill,
-      diemDanhGia: 8.8,
+      diemDanhGia: "8.8",
       textDanhGia: "(21 đánh giá)",
       khoiHanh: "15/12/2024 | 15/11/2024",
       thoiGian: "4 ngày 3 đêm",
-      phuongTien: "Xe du lịch",
+      phuongTien: "Xe du lịch Limousine 26 chỗ",
+      category: "Ngắm cảnh",
     },
     {
       id: 9,
@@ -150,16 +153,17 @@ const SearchItem = ({destination,date,options,category,transport,priceRange,}) =
       image1: favorite,
       image2: hoianDN,
       danhGia: heartFill,
-      diemDanhGia: 8.4,
+      diemDanhGia: "8.4",
       textDanhGia: "(7 đánh giá)",
       khoiHanh: "15/12/2024 | 15/11/2024",
       thoiGian: "4 ngày 3 đêm",
-      phuongTien: "Máy bay",
+      phuongTien: "Hàng không Vietjet Air",
+      category: "Nghệ thuật và văn hóa",
     },
     {
       id: 10,
       destination: "Đà nẵng",
-      h1: "Trải nghiệm du lượn trên núi Sơn Trà | Đà Nẵng",
+      h1: "Trải nghiệm dù lượn trên núi Sơn Trà | Đà Nẵng",
       maTour: "FGH-46284",
       ngayDi: "22/11/2024",
       ngayVe: "24/11/2024",
@@ -169,11 +173,12 @@ const SearchItem = ({destination,date,options,category,transport,priceRange,}) =
       image1: favorite,
       image2: duluon,
       danhGia: heartFill,
-      diemDanhGia: 9.3,
+      diemDanhGia: "9.3",
       textDanhGia: "(4 đánh giá)",
       khoiHanh: "15/12/2024 | 15/11/2024",
       thoiGian: "4 ngày 3 đêm",
-      phuongTien: "Máy bay",
+      phuongTien: "Hàng không Vietjet Air",
+      category: "Ngắm cảnh",
     },
     {
       id: 11,
@@ -188,11 +193,12 @@ const SearchItem = ({destination,date,options,category,transport,priceRange,}) =
       image1: favorite,
       image2: duthuyen,
       danhGia: heartFill,
-      diemDanhGia: 8.8,
+      diemDanhGia: "8.8",
       textDanhGia: "(17 đánh giá)",
       khoiHanh: "15/12/2024 | 15/11/2024",
       thoiGian: "4 ngày 3 đêm",
-      phuongTien: "Máy bay",
+      phuongTien: "Hàng không Vietnam Airlines",
+      category: "Ngắm cảnh",
     },
     {
       id: 12,
@@ -207,11 +213,12 @@ const SearchItem = ({destination,date,options,category,transport,priceRange,}) =
       image1: favorite,
       image2: nuiThanTai,
       danhGia: heartFill,
-      diemDanhGia: 8.9,
+      diemDanhGia: "8.9",
       textDanhGia: "(23 đánh giá)",
       khoiHanh: "15/12/2024 | 15/11/2024",
       thoiGian: "4 ngày 3 đêm",
-      phuongTien: "Máy bay",
+      phuongTien: "Hàng không Air Asia",
+      category: "Điểm thiên nhiên",
     },
     {
       id: 13,
@@ -226,11 +233,12 @@ const SearchItem = ({destination,date,options,category,transport,priceRange,}) =
       image1: favorite,
       image2: thuyenThungHA,
       danhGia: heartFill,
-      diemDanhGia: 8.8,
+      diemDanhGia: "8.8",
       textDanhGia: "(19 đánh giá)",
       khoiHanh: "15/12/2024 | 15/11/2024",
       thoiGian: "4 ngày 3 đêm",
-      phuongTien: "Máy bay",
+      phuongTien: "Xe du lịch Limousine 9 chỗ",
+      category: "Điểm thiên nhiên",
     },
     {
       id: 14,
@@ -245,11 +253,12 @@ const SearchItem = ({destination,date,options,category,transport,priceRange,}) =
       image1: favorite,
       image2: NHSonVaHoiAn,
       danhGia: heartFill,
-      diemDanhGia: 9.3,
+      diemDanhGia: "9.3",
       textDanhGia: "(24 đánh giá)",
       khoiHanh: "15/12/2024 | 15/11/2024",
       thoiGian: "4 ngày 3 đêm",
-      phuongTien: "Máy bay",
+      phuongTien: "Xe du lịch Limousine 9 chỗ",
+      category: "Ngắm cảnh",
     },
     {
       id: 15,
@@ -264,11 +273,12 @@ const SearchItem = ({destination,date,options,category,transport,priceRange,}) =
       image1: favorite,
       image2: choiGolfDN,
       danhGia: heartFill,
-      diemDanhGia: 9.4,
+      diemDanhGia: "9.4",
       textDanhGia: "(7 đánh giá)",
       khoiHanh: "15/12/2024 | 15/11/2024",
       thoiGian: "4 ngày 3 đêm",
-      phuongTien: "Máy bay",
+      phuongTien: "Hàng không VietNam Airlines",
+      category: "Tour theo chủ đề",
     },
     {
       id: 16,
@@ -283,11 +293,12 @@ const SearchItem = ({destination,date,options,category,transport,priceRange,}) =
       image1: favorite,
       image2: AmThucDN,
       danhGia: heartFill,
-      diemDanhGia: 8.6,
+      diemDanhGia: "8.6",
       textDanhGia: "(14 đánh giá)",
       khoiHanh: "15/12/2024 | 15/11/2024",
       thoiGian: "4 ngày 3 đêm",
-      phuongTien: "Máy bay",
+      phuongTien: "Hàng không VietNam Airlines",
+      category: "Trải nghiệm ẩm thực",
     },
   ];
   // ----------đà lạt---------------------
@@ -305,11 +316,12 @@ const SearchItem = ({destination,date,options,category,transport,priceRange,}) =
       image1: favorite,
       image2: dalat1,
       danhGia: heartFill,
-      diemDanhGia: 9.2,
+      diemDanhGia: "9.2",
       textDanhGia: "(7 đánh giá)",
       khoiHanh: "15/12/2024 | 15/11/2024",
       thoiGian: "4 ngày 3 đêm",
-      phuongTien: "Máy bay",
+      phuongTien: "Hàng không VietNam Airlines",
+      category: "Ngắm cảnh",
     },
     {
       id: 18,
@@ -324,11 +336,12 @@ const SearchItem = ({destination,date,options,category,transport,priceRange,}) =
       image1: favorite,
       image2: dalat2,
       danhGia: heartFill,
-      diemDanhGia: 9.3,
+      diemDanhGia: "9.3",
       textDanhGia: "(6 đánh giá)",
       khoiHanh: "15/12/2024 | 15/11/2024",
       thoiGian: "4 ngày 3 đêm",
-      phuongTien: "Máy bay",
+      phuongTien: "Xe du lịch Limousine 26 chỗ",
+      category: "Điểm thiên nhiên",
     },
     {
       id: 19,
@@ -343,11 +356,12 @@ const SearchItem = ({destination,date,options,category,transport,priceRange,}) =
       image1: favorite,
       image2: dalat3,
       danhGia: heartFill,
-      diemDanhGia: 8.8,
+      diemDanhGia: "8.8",
       textDanhGia: "(9 đánh giá)",
       khoiHanh: "15/12/2024 | 15/11/2024",
       thoiGian: "4 ngày 3 đêm",
-      phuongTien: "Máy bay",
+      phuongTien: "Xe du lịch Limousine 26 chỗ",
+      category: "Ngắm cảnh",
     },
     {
       id: 20,
@@ -362,11 +376,12 @@ const SearchItem = ({destination,date,options,category,transport,priceRange,}) =
       image1: favorite,
       image2: dalat4,
       danhGia: heartFill,
-      diemDanhGia: 8.9,
+      diemDanhGia: "8.9",
       textDanhGia: "(19 đánh giá)",
       khoiHanh: "15/12/2024 | 15/11/2024",
       thoiGian: "4 ngày 3 đêm",
-      phuongTien: "Máy bay",
+      phuongTien: "Xe du lịch Limousine 26 chỗ",
+      category: "Điểm thiên nhiên",
     },
     {
       id: 21,
@@ -381,11 +396,12 @@ const SearchItem = ({destination,date,options,category,transport,priceRange,}) =
       image1: favorite,
       image2: dalat5,
       danhGia: heartFill,
-      diemDanhGia: 8.6,
+      diemDanhGia: "8.6",
       textDanhGia: "(8 đánh giá)",
       khoiHanh: "15/12/2024 | 15/11/2024",
       thoiGian: "4 ngày 3 đêm",
-      phuongTien: "Xe du lịch",
+      phuongTien: "Xe du lịch Limousine 26 chỗ",
+      category: "Tour theo chủ đề",
     },
     {
       id: 22,
@@ -400,11 +416,12 @@ const SearchItem = ({destination,date,options,category,transport,priceRange,}) =
       image1: favorite,
       image2: dalat6,
       danhGia: heartFill,
-      diemDanhGia: 8.9,
+      diemDanhGia: "8.9",
       textDanhGia: "(17 đánh giá)",
       khoiHanh: "15/12/2024 | 15/11/2024",
       thoiGian: "4 ngày 3 đêm",
-      phuongTien: "Xe du lịch",
+      phuongTien: "Xe du lịch Limousine 26 chỗ",
+      category: "Tour theo chủ đề",
     },
     {
       id: 23,
@@ -418,11 +435,12 @@ const SearchItem = ({destination,date,options,category,transport,priceRange,}) =
       image1: favorite,
       image2: dalat7,
       danhGia: heartFill,
-      diemDanhGia: 8.9,
+      diemDanhGia: "8.9",
       textDanhGia: "(28 đánh giá)",
       khoiHanh: "15/12/2024 | 15/11/2024",
       thoiGian: "4 ngày 3 đêm",
-      phuongTien: "Máy bay",
+      phuongTien: "Hàng không VietNam Airlines",
+      category: "Tour theo chủ đề",
     },
     {
       id: 24,
@@ -436,11 +454,12 @@ const SearchItem = ({destination,date,options,category,transport,priceRange,}) =
       image1: favorite,
       image2: dalat8,
       danhGia: heartFill,
-      diemDanhGia: 8.6,
+      diemDanhGia: "8.6",
       textDanhGia: "(14 đánh giá)",
       khoiHanh: "15/12/2024 | 15/11/2024",
       thoiGian: "4 ngày 3 đêm",
-      phuongTien: "Máy bay",
+      phuongTien: "Hàng không VietNam Airlines",
+      category: "Tour theo chủ đề",
     },
     {
       id: 25,
@@ -455,11 +474,12 @@ const SearchItem = ({destination,date,options,category,transport,priceRange,}) =
       image1: favorite,
       image2: dalat9,
       danhGia: heartFill,
-      diemDanhGia: 8.5,
+      diemDanhGia: "8.5",
       textDanhGia: "(15 đánh giá)",
       khoiHanh: "15/12/2024 | 15/11/2024",
       thoiGian: "4 ngày 3 đêm",
-      phuongTien: "Máy bay",
+      phuongTien: "Xe du lịch Limousine 26 chỗ",
+      category: "Tour theo chủ đề",
     },
     {
       id: 26,
@@ -474,11 +494,12 @@ const SearchItem = ({destination,date,options,category,transport,priceRange,}) =
       image1: favorite,
       image2: dalat10,
       danhGia: heartFill,
-      diemDanhGia: 8.8,
+      diemDanhGia: "8.8",
       textDanhGia: "(17 đánh giá)",
       khoiHanh: "15/12/2024 | 15/11/2024",
       thoiGian: "4 ngày 3 đêm",
-      phuongTien: "Tàu",
+      phuongTien: "Đi về bằng tàu hỏa",
+      category: "Tour theo chủ đề",
     },
     {
       id: 27,
@@ -493,11 +514,12 @@ const SearchItem = ({destination,date,options,category,transport,priceRange,}) =
       image1: favorite,
       image2: dalat11,
       danhGia: heartFill,
-      diemDanhGia: 9.7,
+      diemDanhGia: "9.7",
       textDanhGia: "(18 đánh giá)",
       khoiHanh: "15/12/2024 | 15/11/2024",
       thoiGian: "4 ngày 3 đêm",
-      phuongTien: "Máy bay",
+      phuongTien: "Hàng không VietNam Airlines",
+      category: "Tour bằng xe buýt",
     },
     {
       id: 28,
@@ -512,11 +534,12 @@ const SearchItem = ({destination,date,options,category,transport,priceRange,}) =
       image1: favorite,
       image2: dalat12,
       danhGia: heartFill,
-      diemDanhGia: 8.9,
+      diemDanhGia: "8.9",
       textDanhGia: "(11 đánh giá)",
       khoiHanh: "15/12/2024 | 15/11/2024",
       thoiGian: "4 ngày 3 đêm",
-      phuongTien: "Máy bay",
+      phuongTien: "Hàng không VietNam Airlines",
+      category: "Tour theo chủ đề",
     },
   ];
   // ---------Hạ Long--------------
@@ -533,12 +556,13 @@ const SearchItem = ({destination,date,options,category,transport,priceRange,}) =
       image1: favorite,
       image2: halong1,
       danhGia: heartFill,
-      diemDanhGia: 8.9,
+      diemDanhGia: "8.9",
       textDanhGia: "(19 đánh giá)",
       destination: "Hạ long",
       khoiHanh: "15/12/2024 | 15/11/2024",
       thoiGian: "4 ngày 3 đêm",
-      phuongTien: "Máy bay",
+      phuongTien: "Hàng không VietNam Airlines",
+      category: "Ngắm cảnh",
     },
     {
       id: 30,
@@ -551,12 +575,13 @@ const SearchItem = ({destination,date,options,category,transport,priceRange,}) =
       image1: favorite,
       image2: halong2,
       danhGia: heartFill,
-      diemDanhGia: 8.9,
+      diemDanhGia: "8.9",
       textDanhGia: "(12 đánh giá)",
       destination: "Hạ long",
       khoiHanh: "15/12/2024 | 15/11/2024",
       thoiGian: "4 ngày 3 đêm",
-      phuongTien: "Máy bay",
+      phuongTien: "Hàng không Vietjet Air",
+      category: "Ngắm cảnh",
     },
     {
       id: 31,
@@ -570,12 +595,13 @@ const SearchItem = ({destination,date,options,category,transport,priceRange,}) =
       image1: favorite,
       image2: halong3,
       danhGia: heartFill,
-      diemDanhGia: 8.5,
+      diemDanhGia: "8.5",
       textDanhGia: "(16 đánh giá)",
       destination: "Hạ long",
       khoiHanh: "15/12/2024 | 15/11/2024",
       thoiGian: "4 ngày 3 đêm",
-      phuongTien: "Máy bay",
+      phuongTien: "Hàng không Vietjet Air",
+      category: "Ngắm cảnh",
     },
     {
       id: 32,
@@ -588,12 +614,13 @@ const SearchItem = ({destination,date,options,category,transport,priceRange,}) =
       image1: favorite,
       image2: halong4,
       danhGia: heartFill,
-      diemDanhGia: 10.0,
+      diemDanhGia: "10.0",
       textDanhGia: "(1 đánh giá)",
       destination: "Hạ long",
       khoiHanh: "15/12/2024 | 15/11/2024",
       thoiGian: "4 ngày 3 đêm",
-      phuongTien: "Máy bay",
+      phuongTien: "Hàng không Vietjet Air",
+      category: "Ngắm cảnh",
     },
     {
       id: 33,
@@ -606,12 +633,13 @@ const SearchItem = ({destination,date,options,category,transport,priceRange,}) =
       image1: favorite,
       image2: halong5,
       danhGia: heartFill,
-      diemDanhGia: 8.9,
+      diemDanhGia: "8.9",
       textDanhGia: "(9 đánh giá)",
       destination: "Hạ long",
       khoiHanh: "15/12/2024 | 15/11/2024",
       thoiGian: "4 ngày 3 đêm",
-      phuongTien: "Máy bay",
+      phuongTien: "Hàng không VietNam Airlines",
+      category: "Ngắm cảnh",
     },
     {
       id: 34,
@@ -625,12 +653,13 @@ const SearchItem = ({destination,date,options,category,transport,priceRange,}) =
       image1: favorite,
       image2: halong6,
       danhGia: heartFill,
-      diemDanhGia: 8.9,
+      diemDanhGia: "8.9",
       textDanhGia: "(18 đánh giá)",
       destination: "Hạ long",
       khoiHanh: "15/12/2024 | 15/11/2024",
       thoiGian: "4 ngày 3 đêm",
-      phuongTien: "Máy bay",
+      phuongTien: "Xe du lịch Limousine 26 chỗ",
+      category: "Ngắm cảnh",
     },
     {
       id: 35,
@@ -643,12 +672,13 @@ const SearchItem = ({destination,date,options,category,transport,priceRange,}) =
       image1: favorite,
       image2: halong7,
       danhGia: heartFill,
-      diemDanhGia: 9.3,
+      diemDanhGia: "9.3",
       textDanhGia: "(6 đánh giá)",
       destination: "Hạ long",
       khoiHanh: "15/12/2024 | 15/11/2024",
       thoiGian: "4 ngày 3 đêm",
-      phuongTien: "Máy bay",
+      phuongTien: "Hàng không VietNam Airlines",
+      category: "Ngắm cảnh",
     },
   ];
   // ------------phu quoc--------------------
@@ -664,12 +694,13 @@ const SearchItem = ({destination,date,options,category,transport,priceRange,}) =
       image1: favorite,
       image2: phuquoc1,
       danhGia: heartFill,
-      diemDanhGia: 9.0,
+      diemDanhGia: "9.0",
       textDanhGia: "(7 đánh giá)",
       destination: "Phú Quốc",
       khoiHanh: "15/12/2024 | 15/11/2024",
       thoiGian: "4 ngày 3 đêm",
-      phuongTien: "Máy bay",
+      phuongTien: "Hàng không VietNam Airlines",
+      category: "Tour dưới nước",
     },
     {
       id: 37,
@@ -683,12 +714,13 @@ const SearchItem = ({destination,date,options,category,transport,priceRange,}) =
       image1: favorite,
       image2: phuquoc2,
       danhGia: heartFill,
-      diemDanhGia: 8.8,
+      diemDanhGia: "8.8",
       textDanhGia: "(17 đánh giá)",
       destination: "Phú Quốc",
       khoiHanh: "15/12/2024 | 15/11/2024",
       thoiGian: "4 ngày 3 đêm",
-      phuongTien: "Máy bay",
+      phuongTien: "Hàng không VietNam Airlines",
+      category: "Tour dưới nước",
     },
     {
       id: 38,
@@ -702,12 +734,13 @@ const SearchItem = ({destination,date,options,category,transport,priceRange,}) =
       image1: favorite,
       image2: phuquoc3,
       danhGia: heartFill,
-      diemDanhGia: 8.6,
+      diemDanhGia: "8.6",
       textDanhGia: "(7 đánh giá)",
       destination: "Phú Quốc",
       khoiHanh: "15/12/2024 | 15/11/2024",
       thoiGian: "4 ngày 3 đêm",
-      phuongTien: "Máy bay",
+      phuongTien: "Hàng không VietNam Airlines",
+      category: "Điểm thiên nhiên",
     },
     {
       id: 39,
@@ -720,12 +753,13 @@ const SearchItem = ({destination,date,options,category,transport,priceRange,}) =
       image1: favorite,
       image2: phuquoc4,
       danhGia: heartFill,
-      diemDanhGia: 8.9,
+      diemDanhGia: "8.9",
       textDanhGia: "(7 đánh giá)",
       destination: "Phú Quốc",
       khoiHanh: "15/12/2024 | 15/11/2024",
       thoiGian: "4 ngày 3 đêm",
-      phuongTien: "Máy bay",
+      phuongTien: "Hàng không VietNam Airlines",
+      category: "Tour theo chủ đề",
     },
   ];
   // ---------------sapa----------------
@@ -742,12 +776,13 @@ const SearchItem = ({destination,date,options,category,transport,priceRange,}) =
       image1: favorite,
       image2: sapa1,
       danhGia: heartFill,
-      diemDanhGia: 8.0,
+      diemDanhGia: "8.0",
       textDanhGia: "(7 đánh giá)",
       destination: "Sa pa",
       khoiHanh: "15/12/2024 | 15/11/2024",
       thoiGian: "4 ngày 3 đêm",
-      phuongTien: "Máy bay",
+      phuongTien: "Hàng không VietNam Airlines",
+      category: "Ngắm cảnh",
     },
     {
       id: 41,
@@ -761,12 +796,13 @@ const SearchItem = ({destination,date,options,category,transport,priceRange,}) =
       image1: favorite,
       image2: sapa2,
       danhGia: heartFill,
-      diemDanhGia: 8.0,
+      diemDanhGia: "8.0",
       textDanhGia: "(7 đánh giá)",
       destination: "Sa pa",
       khoiHanh: "15/12/2024 | 15/11/2024",
       thoiGian: "4 ngày 3 đêm",
-      phuongTien: "Máy bay",
+      phuongTien: "Xe du lịch Limousine 26 chỗ",
+      category: "Điểm thiên nhiên",
     },
   ];
   // -----------------nha trang-------------------
@@ -783,12 +819,13 @@ const SearchItem = ({destination,date,options,category,transport,priceRange,}) =
       image1: favorite,
       image2: nhatrang1,
       danhGia: heartFill,
-      diemDanhGia: 8.9,
+      diemDanhGia: "8.9",
       textDanhGia: "(27 đánh giá)",
       destination: "Nha Trang",
       khoiHanh: "15/12/2024 | 15/11/2024",
       thoiGian: "4 ngày 3 đêm",
-      phuongTien: "Máy bay",
+      phuongTien: "Hàng không VietNam Airlines",
+      category: "Tour dưới nước",
     },
     {
       id: 43,
@@ -802,12 +839,13 @@ const SearchItem = ({destination,date,options,category,transport,priceRange,}) =
       image1: favorite,
       image2: nhatrang2,
       danhGia: heartFill,
-      diemDanhGia: 8.8,
+      diemDanhGia: "8.8",
       textDanhGia: "(7 đánh giá)",
       destination: "Nha Trang",
       khoiHanh: "15/12/2024 | 15/11/2024",
       thoiGian: "4 ngày 3 đêm",
-      phuongTien: "Máy bay",
+      phuongTien: "Hàng không VietNam Airlines",
+      category: "Ngắm cảnh",
     },
     {
       id: 44,
@@ -821,19 +859,20 @@ const SearchItem = ({destination,date,options,category,transport,priceRange,}) =
       image1: favorite,
       image2: nhatrang3,
       danhGia: heartFill,
-      diemDanhGia: 8.9,
+      diemDanhGia: "8.9",
       textDanhGia: "(17 đánh giá)",
       destination: "Nha Trang",
       khoiHanh: "15/12/2024 | 15/11/2024",
       thoiGian: "4 ngày 3 đêm",
-      phuongTien: "Máy bay",
+      phuongTien: "Hàng không VietNam Airlines",
+      category: "Ngắm cảnh",
     },
   ];
   // --------nước ngoài------------------------
   const hochiminh = [
     {
       id: 52,
-      h1: "Tour Trung Quốc trọn gói (Phượng Hoàng Cổ Trấn, ...) - 4N3Đ",
+      h1: "Tour Trung Quốc trọn gói (Phượng Hoàng Cổ Trấn, ...)",
       maTour: "FGH-46284",
       ngayDi: "22/11/2024",
       ngayVe: "24/11/2024",
@@ -843,16 +882,17 @@ const SearchItem = ({destination,date,options,category,transport,priceRange,}) =
       image1: favorite,
       image2: china3,
       danhGia: heartFill,
-      diemDanhGia: 9.4,
+      diemDanhGia: "9.4",
       textDanhGia: "(3 đánh giá)",
-      destination: "Trung Quốc",
+      destination: "Trung quốc",
       khoiHanh: "15/12/2024 | 15/11/2024",
       thoiGian: "4 ngày 3 đêm",
-      phuongTien: "Máy bay",
+      phuongTien: "Hàng không VietNam Airlines",
+      category: "Ngắm cảnh",
     },
     {
       id: 53,
-      h1: "Tour Trung Quốc trọn gói (Bắc Kinh, Thượng Hải, Hàng Châu) - 4N3Đ",
+      h1: "Tour Trung Quốc trọn gói (Bắc Kinh, Thượng Hải,...)",
       tietKiem: "Tiết Kiệm 10%",
       maTour: "FGH-46284",
       ngayDi: "22/11/2024",
@@ -862,42 +902,45 @@ const SearchItem = ({destination,date,options,category,transport,priceRange,}) =
       image1: favorite,
       image2: china2,
       danhGia: heartFill,
-      diemDanhGia: 9.1,
+      diemDanhGia: "9.1",
       textDanhGia: "(3 đánh giá)",
-      destination: "Trung Quốc",
+      destination: "Trung quốc",
       khoiHanh: "15/12/2024 | 15/11/2024",
       thoiGian: "4 ngày 3 đêm",
-      phuongTien: "Máy bay",
+      phuongTien: "Hàng không VietNam Airlines",
+      category: "Ngắm cảnh",
     },
     {
       h1: "Tour Nửa ngày tham quan Cung Điện Versailles",
       tietKiem: "Tiết Kiệm 10%",
-      gia: 2316200,
+      gia: "2.316.200 VND",
       giaGoc: "2.524.200 VND",
       image1: favorite,
       image2: france2,
       danhGia: heartFill,
-      diemDanhGia: 8.9,
+      diemDanhGia: "8.9",
       textDanhGia: "(14 đánh giá)",
       destination: "Pháp",
       khoiHanh: "15/12/2024 | 15/11/2024",
       thoiGian: "4 ngày 3 đêm",
-      phuongTien: "Máy bay",
+      phuongTien: "Hàng không VietNam Airlines",
+      category: "Ngắm cảnh",
     },
     {
       h1: "Tour ngày Mont-saint-Michael Paris",
       tietKiem: "Tiết Kiệm 10%",
-      gia: 3506200,
+      gia: "3.506.200 VND",
       giaGoc: "3.324.200 VND",
       image1: favorite,
       image2: france,
       danhGia: heartFill,
-      diemDanhGia: 8.7,
+      diemDanhGia: "8.7",
       textDanhGia: "(12 đánh giá)",
       destination: "Pháp",
       khoiHanh: "15/12/2024 | 15/11/2024",
       thoiGian: "4 ngày 3 đêm",
-      phuongTien: "Máy bay",
+      phuongTien: "Hàng không VietNam Airlines",
+      category: "Ngắm cảnh",
     },
     {
       id: 54,
@@ -911,12 +954,13 @@ const SearchItem = ({destination,date,options,category,transport,priceRange,}) =
       image1: favorite,
       image2: japan,
       danhGia: heartFill,
-      diemDanhGia: 8.9,
+      diemDanhGia: "8.9",
       textDanhGia: "(7 đánh giá)",
-      destination: "Nhật",
+      destination: "Nhật bản",
       khoiHanh: "15/12/2024 | 15/11/2024",
       thoiGian: "4 ngày 3 đêm",
-      phuongTien: "Máy bay",
+      phuongTien: "Hàng không Vietjet Air",
+      category: "Ngắm cảnh",
     },
     {
       id: 55,
@@ -930,12 +974,13 @@ const SearchItem = ({destination,date,options,category,transport,priceRange,}) =
       image1: favorite,
       image2: bali,
       danhGia: heartFill,
-      diemDanhGia: 8.8,
+      diemDanhGia: "8.8",
       textDanhGia: "(11 đánh giá)",
-      destination: "Indo",
+      destination: "Indonesia",
       khoiHanh: "15/12/2024 | 15/11/2024",
       thoiGian: "4 ngày 3 đêm",
-      phuongTien: "Máy bay",
+      phuongTien: "Hàng không Vietjet Air",
+      category: "Ngắm cảnh",
     },
     {
       id: 56,
@@ -949,12 +994,13 @@ const SearchItem = ({destination,date,options,category,transport,priceRange,}) =
       image1: favorite,
       image2: halan,
       danhGia: heartFill,
-      diemDanhGia: 8.7,
+      diemDanhGia: "8.7",
       textDanhGia: "(4 đánh giá)",
       destination: "Hà Lan",
       khoiHanh: "15/12/2024 | 15/11/2024",
       thoiGian: "4 ngày 3 đêm",
-      phuongTien: "Máy bay",
+      phuongTien: "Hàng không Vietjet Air",
+      category: "Ngắm cảnh",
     },
     {
       id: 57,
@@ -968,12 +1014,13 @@ const SearchItem = ({destination,date,options,category,transport,priceRange,}) =
       image1: favorite,
       image2: busan,
       danhGia: heartFill,
-      diemDanhGia: 9.5,
+      diemDanhGia: "9.5",
       textDanhGia: "(17 đánh giá)",
       destination: "Hàn Quốc",
       khoiHanh: "15/12/2024 | 15/11/2024",
       thoiGian: "4 ngày 3 đêm",
-      phuongTien: "Máy bay",
+      phuongTien: "Hàng không VietNam Airlines",
+      category: "Điểm thiên nhiên",
     },
     {
       id: 58,
@@ -987,14 +1034,16 @@ const SearchItem = ({destination,date,options,category,transport,priceRange,}) =
       image1: favorite,
       image2: germany,
       danhGia: heartFill,
-      diemDanhGia: 8.9,
+      diemDanhGia: "8.9",
       textDanhGia: "(9 đánh giá)",
       destination: "Đức",
       khoiHanh: "15/12/2024 | 15/11/2024",
       thoiGian: "4 ngày 3 đêm",
-      phuongTien: "Máy bay",
+      phuongTien: "Hàng không VietNam Airlines",
+      category: "Ngắm cảnh",
     },
     {
+      id: 59,
       h1: "Tour cả ngày Sa Mạc Pinnacles New Morcia và Hoa Dại",
       tietKiem: "Tiết Kiệm 10%",
       maTour: "FGH-46284",
@@ -1005,23 +1054,17 @@ const SearchItem = ({destination,date,options,category,transport,priceRange,}) =
       image1: favorite,
       image2: uc,
       danhGia: heartFill,
-      diemDanhGia: 8.4,
+      diemDanhGia: "8.4",
       textDanhGia: "(2 đánh giá)",
-      destination: "Úc",
+      destination: "úc",
       khoiHanh: "15/12/2024 | 15/11/2024",
       thoiGian: "4 ngày 3 đêm",
-      phuongTien: "Máy bay",
+      phuongTien: "Hàng không VietNam Airlines",
+      category: "Điểm thiên nhiên",
     },
   ];
 
-  const allTours = [
-    ...danangs,
-    ...dalats,
-    ...halongs,
-    ...phuquocs,
-    ...sapas,
-    ...nhatrangs,
-    ...hochiminh,
+  const allTours = [...danangs,...dalats,...halongs,...phuquocs,...sapas,...nhatrangs,...hochiminh,
   ];
 
   // Hàm chuyển giá từ chuỗi sang số
@@ -1036,21 +1079,56 @@ const SearchItem = ({destination,date,options,category,transport,priceRange,}) =
   };
 
   // Lọc danh sách tour dựa trên điều kiện tìm kiếm
-  useEffect(()=>{
+  useEffect(() => {
     setIsLoading(true);
-    const timer = setTimeout(()=>{
-      const filtered  = allTours.filter((tour)=>{
-        const matchesDestination = !destination || tour.destination.toLowerCase().includes(destination.toLowerCase());
-        const matchesTransport = transport === "all" || tour.phuongTien.toLowerCase().includes(transport.toLowerCase());
-        const matchesPrice = parsePrice(tour.gia) >= priceRange[0] && parsePrice(tour.gia) <= priceRange[1];
-        return matchesDestination && matchesTransport && matchesPrice;
+    const timer = setTimeout(() => {
+      // Lọc dữ liệu theo các tiêu chí
+      const filtered = allTours.filter((tour) => {
+        const matchesDestination =
+          !destination ||
+          tour.destination.toLowerCase().includes(destination.toLowerCase());
+        const matchesTransport =
+          transport === "all" ||
+          tour.phuongTien.toLowerCase().includes(transport.toLowerCase());
+        const matchesCategory =
+          category === "all" ||
+          tour.category.toLowerCase().includes(category.toLowerCase());
+        const matchesPrice =
+          parsePrice(tour.gia) >= priceRange[0] &&
+          parsePrice(tour.gia) <= priceRange[1];
+        return (
+          matchesDestination &&
+          matchesTransport &&
+          matchesCategory &&
+          matchesPrice
+        );
       });
-      setFilteredTours(filtered);
-      setCurrentPage(1); //Đặt lại trang về nếu có thay đổi
+
+      // Xếp theo
+      const sortTours = (tours) => {
+        if (sapxep === "gia1") {
+          return [...tours].sort(
+            (a, b) => parsePrice(a.gia) - parsePrice(b.gia)
+          );
+        }
+        if (sapxep === "gia2") {
+          return [...tours].sort(
+            (a, b) => parsePrice(b.gia) - parsePrice(a.gia)
+          );
+        }
+        if (sapxep === "gia3") {
+          return [...tours].sort((a, b) => b.diemDanhGia - a.diemDanhGia);
+        }
+        return tours;
+      };
+
+      setFilteredTours(sortTours(filtered));
+      setCurrentPage(1);
       setIsLoading(false);
-    },2000);
-    return () => clearTimeout(timer);
-  },[destination, transport, priceRange]);
+    }, 2000);
+
+    return () => clearTimeout(timer); // Dọn dẹp timer khi dependencies thay đổi
+  }, [destination, transport, category, priceRange, sapxep]);
 
   // Tính toán số trang
   const totalPages = Math.ceil(filteredTours.length / itemsPerPage);
@@ -1093,9 +1171,9 @@ const SearchItem = ({destination,date,options,category,transport,priceRange,}) =
     const updatedFavorites = localStorage.getItem("favoriteTours");
     setFavorites(updatedFavorites ? JSON.parse(updatedFavorites) : []);
   };
-  // Trang luôn nằm ở đầu
+
   useEffect(() => {
-    window.scrollTo(0, 0); // Di chuyển lên đầu trang khi chuyển trang
+    window.scrollTo(0, 0);
   }, [currentPage]);
 
   return (
@@ -1109,81 +1187,81 @@ const SearchItem = ({destination,date,options,category,transport,priceRange,}) =
       ) : toursToDisplay.length > 0 ? (
         toursToDisplay.map((tour, index) => (
           <div key={index} className="seList">
-              <div className="seListCard" key={tour.id}>
-                <div className="seListItem">
-                  {/* ------ */}
-                  <div className="seTietkiem">{tour.tietKiem}</div>
-                  <img
-                    src={isFavorite(tour.id) ? favFill : fav}
-                    alt="Favorite"
-                    className="seFavorite"
-                    onClick={() => handleFavoriteClick(tour)}
-                  />
-                  <img src={tour.image2} alt={tour.h1} className="seListImg" />
-                  {/* ------ */}
-                  <div className="seListTitles">
-                    <div className="seH1" onClick={handleSee}>
-                      {tour.h1}
+            <div className="seListCard" key={tour.id}>
+              <div className="seListItem">
+                {/* ------ */}
+                <div className="seTietkiem">{tour.tietKiem}</div>
+                <img
+                  src={isFavorite(tour.id) ? favFill : fav}
+                  alt="Favorite"
+                  className="seFavorite"
+                  onClick={() => handleFavoriteClick(tour)}
+                />
+                <img src={tour.image2} alt={tour.h1} className="seListImg" />
+                {/* ------ */}
+                <div className="seListTitles">
+                  <div className="seH1" onClick={handleSee}>
+                    {tour.h1}
+                  </div>
+                  <div className="t" onClick={handleSee}>
+                    <div className="seNgayDi">
+                      <FontAwesomeIcon
+                        icon={faCalendarDays}
+                        className="iconTitleThongTin"
+                      />
+                      Khởi hành: <span>{tour.khoiHanh}</span>
                     </div>
-                    <div className="t" onClick={handleSee}>
-                      <div className="seNgayDi">
-                        <FontAwesomeIcon
-                          icon={faCalendarDays}
-                          className="iconTitleThongTin"
-                        />
-                        Khởi hành: <span>{tour.khoiHanh}</span>
-                      </div>
-                      <div className="seThoiGian">
-                        <FontAwesomeIcon
-                          icon={faCalendarWeek}
-                          className="iconTitleThongTin"
-                        />
-                        Thời gian: <span>{tour.thoiGian}</span>
-                      </div>
-                      <div className="sePhuongTien">
-                        <FontAwesomeIcon
-                          icon={faPlaneUp}
-                          className="iconTitleThongTin"
-                        />
-                        Phương tiện: <span>{tour.phuongTien}</span>
-                      </div>
+                    <div className="seThoiGian">
+                      <FontAwesomeIcon
+                        icon={faCalendarWeek}
+                        className="iconTitleThongTin"
+                      />
+                      Thời gian: <span>{tour.thoiGian}</span>
                     </div>
-                    <div className="seGia">
-                      <p>{tour.giaGoc}</p>
-                      <h1>
-                        <span>{tour.gia.toLocaleString("vi-VN")}</span>
-                      </h1>
+                    <div className="sePhuongTien">
+                      <FontAwesomeIcon
+                        icon={faPlaneUp}
+                        className="iconTitleThongTin"
+                      />
+                      Phương tiện: <span>{tour.phuongTien}</span>
                     </div>
-                    <div className="seListTitle">
-                      <div className="seIcon">
-                        <div className="grIconDanhGia">
-                          <img
-                            className="seIconDanhGia"
-                            alt="Rating"
-                            src={tour.danhGia}
-                          />
-                          <div
-                            className="seDiemDanhGia"
-                            onClick={toggleReviewPopup}
-                          >
-                            {tour.diemDanhGia}
-                          </div>
-                        </div>
+                  </div>
+                  <div className="seGia">
+                    <p>{tour.giaGoc}</p>
+                    <h1>
+                      <span>{tour.gia.toLocaleString("vi-VN")}</span>
+                    </h1>
+                  </div>
+                  <div className="seListTitle">
+                    <div className="seIcon">
+                      <div className="grIconDanhGia">
+                        <img
+                          className="seIconDanhGia"
+                          alt="Rating"
+                          src={tour.danhGia}
+                        />
                         <div
-                          className="seTextDanhGia"
+                          className="seDiemDanhGia"
                           onClick={toggleReviewPopup}
                         >
-                          {tour.textDanhGia}
+                          {tour.diemDanhGia}
                         </div>
                       </div>
-                      <button className="seCardBtn2" onClick={handleSee}>
-                        Xem chi tiết
-                      </button>
+                      <div
+                        className="seTextDanhGia"
+                        onClick={toggleReviewPopup}
+                      >
+                        {tour.textDanhGia}
+                      </div>
                     </div>
+                    <button className="seCardBtn2" onClick={handleSee}>
+                      Xem chi tiết
+                    </button>
                   </div>
                 </div>
               </div>
             </div>
+          </div>
         ))
       ) : (
         <p className="khongTimThayKetQua">Không tìm thấy kết quả phù hợp.</p>

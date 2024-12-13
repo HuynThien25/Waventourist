@@ -4,22 +4,16 @@ import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-
 const QuenMatKhau3 = () => {
   const navigate = useNavigate();
-
-  // States to manage form inputs and validation
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [isFormValid, setIsFormValid] = useState(true);
   const [showPopup2, setShowPopup2] = useState(false);
 
-  // Regex to validate email and phone number formats
-
   const passwordRegex =
     /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$/;
 
-  // Back navigation handling
   const handleBack = () => {
     if (window.history.length > 1) {
       navigate(-1);
@@ -28,7 +22,6 @@ const QuenMatKhau3 = () => {
     }
   };
 
-  // Validation check function
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -37,9 +30,9 @@ const QuenMatKhau3 = () => {
 
     if (isPasswordValid && isConfirmPasswordValid) {
       setIsFormValid(true);
-      setShowPopup2(true); // Hiển thị popup khi đăng ký thành công
+      setShowPopup2(true); 
     } else {
-      setIsFormValid(false); // Không hợp lệ, báo lỗi
+      setIsFormValid(false); 
     }
   };
 

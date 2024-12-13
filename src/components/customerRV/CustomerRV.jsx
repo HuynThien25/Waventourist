@@ -3,7 +3,6 @@ import mtp from "../../assets/img/anhDaiDien/mtp.jpg";
 import ht2 from "../../assets/img/anhDaiDien/ht2.jpg";
 import heartFill from "../../assets/img/logo/heartFill.png";
 import { useEffect, useRef, useState, useCallback } from "react";
-
 const CustomerRV = () => {
   const slides = [
     {
@@ -29,7 +28,6 @@ const CustomerRV = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const sliderRef = useRef(null);
 
-  //Sử dụng useEffect để tạo hiệu ứng tự động chuyển slide mỗi 10 giây.
   useEffect(() => {
     const autoScroll = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % slides.length);
@@ -47,7 +45,6 @@ const CustomerRV = () => {
   const goPrev = useCallback(() => {
     setCurrentIndex((prevIndex) => (prevIndex === 0 ? slides.length - 1 : prevIndex - 1));
   }, [slides.length]);
-  
   //goPrev: giảm chỉ số currentIndex để hiển thị slide trước, và nếu đang ở slide đầu tiên thì trở lại slide cuối cùng.
   
   //Mỗi khi currentIndex thay đổi, sliderRef sẽ cập nhật vị trí transform của thẻ div chứa slider, 

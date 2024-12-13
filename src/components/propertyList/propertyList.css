@@ -33,7 +33,6 @@
   height: 40px;
   border-radius: 5px;
 }
-/* ------- */
 .pList {
   width: 100%;
   max-width: 1024px;
@@ -153,24 +152,23 @@
 @media (max-width: 480px) {
   .pList {
     grid-template-columns: 1fr 1fr;
-    display: grid;
     overflow-x: auto; 
+    display: grid;
     scroll-snap-type: x mandatory; 
+    width: 400px;
+    margin-left: 20px;
   }
   .plistCenter {
-    display: flex;
-    justify-content: center;
     gap: 0;
   }
   .pListCard {
     height: auto; 
+    scroll-snap-align: start; 
     min-width: 160px;
     max-width: 140px;
     display: flex;
-    justify-content: center;
     border: none;
     box-shadow: none;
-    scroll-snap-align: start; 
   }
   .pList::-webkit-scrollbar {
     display: none;

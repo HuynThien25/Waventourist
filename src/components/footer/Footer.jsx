@@ -12,7 +12,6 @@ import facebook from "../../assets/img/logo/facebook.png";
 import instagram from "../../assets/img/logo/instagram.png";
 import youtube from "../../assets/img/logo/youtube.png";
 import tiktok from "../../assets/img/logo/tiktok.png";
-
 const Footer = () => {
   return (
     <div className="mail">

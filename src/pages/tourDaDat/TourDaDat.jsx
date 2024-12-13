@@ -3,10 +3,10 @@ import Navbar from "../../components/navbar/Navbar";
 import Footer from "../../components/footer/Footer";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-
 const TourDaDat = () => {
   const location = useLocation();
   const [favoriteTours, setFavoriteTours] = useState([]);
+  const [boughtTours,setBoughtTours] = useState([]);
   const [viewMode, setViewMode] = useState("info"); // "info" hoặc "favorites"
   const [showConfirmPopup, setShowConfirmPopup] = useState(false); // Quản lý popup xác nhận
   const [selectedTourId, setSelectedTourId] = useState(null); // Lưu id của tour được chọn
@@ -44,21 +44,21 @@ const TourDaDat = () => {
   };
 
   const handleOpenConfirmPopup = (id) => {
-    setSelectedTourId(id); // Lưu id của tour muốn xóa
-    setShowConfirmPopup(true); // Hiển thị popup xác nhận
+    setSelectedTourId(id); 
+    setShowConfirmPopup(true);
   };
 
   const handleConfirmDelete = () => {
     if (selectedTourId) {
-      handleRemoveFavorite(selectedTourId); // Thực hiện xóa
+      handleRemoveFavorite(selectedTourId); 
     }
-    setShowConfirmPopup(false); // Đóng popup
-    setSelectedTourId(null); // Reset id
+    setShowConfirmPopup(false); 
+    setSelectedTourId(null); 
   };
 
   const handleCancelDelete = () => {
-    setShowConfirmPopup(false); // Đóng popup mà không làm gì
-    setSelectedTourId(null); // Reset id
+    setShowConfirmPopup(false);
+    setSelectedTourId(null); 
   };
 
   useEffect(() => {
@@ -73,36 +73,12 @@ const TourDaDat = () => {
     window.scrollTo(0, 0);
   }, [location]);
 
-  const tours = [
-    {
-      id: 1,
-      maTour: "SN34545",
-      ngayDi: "27/09/2024",
-      ngayVe: "30/09/2024",
-      diaDiem: "Phú Quốc",
-      soNguoi: 1,
-      gia: "3.159.000 VND",
-    },
-    {
-      id: 2,
-      maTour: "SD13842",
-      ngayDi: "27/10/2024",
-      ngayVe: "30/10/2024",
-      diaDiem: "Đà Nẵng",
-      soNguoi: 2,
-      gia: "4.109.000 VND",
-    },
-    {
-      id: 3,
-      maTour: "SF48532",
-      ngayDi: "27/11/2024",
-      ngayVe: "30/11/2024",
-      diaDiem: "Hà Nội",
-      soNguoi: 2,
-      gia: "7.359.000 VND",
-    },
-  ];
-
+  useEffect(() => {
+    const savedTours = localStorage.getItem("bookedTours");
+    const tours = savedTours ? JSON.parse(savedTours) : [];
+    setBoughtTours(tours); 
+  }, []);
+  
   return (
     <div>
       <Navbar />
@@ -129,27 +105,30 @@ const TourDaDat = () => {
 
           {viewMode === "info" && (
             <div className="bangCacThongTinTour">
-              <div className="tourHeader">
-                <div>ID</div>
-                <div>Mã tour</div>
-                <div>Ngày đi</div>
-                <div>Ngày về</div>
-                <div>Tour</div>
-                <div>Số người</div>
-                <div>Giá</div>
-              </div>
-              {tours.map((tour, index) => (
-                <div className="tourRow" key={tour.id}>
-                  <div>{index + 1}</div>
-                  <div>{tour.maTour}</div>
-                  <div>{tour.ngayDi}</div>
-                  <div>{tour.ngayVe}</div>
-                  <div>{tour.diaDiem}</div>
-                  <div>{tour.soNguoi}</div>
-                  <div>{tour.gia}</div>
-                </div>
-              ))}
-            </div>
+    <div className="tourHeader">
+      <div>ID</div>
+      <div>Mã tour</div>
+      <div>Ngày đi</div>
+      <div>Ngày về</div>
+      <div>Tour</div>
+      <div>Giá</div>
+    </div>
+    {boughtTours.length > 0 ? (
+      boughtTours.map((tour, index) => (
+        <div className="tourRow" key={tour.id}>
+          <div>{index + 1}</div>
+          <div>{tour.maTour}</div>
+          <div>{tour.ngayDi}</div>
+          <div>{tour.ngayVe}</div>
+          <div>{tour.diaDiem}</div>
+          <div>{tour.gia}</div>
+          <button className="danhGia">Đánh giá</button>
+        </div>
+      ))
+    ) : (
+      <p>Chưa có tour nào được đặt.</p>
+    )}
+  </div>
           )}
 
           {viewMode === "favorites" && (

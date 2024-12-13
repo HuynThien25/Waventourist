@@ -3,7 +3,6 @@ import iconvali1 from "../../assets/img/logo/iconvali.png";
 import iconuytin1 from "../../assets/img/logo/iconuytin.png";
 import logohotro1 from "../../assets/img/logo/logohotro.png";
 import logothanhtoan from "../../assets/img/logo/logothanhtoan.png";
-
 const Offers = () => {
   return (
     <div className="offers">

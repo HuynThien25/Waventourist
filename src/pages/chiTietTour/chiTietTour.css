@@ -755,6 +755,7 @@
     font-size: 18px;
     margin: 170px 120px 0px;
     text-align: center;
+    /* width: 90%; */
   }
   .hotelImages {
     flex-wrap: nowrap;
@@ -903,7 +904,7 @@
   .destBtn3 {
     font-size: 13px;
     font-weight: 500;
-    padding: 10px 12px;
+    padding: 10px 10px;
   }
   .content1 {
     width: 90%;

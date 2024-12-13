@@ -66,7 +66,6 @@
     padding: 40px;
   }
 }
-
 @media (max-width: 480px) {
   .cardForgetPass {
     width: 100%;

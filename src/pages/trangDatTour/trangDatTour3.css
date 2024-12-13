@@ -207,7 +207,7 @@
   color: #aaa;
   font-style: italic;
 }
-/* For responsive and mobile view, spacing adjustments */
+/*responsive */
 @media screen and (max-width: 768px) {
   .methodDetails .bang2 {
     padding: 15px;
@@ -217,7 +217,6 @@
     padding: 10px;
   }
 }
-
 .timeLeft {
   background-color: #18a0fb;
   padding: 18px;
@@ -246,7 +245,6 @@
   padding: 16px;
   padding-bottom: 28px;
 }
-/* mã khuyến mãi */
 .maKhuyenMai {
   padding-top: 40px;
 }
@@ -327,21 +325,18 @@
   font-weight: 500;
   color: #18a0fb;
 }
-/* thông báo */
-/* Nền mờ cho pop-up */
 .popupOverlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5); /* Nền mờ */
+  background-color: rgba(0, 0, 0, 0.5); 
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1000;
 }
-/* Nội dung pop-up */
 .popupContent {
   background-color: white;
   padding: 15px;
@@ -350,7 +345,7 @@
   width: 90%;
   text-align: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  animation: popUp 0.3s ease-out; /* Hiệu ứng bật */
+  animation: popUp 0.3s ease-out;
 }
 @keyframes popUp {
   from {
@@ -380,7 +375,10 @@
     padding-bottom: 40px;
   }
   .thanhToanContainer {
-    width: 90%;
+    width: 380px;
+    margin: auto;
+  }
+  .datTourContainer {
     margin: auto;
   }
   .timeLeft p {

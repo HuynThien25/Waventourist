@@ -42,9 +42,13 @@
   padding: 14px;
   border-radius: 10px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   gap: 20px;
   border: 1px solid #e0e0e0;
+}
+.groupDatLaiVaChon{
+  display: flex;
+  gap: 5px;
 }
 .btnDatLai {
   color: #18a0fb;
@@ -76,12 +80,12 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #f7f7f7;
-  padding: 7px;
-  border: 1px solid #ccc;
+  padding: 3px;
+  border: none;
   border-radius: 5px;
-  font-size: 13px;
-  font-weight: 500;
+  font-size: 13.5px;
+  color: #03121a;
+  font-weight: 700;
 }
 .iconAngleDown {
   transition: transform 0.3s ease;
@@ -90,7 +94,7 @@
   transform: rotate(180deg); 
 }
 .dropdownContent {
-  max-height: 0; /* Ban đầu ẩn */
+  max-height: 0; 
   overflow: hidden;
   transition: max-height 0.4s ease-in-out;
   border: none;
@@ -98,7 +102,7 @@
   padding: 0 10px;
 }
 .dropdownContent.open {
-  max-height: 100%; /* Khi mở, thiết lập chiều cao */
+  max-height: 100%; 
 }
 .dropdownContent div {
   margin: 10px 0;
@@ -119,7 +123,7 @@
   position: relative;
   padding-left: 30px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 13.5px;
   color: #333;
 }
 .customCheckBox label::before {
@@ -160,24 +164,45 @@
   margin-bottom: 7px;
 }
 .lsItem1 > span {
-  font-size: 14px;
+  font-size: 13.5px;
   text-align: center;
+  border: 1px solid #cdd0d1;
+  border-radius: 8px;
+  padding: 8px;
+  color: #191e3b;
+  margin-bottom: 4px;
+  font-weight: 500;
+  cursor: pointer;
+}
+.lsItem1:hover >span {
+  border: 1px solid #18A0FB;
+  transition: 0.2s ease-in-out;
 }
 .lsItem1 input {
   padding: 0px 0px 0px 0px;
   margin: 0px 0px 0px 0px;
   font-size: 14px;
 }
+.inputDiemDen{
+  display: flex; 
+  justify-content: center;
+}
 .inputDiemDen input {
-  border: 1px solid #b7bbbd;
-  border-radius: 5px;
+  width: 100%;
+  border: 1px solid #cdd0d1;
+  border-radius: 8px;
   padding: 8px 12px;
   padding-left: 30px;
   font-weight: 500;
+  cursor: pointer;
+}
+.inputDiemDen:hover input{
+  border: 1px solid #18A0FB;
+  transition: 0.2s ease-in-out;
 }
 .formInput:focus {
   border: 1px solid #ffffff;
-  outline: 2px solid #007ce8;
+  outline: 1px solid #007ce8;
   transition: ease-in-out 0.2s;
   scale: 1.01;
 }
@@ -188,7 +213,7 @@
 }
 .inputIcon {
   position: absolute;
-  padding: 9px 5px 12px 9px;
+  padding: 45px 5px 12px 9px;
   color: #888; 
   font-weight: 700;
   z-index: 1;
@@ -267,9 +292,8 @@
   color: #ccc;
 }
 .lsSelect1 {
-  padding: 6px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
+  border: 1px solid #cdd0d1;
+  border-radius: 8px;
   font-size: 12px;
   max-height: 150px;
   overflow-y: auto;
@@ -575,7 +599,7 @@
   .formInput {
   }
   .inputIcon {
-    padding: 14px 1px 10px 5px;
+    display: none;
   }
   .slider-container {
     width: 100%;
@@ -626,5 +650,8 @@
     position: absolute;
     top: 0.5rem;
     right: 1rem;
+  }
+  .range-highlight{
+    height: 0px;
   }
 }

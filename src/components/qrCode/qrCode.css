@@ -138,7 +138,6 @@ body {
   height: 180px;
   margin: 10px auto;
 }
-
 .skeleton-form3 {
   display: flex;
   justify-content: center;
@@ -146,21 +145,17 @@ body {
   gap: 10px;
   margin-top: 20px;
 }
-
 .skeleton-form3 .skeleton3 {
   height: 40px;
   border-radius: 5px;
 }
-
 .skeleton-form3 .skeleton3:first-child {
   width: 20%;
 }
-
 .skeleton-form3 .skeleton3:last-child {
   width: 60%;
 }
-
-/* ---------responsive------------------- */
+/* ---------responsive----------- */
 @media (max-width: 768px) {
   .cart {
     flex-direction: column;
@@ -212,7 +207,6 @@ body {
     max-width: 150px;
   }
 }
-/* Small screen adjustments (max-width: 480px) */
 @media (max-width: 480px) {
   .cart {
     margin: auto;
@@ -220,10 +214,10 @@ body {
     width: 80%;
   }
   .title {
-    font-size: 17px;
+    font-size: 15px;
   }
   .subP {
-    font-size: 14px;
+    font-size: 13px;
     text-align: center;
   }
   .imgTitle {
@@ -259,7 +253,7 @@ body {
     padding: 30px 10px;
   }
   .offerTitle {
-    font-size: 18px;
+    font-size: 17px;
     padding: 0;
   }
   .formInput {

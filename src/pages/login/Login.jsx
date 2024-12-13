@@ -20,7 +20,6 @@ const DUMMY_USER = {
   password: "123456",
   username: "HuynhThien",
 };
-
 const Login = () => {
   const [emailOrPhone, setEmailOrPhone] = useState("");
   const [password, setPassword] = useState("");
@@ -86,7 +85,6 @@ const Login = () => {
     }
   };
   
-
   const location = useLocation();
 
   useEffect(() => {
@@ -116,17 +114,17 @@ const Login = () => {
             )}
             <div className="passwordContainer">
               <input
-                type={showPassword ? "text" : "password"} // Toggle type based on showPassword
+                type={showPassword ? "text" : "password"} 
                 placeholder="Nhập mật khẩu"
                 className={`loginInput ${!isPasswordEntered && "inputError"}`}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
               <FontAwesomeIcon
-                icon={showPassword ? faEye : faEyeSlash} // Toggle icon based on showPassword
+                icon={showPassword ? faEye : faEyeSlash} 
                 onClick={() =>
                   setShowPassword((prevShowPassword) => !prevShowPassword)
-                } // Toggle showPassword state
+                } 
                 className="eyeIcon"
               />
             </div>

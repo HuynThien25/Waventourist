@@ -14,7 +14,6 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Link, animateScroll as scroll } from 'react-scroll';
 
-
 const Home = () => {
   const location = useLocation();
   const [username, setUsername] = useState("");
@@ -84,7 +83,5 @@ const Home = () => {
     </div>
   );
 };
-
-
 
 export default Home;

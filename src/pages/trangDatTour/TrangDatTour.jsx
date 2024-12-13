@@ -11,7 +11,6 @@ import {faAngleRight,faBaby,faBarcode,faCalendar,faCalendarDays,faChildReaching,
 } from "@fortawesome/free-solid-svg-icons";
 import { useTotalAmount } from "../../components/tongGiaTien/TongGiaTien";
 import ReviewPopup from "../../components/reviewPopup/ReviewPopup";
-
 const TrangDatTour = () => {
   const navigate = useNavigate();
   const { setTotalAmount } = useTotalAmount();
@@ -23,8 +22,8 @@ const TrangDatTour = () => {
   const childPrice = 4639000;
   const babyPrice = 2132000;
   const [destination, setDestination] = useState("");
-  const [isChecked, setIsChecked] = useState(false); // State checkbox
-  const [errorMessage, setErrorMessage] = useState(""); // State thông báo lỗi
+  const [isChecked, setIsChecked] = useState(false); 
+  const [errorMessage, setErrorMessage] = useState(""); 
   const [isReviewPopupVisible, setReviewPopupVisible] = useState(false);
 
   // toggle đánh giá du khách
@@ -63,12 +62,12 @@ const TrangDatTour = () => {
   //check điều kiện DK
   const handleTT = () => {
     if (isChecked) {
-      setErrorMessage(""); // Xóa thông báo lỗi nếu được tick
+      setErrorMessage(""); 
       navigate("/trangDatTour2", { state: { destination } });
     } else {
       setErrorMessage(
         "Vui lòng đọc và đồng ý với điều khoản trước khi tiếp tục."
-      ); // Đặt thông báo lỗi nếu chưa được tick
+      ); 
     }
   };
 
@@ -99,11 +98,11 @@ const TrangDatTour = () => {
 
       <div className="cvb">
         <div className="datTourContainer">
+        <div className="mklp">
           <div className="a1">
             <div className="soLuongHKContainer">
               <div className="soLuongHK">
                 <h1>SỐ LƯỢNG HÀNH KHÁCH</h1>
-
                 {/* Phần điều chỉnh số lượng */}
                 <div className="nguoiLon">Người lớn (*)</div>
                 <div className="passengerGroup">
@@ -189,7 +188,6 @@ const TrangDatTour = () => {
                     </li>
                   </ul>
                 </div>
-
                 {/* Checkbox và điều khoản */}
                 <div className="dongYDK">
                   <fieldset>
@@ -198,8 +196,8 @@ const TrangDatTour = () => {
                         type="checkbox"
                         id="dongY"
                         name="dongY"
-                        checked={isChecked} // Kiểm soát bằng state isChecked
-                        onChange={(e) => setIsChecked(e.target.checked)} // Cập nhật trạng thái khi tick
+                        checked={isChecked} 
+                        onChange={(e) => setIsChecked(e.target.checked)}
                       />
                       <label htmlFor="dongY">
                         Tôi đã đọc và đồng ý<span> điều khoản</span>
@@ -350,6 +348,7 @@ const TrangDatTour = () => {
                 </div>
             </div>
           </div>
+        </div>
         </div>
       </div>
       <Footer />

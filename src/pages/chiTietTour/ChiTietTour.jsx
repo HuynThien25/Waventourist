@@ -31,7 +31,6 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import useFavoriteHandler from "../../components/useFavoriteHandler/UseFavoriteHandler";
 import ReviewPopup from "../../components/reviewPopup/ReviewPopup";
-
 const ChiTietTour = (tour) => {
   const [activeTab, setActiveTab] = useState("1");
   const [sliderNumber, setSliderNumber] = useState(0);

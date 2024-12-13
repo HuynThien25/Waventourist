@@ -72,18 +72,18 @@
 }
 @media (max-width: 480px) {
   .name {
-    font-size: 20px;
+    font-size: 17px;
   }
   .subRV {
     padding: 15px;
-    font-size: 15px;
+    font-size: 14px;
   }
   .prevBtn2,
   .nextBtn2 {
-    font-size: 20px;
-    background-color: #fff;
-    border-radius: 25px;
-    box-shadow: #0c0e1c14 0px 2px 12px 0px;
+    font-size: 18px;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 0px;
+    border: none;
   }
   .prevBtn2 {
     left: 15px;

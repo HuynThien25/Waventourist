@@ -4,11 +4,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import "./register.css";
-
 const Register = () => {
   const navigate = useNavigate();
-
-  // States to manage form inputs and validation
   const [fullName, setFullName] = useState("");
   const [emailOrPhone, setEmailOrPhone] = useState("");
   const [password, setPassword] = useState("");
@@ -16,13 +13,11 @@ const Register = () => {
   const [isFormValid, setIsFormValid] = useState(true);
   const [showPopup, setShowPopup] = useState(false);
 
-  // Regex to validate email and phone number formats
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const phoneRegex = /^[0-9]{10,11}$/;
   const passwordRegex =
     /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$/;
 
-  // Back navigation handling
   const handleBack = () => {
     if (window.history.length > 1) {
       navigate(-1);
@@ -31,7 +26,6 @@ const Register = () => {
     }
   };
 
-  // Validation check function
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -47,9 +41,9 @@ const Register = () => {
       isConfirmPasswordValid
     ) {
       setIsFormValid(true);
-      setShowPopup(true); // Hiển thị popup khi đăng ký thành công
+      setShowPopup(true); 
     } else {
-      setIsFormValid(false); // Không hợp lệ, báo lỗi
+      setIsFormValid(false); 
     }
   };
 
