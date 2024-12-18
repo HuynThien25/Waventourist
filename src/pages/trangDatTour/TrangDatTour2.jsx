@@ -85,7 +85,7 @@ const TrangDatTour2 = () => {
           {
             headers: {
               "X-CSCAPI-KEY":
-                "N29nWmJTU3JTWWd4em1TTFJGZGRMQmNhTU9FWkxoV1owbUU1NzQxeg==", // Thay bằng API key của bạn
+                "N29nWmJTU3JTWWd4em1TTFJGZGRMQmNhTU9FWkxoV1owbUU1NzQxeg==", 
             },
           }
         );
@@ -108,7 +108,7 @@ const TrangDatTour2 = () => {
         {
           headers: {
             "X-CSCAPI-KEY":
-              "N29nWmJTU3JTWWd4em1TTFJGZGRMQmNhTU9FWkxoV1owbUU1NzQxeg==", // Thay bằng API key của bạn
+              "N29nWmJTU3JTWWd4em1TTFJGZGRMQmNhTU9FWkxoV1owbUU1NzQxeg==", 
           },
         }
       );

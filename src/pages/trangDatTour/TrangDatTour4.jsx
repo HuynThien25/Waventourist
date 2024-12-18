@@ -30,8 +30,11 @@ const TrangDatTour4 = () => {
   }, [location]);
 
   const handleSaveTour = () => {
-    const savedTours = localStorage.getItem("bookedTours");
+    const savedTours = localStorage.getItem("bookedTours");    
     const tours = savedTours ? JSON.parse(savedTours) : [];
+
+    const now = new Date();
+    const bookingTime = `${now.toLocaleDateString()} ${now.toLocaleTimeString()}`;
 
     const newTour = {
       id: tours.length + 1,
@@ -40,6 +43,7 @@ const TrangDatTour4 = () => {
       ngayVe: "26/12/2024",
       diaDiem: "Phú Quốc",
       gia: totalAmount.toLocaleString() + " VND",
+      thoiGianDat: bookingTime,
     };
    // Lưu lại danh sách đã cập nhật
    const updatedTours = [...tours, newTour];

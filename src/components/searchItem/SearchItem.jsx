@@ -1125,9 +1125,9 @@ const SearchItem = ({destination,date,options,category,transport,priceRange,sapx
       setFilteredTours(sortTours(filtered));
       setCurrentPage(1);
       setIsLoading(false);
-    }, 2000);
+    }, 1500);
 
-    return () => clearTimeout(timer); // Dọn dẹp timer khi dependencies thay đổi
+    return () => clearTimeout(timer); 
   }, [destination, transport, category, priceRange, sapxep]);
 
   // Tính toán số trang
@@ -1181,7 +1181,15 @@ const SearchItem = ({destination,date,options,category,transport,priceRange,sapx
       {isLoading ? (
         <div className="loadingContainer">
           {Array.from({ length: itemsPerPage }).map((_, index) => (
-            <div key={index} className="skeletonCard"></div>
+            <div key={index} className="seListItem">
+                    <div className="skeleton skeleton-img2"></div>
+                    <div className="seListTitles">
+                      <div className="skeleton skeleton-title2"></div>
+                      <div className="skeleton skeleton-text2"></div>
+                      <div className="skeleton skeleton-price2"></div>
+                      <div className="skeleton skeleton-button2"></div>
+                    </div>
+            </div>
           ))}
         </div>
       ) : toursToDisplay.length > 0 ? (

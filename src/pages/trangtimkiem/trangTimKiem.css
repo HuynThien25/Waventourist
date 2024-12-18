@@ -1,3 +1,17 @@
+.skeletonText {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  border-radius: 4px;
+  animation: loadingAnimation 4.5s infinite;
+}
+@keyframes loadingAnimation {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
 * {
   margin: 0;
   padding: 0;
@@ -88,6 +102,8 @@
   font-weight: 700;
 }
 .iconAngleDown {
+  color: #18A0FB;
+  font-size: 17px;
   transition: transform 0.3s ease;
 }
 .iconAngleDown.rotate {
@@ -193,7 +209,6 @@
   border-radius: 8px;
   padding: 8px 12px;
   padding-left: 30px;
-  font-weight: 500;
   cursor: pointer;
 }
 .inputDiemDen:hover input{
@@ -204,7 +219,6 @@
   border: 1px solid #ffffff;
   outline: 1px solid #007ce8;
   transition: ease-in-out 0.2s;
-  scale: 1.01;
 }
 .formInput {
   width: 175px;
@@ -217,6 +231,7 @@
   color: #888; 
   font-weight: 700;
   z-index: 1;
+  cursor: pointer;
 }
 .lsItem1 label {
   font-size: 15px;
@@ -298,6 +313,49 @@
   max-height: 150px;
   overflow-y: auto;
   scrollbar-width: thin;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding-right: 30px; 
+  cursor: pointer;
+  width: 100%;
+}
+.dropdown-icon2 {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  transition: transform 0.3s ease;
+  pointer-events: none;
+  color: #18A0FB; 
+}
+.dropdown-icon2.rotate {
+  transform: translateY(-50%) rotate(180deg); 
+}
+.dropdown-container {
+  position: relative;
+  display: inline-block;
+}
+
+.lsSelect2 {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding-right: 30px; 
+  cursor: pointer;
+}
+.dropdown-icon {
+  position: absolute;
+  top: 50%;
+  right: 220px;
+  transform: translateY(-50%);
+  transition: transform 0.3s ease;
+  pointer-events: none;
+  color: #18A0FB;
+}
+
+.dropdown-icon.rotate {
+  transform: translateY(-50%) rotate(180deg);
 }
 .customDropdown label {
   font-size: 14px;
@@ -408,10 +466,10 @@
 }
 .lsOptionInput1,
 .lsSelect2 {
-  padding: 8px;
+  padding: 8px 50px 8px 11px;
   border-radius: 8px;
-  font-size: 12px;
-  font-weight: 700;
+  font-size: 13px;
+  color: #212121;
   transition: all 0.3s ease;
 }
 .sliderIMG {
@@ -433,13 +491,27 @@
   color: #ffffff;
   background-color: #00000080;
   border-radius: 4px;
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 700;
-  margin: 220px 0px 0px;
+  margin: 218px 0px 0px;
   padding: 14px 25px;
   width: 100%;
   max-width: 1024px;
   align-items: center;
+  justify-content: center;
+}
+.sliderText span{
+  padding-left: 5px;
+  color: #FFE31A;
+}
+.sliderTextSkeleton{
+  margin: 218px 0px 0px;
+  padding: 26px 25px;
+  width: 100%;
+  max-width: 1024px;
+  align-items: center;
+  position: absolute;
+  display: flex;
   justify-content: center;
 }
 .center1024 {
@@ -655,3 +727,7 @@
     height: 0px;
   }
 }
+
+
+
+

@@ -139,8 +139,12 @@ const Navbar = () => {
         <div className="navItems">
           {loggedInUser ? (
             <div className="userSection">
+              <div className="groupIconUser">
               <FontAwesomeIcon icon={faCircleUser} className="iconUserLogged" />
+              <div className="op">
               <span className="userName" onClick={handleTourDaDat}>{loggedInUser}</span>
+              </div>
+              </div>
               <button className="logOutBtn" onClick={() => setIsModalOpen(true)}>Đăng xuất</button>
             </div>
           ) : (

@@ -101,7 +101,7 @@ const Header = memo (({ type }) => {
                 <FontAwesomeIcon icon={faSearch} className="headerIcon" />
                 <input
                   type="text"
-                  placeholder="Tìm Kiếm..."
+                  placeholder="Bạn tìm địa điểm ở đây..."
                   className="headerSearchInput"
                   onChange={(e) => setDestination(e.target.value)}
                 />

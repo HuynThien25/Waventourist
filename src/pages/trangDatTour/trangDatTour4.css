@@ -36,7 +36,8 @@
   cursor: pointer;
 }
 .popupBtn:hover {
-  background-color: #0056b3;
+  transition: 0.3s linear;
+  background-color: #0194f3;
 }
 
 .cardTTDatCho {

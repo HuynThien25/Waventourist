@@ -18,11 +18,11 @@ const ScrollToTopButton = () => {
 
   const scrollToTop = () => {
     window.scrollTo({
-      top: 0,
-      behavior: "smooth",
+      top: 0,           
+      behavior: "smooth" 
     });
   };
-
+  
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => {

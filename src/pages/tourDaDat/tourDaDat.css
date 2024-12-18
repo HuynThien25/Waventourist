@@ -1,3 +1,55 @@
+.cardContainer2 {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; 
+  justify-content: center;
+  padding: 20px;
+}
+.tourCard2 {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  width: 300px; 
+  padding: 15px;
+  transition: transform 0.2s ease-in-out;
+}
+.tourCard2:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+.cardContent2 {
+  text-align: left;
+  font-family: Arial, sans-serif;
+}
+.tourTitle2 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #333;
+}
+.tourCard2 p {
+  font-size: 14px;
+  margin: 5px 0;
+  color: #555;
+}
+.danhGiaBtn2 {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-top: 10px;
+  display: block;
+  text-align: center;
+  width: 100%;
+}
+.danhGiaBtn2:hover {
+  background-color: #0056b3;
+}
+
+/*  */
 .addReview {
   margin-top: 20px;
   text-align: left;
@@ -26,6 +78,7 @@
 }
 .cvfg {
   display: flex;
+  /* flex-direction: column; */
 }
 .tourDaDat {
   width: 100%;
@@ -37,20 +90,32 @@
   border-radius: 8px;
   gap: 10px;
 }
+.titleTourDaDat{
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 30px;
+  padding-bottom: 20px;
+  color: #191e3b;
+}
 .bangTourDaDat {
-  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+  /* box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2); */
+  width: 270px;
   text-align: center;
-  border-radius: 7px;
-  height: 280px;
   margin-right: 20px;
 }
 .bangTourDaDat h4 {
-  background-color: #f2f3f3;
-  padding: 20px;
-  font-size: 15px;
+  /* background-color: #f2f3f3; */
+  border-bottom: 1px solid #e0e0e0;
+  padding: 17px;
+  font-size: 17px;
   text-align: left;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
+  color: #18a0fb;
+}
+.bangmot{
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
 }
 .thongTinCaNhan {
   font-size: 15px;
@@ -69,13 +134,71 @@
   display: flex;
   flex-direction: column;
 }
+.tabOptions {
+  margin-top: 10px;
+  display: flex;
+  justify-content: left;
+  text-align: left;
+  flex-direction: column;
+  gap: 20px;
+  padding: 15px;
+}
+.hoSo,.thongTinDaDat,.tourYeuThich,.thongTinDaDat,.khuyenMaine{
+  padding: 8px;
+  /* border-bottom: 1px solid #ccc; */
+  /* border-top: 1px solid #ccc; */
+}
+.tabOptions button {
+  font-size: 13px;
+  /* padding: 10px 20px; */
+  border: none;
+  background-color: #fff;
+  cursor: pointer;
+  border-radius: 5px;
+  font-weight: bold;
+  color: #191e3b;
+  font-size: 15px;
+  font-weight: 700;
+}
+.tabOptions button.activeTab {
+  color: #007bff;
+}
+.tabOptions button:hover {
+  color: #007bff;
+  transition: 0.2s ease-in-out;
+}
+.logOutBtnTourDaDat{
+  padding: 10px 70px 10px 70px;
+  border-radius: 8px;
+  border: none;
+  margin-top: 15px;
+  background-color: #f5f5f5;
+  color: #191e3b;
+  font-size: 15px;
+  font-weight: 700;
+}
+.logOutBtnTourDaDat:hover{
+  background-color: #ecf4fd;
+  color: #18a0fb;
+  transition: 0.2s ease-in-out;
+}
+.iconTourDaDat1{
+  padding-right: 10px;
+}
+.iconTourDaDat2{
+  padding-left: 10px
+}
 .tourHeader,
 .tourRow {
   display: grid;
-  grid-template-columns: 1fr 1.5fr 1.5fr 1.5fr 1.5fr 1.5fr 1.5fr;
-  gap: 10px;
+  grid-template-columns: 0.5fr 1fr 1fr 1fr 1fr 1.2fr 1fr 1fr;
   padding: 10px;
   font-size: 14px;
+  width: 770px;
+}
+.tourRow{
+  color: #191e3b;
+  font-weight: 500;
 }
 .tourHeader {
   background-color: #18a0fb;
@@ -110,31 +233,6 @@ ul {
   list-style: none;
   margin: 0;
   padding: 0;
-}
-.tabOptions {
-  margin-top: 25px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  padding: 15px;
-}
-.tabOptions button {
-  font-size: 13px;
-  padding: 10px 20px;
-  border: none;
-  background-color: #f1f1f1;
-  cursor: pointer;
-  border-radius: 5px;
-  font-weight: bold;
-  color: #333;
-}
-.tabOptions button.activeTab {
-  background-color: #007bff;
-  color: white;
-}
-.tabOptions button:hover {
-  background-color: #007bff;
-  color: white;
 }
 .popup-container {
   position: fixed;
@@ -172,7 +270,6 @@ ul {
   border-radius: 8px;
   box-shadow: #03121a33 0px 2px 2px 0px;
   overflow: hidden;
-  width: 680px;
   height: 180px;
   transition: transform 0.2s ease-in-out;
 }
@@ -182,7 +279,8 @@ ul {
   object-fit: cover;
 }
 .cardContent {
-  padding: 20px;
+  margin-left: 5px;
+  padding: 10px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -196,7 +294,8 @@ ul {
 .cardHeader h3 {
   font-size: 14px;
   margin: 0;
-  color: #333;
+  color: #191e3b;
+  font-weight: 700;
   height: 20px;
   width: 300px;
 }
@@ -210,14 +309,13 @@ ul {
   font-size: 13px;
   color: #18a0fb;
   font-weight: 700;
-  height: 13px;
 }
 .cardDetails strong {
   color: #555;
   padding-right: 5px;
 }
 .removeBtn {
-  margin-top: 10px;
+  margin-top: 5px;
   padding: 8px 12px;
   border: none;
   background: #e74c3c;
