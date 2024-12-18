@@ -7,14 +7,18 @@ import "./register.css";
 const Register = () => {
   const navigate = useNavigate();
   const [fullName, setFullName] = useState("");
+  const [username, setUsername] = useState("");
   const [emailOrPhone, setEmailOrPhone] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [isFormValid, setIsFormValid] = useState(true);
   const [showPopup, setShowPopup] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const phoneRegex = /^[0-9]{10,11}$/;
+  const usernameRegex = /^[a-zA-Z0-9_]{1,12}$/;
   const passwordRegex =
     /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$/;
 
@@ -26,34 +30,56 @@ const Register = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const isEmailOrPhoneValid =
       emailRegex.test(emailOrPhone) || phoneRegex.test(emailOrPhone);
+    const isUsernameValid = usernameRegex.test(username);
     const isPasswordValid = passwordRegex.test(password);
     const isConfirmPasswordValid = password === confirmPassword;
 
     if (
       fullName &&
       isEmailOrPhoneValid &&
+      isUsernameValid &&
       isPasswordValid &&
       isConfirmPasswordValid
     ) {
-      setIsFormValid(true);
-      setShowPopup(true); 
+      const DUMMY_USER = {
+        fullName,
+        emailOrPhone,
+        username,
+        password,
+      };
+
+      try {
+        // Lưu dữ liệu vào tệp JSON giả lập
+        const response = await fetch("http://localhost:3001/users", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(DUMMY_USER),
+        });
+
+        if (response.ok) {
+          navigate("/login");
+        } else {
+          setErrorMessage("Đăng ký thất bại. Vui lòng thử lại.");
+        }
+      } catch (error) {
+        console.error("Lỗi khi gửi dữ liệu:", error);
+        setErrorMessage("Có lỗi xảy ra. Vui lòng thử lại sau.");
+      }
     } else {
-      setIsFormValid(false); 
+      setIsFormValid(false);
     }
   };
 
   const closePopup = () => {
     navigate("/");
     setShowPopup(false);
-  };
-
-  const handleLogin = () => {
-    navigate("/login");
   };
 
   return (
@@ -73,6 +99,18 @@ const Register = () => {
                 value={fullName}
                 onChange={(e) => setFullName(e.target.value)}
               />
+              <input
+            type="text"
+            placeholder="User Name (tối đa 12 ký tự)"
+            className="registerInput"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+          {!isFormValid && !usernameRegex.test(username) && (
+                <p className="errorText">
+                  User Name vượt quá 12 kí tự
+                </p>
+              )}
               <input
                 type="text"
                 placeholder="Nhập địa chỉ email/Số điện thoại"
@@ -111,11 +149,7 @@ const Register = () => {
               <button className="registerButton" type="submit">
                 Tạo tài khoản
               </button>
-              <div className="loginLinks">
-                <button onClick={handleLogin} className="dangNhap">
-                  <span>Đã có tài khoản? </span>Đăng nhập
-                </button>
-              </div>
+            
             </form>
           </div>
           <img

@@ -1,0 +1,25 @@
+{
+  "users": [
+    {
+      "id": "ed39",
+      "fullName": "ngan",
+      "emailOrPhone": "ngan@gmail.com",
+      "username": "ngan123",
+      "password": "Tellmylike25@"
+    },
+    {
+      "id": "f83d",
+      "fullName": "Huỳnh Ngọc Thiện",
+      "emailOrPhone": "0899986313",
+      "username": "Huynhthien",
+      "password": "Tellmylike25@"
+    },
+    {
+      "id": "b353",
+      "fullName": "Minh",
+      "emailOrPhone": "minh@gmail.com",
+      "username": "Minh123",
+      "password": "Tellmylike25@"
+    }
+  ]
+}

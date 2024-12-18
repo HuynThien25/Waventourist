@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useCallback } from "react";
 import "./propertyList.css";
 import useFavoriteHandler from "../useFavoriteHandler/UseFavoriteHandler";
 import { useNavigate } from "react-router-dom";
@@ -94,17 +94,25 @@ const PropertyList = () => {
     return () => clearTimeout(timer);
   }, []);
   // Kiểm tra tour có phải yêu thích hay không
-  const isFavorite = (tourId) => favorites.some((item) => item.id === tourId);
-
-  const handleFavoriteClick = (tour) => {
-    handleAddToFavorites(tour);
-    const updatedFavorites = localStorage.getItem("favoriteTours");
-    setFavorites(updatedFavorites ? JSON.parse(updatedFavorites) : []);
+  const isFavorite = (tourId) => {
+    return favorites.some((item) => item.id === tourId);
   };
+
+  const handleFavoriteClick = useCallback((tour) => {
+      handleAddToFavorites(tour);
+      const updatedFavorites = localStorage.getItem("favoriteTours");
+      setFavorites(updatedFavorites ? JSON.parse(updatedFavorites) : []);
+    }, [handleAddToFavorites]);
 
   const handleBuy = (tourId) => {
     navigate("/trangDatTour", { state: { tourId } });
   };
+
+  useEffect(() => {
+    const savedFavorites = localStorage.getItem("favoriteTours");
+    setFavorites(savedFavorites ? JSON.parse(savedFavorites) : []);
+  }, []);
+  
 
   return (
     <div className="pList">
@@ -114,7 +122,8 @@ const PropertyList = () => {
             Array(5)
               .fill(null)
               .map((_, index) => (
-                <div className="pListCard" key={index}>
+                <div className="plist3" key={index}>
+                <div className="pListCard">
                   <div className="pListItem">
                     <div className="skeleton skeleton-img"></div>
                     <div className="skeleton skeleton-title"></div>
@@ -122,10 +131,13 @@ const PropertyList = () => {
                     <div className="skeleton skeleton-button"></div>
                   </div>
                 </div>
+                </div>
+                
               ))
           : // Hiển thị dữ liệu thật sau khi tải xong
             tours.map((tour) => (
-              <div className="pListCard" key={tour.id}>
+              <div className="plist3" key={tour.id}>
+              <div className="pListCard" >
                 <div className="pListItem">
                  
                       <div className="tietkiem">Giảm giá {tour.tietkiem}</div>
@@ -157,6 +169,8 @@ const PropertyList = () => {
                   </button>
                 </div>
               </div>
+              </div>
+              
             ))}
       </div>
       {/* Popup yêu cầu đăng nhập */}

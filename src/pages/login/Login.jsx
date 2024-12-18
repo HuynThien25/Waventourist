@@ -5,21 +5,12 @@ import "./login.css";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faArrowLeft,
-  faEyeSlash,
-  faEye,
-} from "@fortawesome/free-solid-svg-icons";
+import {faArrowLeft,faEyeSlash,faEye,} from "@fortawesome/free-solid-svg-icons";
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const phoneRegex = /^[0-9]{10,11}$/;
 
-const DUMMY_USER = {
-  email: "thien25@gmail.com",
-  phone: "0123456789",
-  password: "123456",
-  username: "HuynhThien",
-};
+
 const Login = () => {
   const [emailOrPhone, setEmailOrPhone] = useState("");
   const [password, setPassword] = useState("");
@@ -38,7 +29,7 @@ const Login = () => {
         emailRegex.test(emailOrPhone) || phoneRegex.test(emailOrPhone)
       );
     }
-
+    
     setIsPasswordEntered(password.length >= 6 || password === ""); 
     setIsFormValid(
       (emailRegex.test(emailOrPhone) || phoneRegex.test(emailOrPhone)) &&
@@ -62,28 +53,42 @@ const Login = () => {
     navigate("/quenMatKhau");
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
   
     if (isFormValid) {
-      if (
-        (emailOrPhone === DUMMY_USER.email || emailOrPhone === DUMMY_USER.phone) &&
-        password === DUMMY_USER.password
-      ) {
-        // Tạo token giả lập từ thông tin người dùng
-        const token = btoa(`${emailOrPhone}:${new Date().getTime()}`);
-        localStorage.setItem("userToken", token); // Lưu token vào localStorage
-        
-        // Lưu thông tin username để hiển thị
-        localStorage.setItem("loggedInUser", DUMMY_USER.username);
+      try {
+        // Gửi yêu cầu tới API để lấy danh sách người dùng
+        const response = await fetch("http://localhost:3001/users");
+        const users = await response.json();
   
-        // Điều hướng về trang trước đó hoặc trang chính
-        navigate(-1);
-      } else {
-        setLoginError("Email/Số điện thoại hoặc mật khẩu không đúng");
+        // Tìm người dùng khớp với email/phone và mật khẩu
+        const foundUser = users.find(
+          (user) =>
+            (user.emailOrPhone === emailOrPhone || user.username === emailOrPhone) &&
+            user.password === password
+        );
+  
+        if (foundUser) {
+          // Tạo token giả lập từ thông tin người dùng
+          const token = btoa(`${foundUser.username}:${new Date().getTime()}`);
+          localStorage.setItem("userToken", token); // Lưu token vào localStorage
+  
+          // Lưu thông tin username để hiển thị
+          localStorage.setItem("loggedInUser", foundUser.username);
+  
+          // Điều hướng về trang trước đó hoặc trang chính
+          navigate(-1);
+        } else {
+          setLoginError("Email/Số điện thoại hoặc mật khẩu không đúng");
+        }
+      } catch (error) {
+        console.error("Lỗi khi lấy thông tin người dùng:", error);
+        setLoginError("Có lỗi xảy ra. Vui lòng thử lại sau.");
       }
     }
   };
+  
   
   const location = useLocation();
 
