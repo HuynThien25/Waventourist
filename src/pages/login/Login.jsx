@@ -10,7 +10,6 @@ import {faArrowLeft,faEyeSlash,faEye,} from "@fortawesome/free-solid-svg-icons";
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const phoneRegex = /^[0-9]{10,11}$/;
 
-
 const Login = () => {
   const [emailOrPhone, setEmailOrPhone] = useState("");
   const [password, setPassword] = useState("");

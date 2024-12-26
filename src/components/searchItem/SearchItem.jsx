@@ -33,7 +33,7 @@ import halong5 from "../../assets/img/hinhAnh/halong5.jpg";
 import halong6 from "../../assets/img/hinhAnh/halong6.jpg";
 import halong7 from "../../assets/img/hinhAnh/halong7.jpg";
 import phuquoc1 from "../../assets/img/hinhAnh/phuquoc1.jpg";
-import phuquoc2 from "../../assets/img/hinhAnh/phuquoc2.jpg";
+import phuquoc from "../../assets/img/hinhAnh/phuquoc.jpg";
 import phuquoc3 from "../../assets/img/hinhAnh/phuquoc3.jpg";
 import phuquoc4 from "../../assets/img/hinhAnh/phuquoc4.jpg";
 import sapa1 from "../../assets/img/hinhAnh/sapa1.jpg";
@@ -705,14 +705,14 @@ const SearchItem = ({destination,date,options,category,transport,priceRange,sapx
     {
       id: 37,
       tietKiem: "Tiết Kiệm 25%",
-      h1: "Đi bộ dưới biển Seawalker và khám phá 3 đảo Phú Quốc",
+      h1: "Khám phá Bắc Đảo - Safari - VinWonder - Grand World",
       maTour: "FGH-46284",
       ngayDi: "22/11/2024",
       ngayVe: "24/11/2024",
-      gia: "1.990.000 VND",
-      giaGoc: "2.494.200 VND",
+      gia: "6.139.000 VND",
+      giaGoc: "6.994.200 VND",
       image1: favorite,
-      image2: phuquoc2,
+      image2: phuquoc,
       danhGia: heartFill,
       diemDanhGia: "8.8",
       textDanhGia: "(17 đánh giá)",
@@ -720,7 +720,7 @@ const SearchItem = ({destination,date,options,category,transport,priceRange,sapx
       khoiHanh: "15/12/2024 | 15/11/2024",
       thoiGian: "4 ngày 3 đêm",
       phuongTien: "Hàng không VietNam Airlines",
-      category: "Tour dưới nước",
+      category: "Điểm thiên nhiên",
     },
     {
       id: 38,
@@ -1082,7 +1082,6 @@ const SearchItem = ({destination,date,options,category,transport,priceRange,sapx
   useEffect(() => {
     setIsLoading(true);
     const timer = setTimeout(() => {
-      // Lọc dữ liệu theo các tiêu chí
       const filtered = allTours.filter((tour) => {
         const matchesDestination =
           !destination ||
