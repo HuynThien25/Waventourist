@@ -9,12 +9,18 @@ import { useState, useEffect } from "react";
 import SearchItem from "../../components/searchItem/SearchItem";
 import vietNam from "../../assets/img/hinhAnh/vietNam.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {faAngleDown,faSearch,faXmark,} from "@fortawesome/free-solid-svg-icons";
+import {
+  faAngleDown,
+  faSearch,
+  faXmark,
+} from "@fortawesome/free-solid-svg-icons";
 import { DateRange } from "react-date-range";
 import { format } from "date-fns";
 const TrangTimKiem = () => {
   const location = useLocation();
-  const [destination, setDestination] = useState(location.state?.destination || "");
+  const [destination, setDestination] = useState(
+    location.state?.destination || ""
+  );
   const [openDate, setOpenDate] = useState(false);
   const [priceRange, setPriceRange] = useState([0, 15000000]);
   const [sapxep, setSapxep] = useState("tatca");
@@ -27,6 +33,50 @@ const TrangTimKiem = () => {
   const [isOpen5, setIsOpen5] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const categories = [{ label: "Tất cả", value: "all" },{ label: "Điểm thiên nhiên", value: "Điểm thiên nhiên" },{ label: "Ngắm cảnh", value: "Ngắm cảnh" },{ label: "Nghệ thuật và văn hóa", value: "Nghệ thuật và văn hóa" },{ label: "Tour dưới nước", value: "Tour dưới nước" },{ label: "Tour theo chủ đề", value: "Tour theo chủ đề" },{ label: "Tour bằng xe buýt", value: "Tour bằng xe buýt" },{ label: "Trải nghiệm ẩm thực", value: "Trải nghiệm ẩm thực" },{ label: "Sự kiện", value: "Sự kiện" },];
+  const transports = [{ label: "Tất cả", value: "all"},{ label: "Xe du lịch", value: "Xe du lịch"},{ label: "Máy bay", value: "Hàng không"},{ label: "Tàu hỏa", value: "Tàu"},];
+  const sapxeps = [{ label: "Giá phổ biến", value: "tatca"},{ label: "Giá thấp nhất", value: "gia1"},{ label: "Giá cao nhất", value: "gia2"},{ label: "Đánh giá cao nhất", value: "gia3"},]
+  //khi click ngoài tắt drop
+  useEffect(() => {
+    const handleClickOutside = () => setIsOpen3(false);
+    if (isOpen3) {
+      document.addEventListener("click", handleClickOutside);
+    } else {
+      document.removeEventListener("click", handleClickOutside);
+    }
+    return () => document.removeEventListener("click", handleClickOutside);
+  }, [isOpen3]);
+  useEffect(() => {
+    const handleClickOutside = () => setIsOpen4(false);
+    if (isOpen4) {
+      document.addEventListener("click", handleClickOutside);
+    } else {
+      document.removeEventListener("click", handleClickOutside);
+    }
+    return () => document.removeEventListener("click", handleClickOutside);
+  }, [isOpen4]);
+  useEffect(() => {
+    const handleClickOutside = () => setIsOpen5(false);
+    if (isOpen5) {
+      document.addEventListener("click", handleClickOutside);
+    } else {
+      document.removeEventListener("click", handleClickOutside);
+    }
+    return () => document.removeEventListener("click", handleClickOutside);
+  }, [isOpen5]);
+  // Tự đóng dropdown sau khi chọn
+  const handleSelect = (value) => {
+    setCategory(value);
+    setIsOpen4(false); 
+  };
+  const handleSelect2 = (value) => {
+    setTransport(value);
+    setIsOpen5(false); 
+  };
+  const handleSelect3 = (value) => {
+    setSapxep(value);
+    setIsOpen3(false); 
+  };
 
   const handleSearch = () => {
     if (!searchTerm.trim()) {
@@ -38,7 +88,6 @@ const TrangTimKiem = () => {
 
   useEffect(() => {
     if (!destination) return;
-
     setIsLoading(true);
     setTimeout(() => {
       setIsLoading(false);
@@ -54,7 +103,7 @@ const TrangTimKiem = () => {
       },
     ]
   );
-
+  //chuyển đổi string sang dạng số
   const formatCurrency = (amount) => {
     return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   };
@@ -77,7 +126,7 @@ const TrangTimKiem = () => {
     }
     setPriceRange(newPriceRange);
   };
-
+  //đóng mở drop
   const handleToggle = () => {
     setIsOpen(!isOpen);
   };
@@ -105,29 +154,38 @@ const TrangTimKiem = () => {
         {isLoading ? (
           <div className="skeletonText sliderTextSkeleton"></div>
         ) : (
-          <div className="sliderText">Điểm đến khớp với <span>"{destination}"</span></div>
+          <div className="sliderText">
+            Điểm đến khớp với <span>"{destination}"</span>
+          </div>
         )}
       </div>
       <img className="sliderIMG" alt="" src={vietNam} />
-      <div className="sapxepContainer">
+      <div className="fgh">
+          <div className="ghh"></div>
+          <div className="sapxepContainer">
         <div className="grSapXep">
           <div className="sapxep">Sắp xếp theo </div>
           <div className="lsOptionItem1">
-            <div className="dropdown-container">
-              <select
-                value={sapxep} onChange={(e) => setSapxep(e.target.value)} onClick={toggleDropdown} onBlur={() => setIsOpen3(false)}
-                className="lsSelect2"
-              >
-                <option value="tatca">Phổ biến nhất</option>
-                <option value="gia1">Giá thấp nhất</option>
-                <option value="gia2">Giá cao nhất</option>
-                <option value="gia3">Đánh giá cao nhất</option>
-              </select>
-              <FontAwesomeIcon icon={faAngleDown} className={`dropdown-icon ${isOpen3 ? "rotate" : ""}`}/>
-            </div>
+            <div className="dropdown-container" onClick={(e) => e.stopPropagation()}>
+                  <div className={`dropdown2 ${isOpen3 ? "active" : ""}`} onClick={toggleDropdown}>
+                    {sapxeps.find((item) => item.value === sapxep)?.label || "Phổ biến nhất"}
+                    <FontAwesomeIcon icon={faAngleDown} className={`dropdown-icon2 ${isOpen3 ? "rotate" : ""}`} />
+                  </div>
+                  {isOpen3 && (
+                    <ul className="dropdown-menu2">
+                      {sapxeps.map((item, index) => (
+                        <li key={index} onClick={() => handleSelect3(item.value)}>
+                          {item.label}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
           </div>
         </div>
+          </div>
       </div>
+
       {/* --------------------thẻ con ---------------- */}
       <div className="btnOpenListSearch">
         <label for="nav-mobile-input2">
@@ -152,21 +210,25 @@ const TrangTimKiem = () => {
           <div className="thethu1">
             {/* Destination M */}
             <div className="lsItem1">
-                <label>Điểm đến</label>
-                <FontAwesomeIcon icon={faSearch} className="inputIcon" onClick={handleSearch}/>
-                <div className="inputDiemDen">
-                  <input
-                    type="text"
-                    value={searchTerm} 
-                    onChange={(e) => setSearchTerm(e.target.value)} 
-                    onKeyDown={(e) => {
-                      if (e.key === "Enter") handleSearch(); 
-                    }}
-                    placeholder="Bạn tìm địa điểm ở đây..."
-                    className="formInput"
-                  />
-                </div>
+              <label>Điểm đến</label>
+              <FontAwesomeIcon
+                icon={faSearch}
+                className="inputIcon"
+                onClick={handleSearch}
+              />
+              <div className="inputDiemDen">
+                <input
+                  type="text"
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") handleSearch();
+                  }}
+                  placeholder="Bạn tìm địa điểm ở đây..."
+                  className="formInput"
+                />
               </div>
+            </div>
             {/* time M */}
             <div className="lsItem1">
               <label>Thời gian</label>
@@ -228,46 +290,60 @@ const TrangTimKiem = () => {
             {/* Category Filter M */}
             <div className="lsItem1">
               <label>Loại hoạt động hạng mục</label>
-              <div className="dropdown-container">
-                <select
-                  value={category} onClick={toggleDropdown2} onBlur={() => setIsOpen4(false)} onChange={(e) => setCategory(e.target.value)}
-                  className="lsSelect1"
-                >
-                  <option value="all">Tất cả</option>
-                  <option value="Điểm thiên nhiên">Điểm Thiên Nhiên</option>
-                  <option value="Ngắm cảnh">Ngắm cảnh</option>
-                  <option value="Nghệ thuật và văn hóa">Nghệ thuật và văn hóa</option>
-                  <option value="Tour dưới nước">Tour dưới nước</option>
-                  <option value="Tour theo chủ đề">Tour theo chủ đề</option>
-                  <option value="Tour bằng xe buýt">Tour bằng xe buýt</option>
-                  <option value="Trải nghiệm ẩm thực">Trải nghiệm ẩm thực</option>
-                  <option value="Sự kiện">Sự kiện</option>
-                </select>
-                <FontAwesomeIcon icon={faAngleDown} className={`dropdown-icon2 ${isOpen4 ? "rotate" : ""}`}/>
-              </div>
+              <div className="dropdown-container" onClick={(e) => e.stopPropagation()}>
+                  <div
+                    className={`dropdown ${isOpen4 ? "active" : ""}`}
+                    onClick={toggleDropdown2}
+                  >
+                    {categories.find((item) => item.value === category)
+                      ?.label || "Tất cả"}
+                    <FontAwesomeIcon
+                      icon={faAngleDown}
+                      className={`dropdown-icon2 ${isOpen4 ? "rotate" : ""}`}
+                    />
+                  </div>
+                  {isOpen4 && (
+                    <ul className="dropdown-menu">
+                      {categories.map((item, index) => (
+                        <li
+                          key={index}
+                          onClick={() => handleSelect(item.value)}
+                        >
+                          {item.label}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
             </div>
             {/* Transport Filter M */}
             <div className="lsItem1">
               <label>Phương tiện di chuyển</label>
-              <div className="dropdown-container">
-                <select
-                  value={transport} onClick={toggleDropdown3} onBlur={() => setIsOpen5(false)} onChange={(e) => setTransport(e.target.value)}
-                  className="lsSelect1"
-                >
-                  <option value="all">Tất cả</option>
-                  <option value="Xe du lịch">Xe du lịch</option>
-                  <option value="Hàng không">Máy bay</option>
-                  <option value="Tàu">Tàu hỏa</option>
-                </select>
-                <FontAwesomeIcon icon={faAngleDown} className={`dropdown-icon2 ${isOpen5 ? "rotate" : ""}`}/>
-              </div>
+              <div className="dropdown-container" onClick={(e) => e.stopPropagation()}>
+                      <div className={`dropdown ${isOpen5 ? "active" : ""}`} onClick={toggleDropdown3}>
+                        {transports.find((item) => item.value === transport)?.label || "Tất cả"}
+                        <FontAwesomeIcon icon={faAngleDown} className={`dropdown-icon2 ${isOpen ? "rotate" : ""}`} />
+                      </div>
+                      {isOpen5 && (
+                        <ul className="dropdown-menu">
+                          {transports.map((item, index) => (
+                            <li key={index} onClick={() => handleSelect2(item.value)}>
+                              {item.label}
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </div>
             </div>
           </div>
           <div className="thethu3">
             <div className="tourTrongNuoc">
               <div className="titleTourTrongNuoc" onClick={handleToggle}>
                 <p>Tour Trong Nước</p>
-                <FontAwesomeIcon icon={faAngleDown} className={`iconAngleDown ${isOpen ? "rotate" : ""}`}/>
+                <FontAwesomeIcon
+                  icon={faAngleDown}
+                  className={`iconAngleDown ${isOpen ? "rotate" : ""}`}
+                />
               </div>
               {/* Check box M*/}
               <fieldset className={`dropdownContent ${isOpen ? "open" : ""}`}>
@@ -347,7 +423,10 @@ const TrangTimKiem = () => {
             <div className="tourTrongNuoc">
               <div className="titleTourTrongNuoc" onClick={handleToggle2}>
                 <p>Tour Ngoài Nước</p>
-                <FontAwesomeIcon icon={faAngleDown} className={`iconAngleDown ${isOpen2 ? "rotate" : ""}`}/>
+                <FontAwesomeIcon
+                  icon={faAngleDown}
+                  className={`iconAngleDown ${isOpen2 ? "rotate" : ""}`}
+                />
               </div>
               {/* Check box M */}
               <fieldset className={`dropdownContent ${isOpen2 ? "open" : ""}`}>
@@ -463,14 +542,18 @@ const TrangTimKiem = () => {
             <div className="thethu1">
               <div className="lsItem1">
                 <label>Điểm đến</label>
-                <FontAwesomeIcon icon={faSearch} className="inputIcon" onClick={handleSearch}/>
+                <FontAwesomeIcon
+                  icon={faSearch}
+                  className="inputIcon"
+                  onClick={handleSearch}
+                />
                 <div className="inputDiemDen">
                   <input
                     type="text"
-                    value={searchTerm} 
-                    onChange={(e) => setSearchTerm(e.target.value)} 
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
                     onKeyDown={(e) => {
-                      if (e.key === "Enter") handleSearch(); 
+                      if (e.key === "Enter") handleSearch();
                     }}
                     placeholder="Bạn tìm địa điểm ở đây..."
                     className="formInput"
@@ -525,45 +608,50 @@ const TrangTimKiem = () => {
               {/* Category Filter PC*/}
               <div className="lsItem1">
                 <label>Loại hoạt động hạng mục</label>
-                <div className="dropdown-container">
-                  <select
-                    value={category}
+                <div className="dropdown-container" onClick={(e) => e.stopPropagation()}>
+                  <div
+                    className={`dropdown ${isOpen4 ? "active" : ""}`}
                     onClick={toggleDropdown2}
-                    onBlur={() => setIsOpen4(false)}
-                    onChange={(e) => setCategory(e.target.value)}
-                    className="lsSelect1"
                   >
-                    <option value="all">Tất cả</option>
-                    <option value="Điểm thiên nhiên">Điểm Thiên Nhiên</option>
-                    <option value="Ngắm cảnh">Ngắm cảnh</option>
-                    <option value="Nghệ thuật và văn hóa">Nghệ thuật và văn hóa</option>
-                    <option value="Tour dưới nước">Tour dưới nước</option>
-                    <option value="Tour theo chủ đề">Tour theo chủ đề</option>
-                    <option value="Tour bằng xe buýt">Tour bằng xe buýt</option>
-                    <option value="Trải nghiệm ẩm thực">Trải nghiệm ẩm thực</option>
-                    <option value="Sự kiện">Sự kiện</option>
-                  </select>
-                  <FontAwesomeIcon icon={faAngleDown} className={`dropdown-icon2 ${isOpen4 ? "rotate" : ""}`}/>
+                    {categories.find((item) => item.value === category)
+                      ?.label || "Tất cả"}
+                    <FontAwesomeIcon
+                      icon={faAngleDown}
+                      className={`dropdown-icon2 ${isOpen4 ? "rotate" : ""}`}
+                    />
+                  </div>
+                  {isOpen4 && (
+                    <ul className="dropdown-menu">
+                      {categories.map((item, index) => (
+                        <li
+                          key={index}
+                          onClick={() => handleSelect(item.value)}
+                        >
+                          {item.label}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                 </div>
               </div>
               {/* Transport Filter PC*/}
               <div className="lsItem1">
                 <label>Phương tiện di chuyển</label>
-                <div className="dropdown-container">
-                  <select
-                    value={transport} onClick={toggleDropdown3} onBlur={() => setIsOpen5(false)} onChange={(e) => setTransport(e.target.value)}
-                    className="lsSelect1"
-                  >
-                    <option value="all">Tất cả</option>
-                    <option value="Xe du lịch">Xe du lịch</option>
-                    <option value="Hàng không">Máy bay</option>
-                    <option value="Tàu">Tàu hỏa</option>
-                  </select>
-                  <FontAwesomeIcon
-                    icon={faAngleDown}
-                    className={`dropdown-icon2 ${isOpen5 ? "rotate" : ""}`}
-                  />
-                </div>
+                <div className="dropdown-container" onClick={(e) => e.stopPropagation()}>
+                      <div className={`dropdown ${isOpen5 ? "active" : ""}`} onClick={toggleDropdown3}>
+                        {transports.find((item) => item.value === transport)?.label || "Tất cả"}
+                        <FontAwesomeIcon icon={faAngleDown} className={`dropdown-icon2 ${isOpen5 ? "rotate" : ""}`} />
+                      </div>
+                      {isOpen5 && (
+                        <ul className="dropdown-menu">
+                          {transports.map((item, index) => (
+                            <li key={index} onClick={() => handleSelect2(item.value)}>
+                              {item.label}
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </div>
               </div>
             </div>
             <div className="thethu3">
@@ -653,7 +741,10 @@ const TrangTimKiem = () => {
               <div className="tourTrongNuoc">
                 <div className="titleTourTrongNuoc" onClick={handleToggle2}>
                   <p>Tour Ngoài Nước</p>
-                  <FontAwesomeIcon icon={faAngleDown} className={`iconAngleDown ${isOpen2 ? "rotate" : ""}`} />
+                  <FontAwesomeIcon
+                    icon={faAngleDown}
+                    className={`iconAngleDown ${isOpen2 ? "rotate" : ""}`}
+                  />
                 </div>
                 {/* Check Box PC*/}
                 <fieldset
@@ -700,7 +791,11 @@ const TrangTimKiem = () => {
                     <label htmlFor="campuchia">Campuchia</label>
                   </div>
                   <div className="customCheckBox">
-                    <input type="checkbox" id="philippines" name="philippines"/>
+                    <input
+                      type="checkbox"
+                      id="philippines"
+                      name="philippines"
+                    />
                     <label htmlFor="philippines">Philippines</label>
                   </div>
                   <div className="customCheckBox">
